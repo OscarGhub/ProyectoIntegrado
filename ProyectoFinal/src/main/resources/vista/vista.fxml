@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="vista.Vista"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="386.0" prefWidth="600.0" styleClass="Contenedor_Principal" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.controlador">
+   <children>
+      <Button layoutX="327.0" layoutY="141.0" mnemonicParsing="false" prefHeight="159.0" prefWidth="188.0" style="-fx-background-color: #947158;" styleClass="Contenedor_Usuarios" />
+      <Button layoutX="103.0" layoutY="141.0" mnemonicParsing="false" prefHeight="159.0" prefWidth="188.0" style="-fx-background-color: #947158;" styleClass="Contenedor_Usuarios" />
+      <AnchorPane layoutX="83.0" layoutY="14.0" prefHeight="112.0" prefWidth="114.0" styleClass="logo" />
+      <AnchorPane layoutX="200.0" layoutY="33.0" prefHeight="80.0" prefWidth="283.0" styleClass="textoDog" />
+   </children>
 </AnchorPane>

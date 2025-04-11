@@ -1,0 +1,30 @@
+.Contenedor_Principal{
+
+    -fx-background-image: url("img/Fondo.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.Contenedor_Usuarios{
+
+    -fx-border-radius: 25px;
+}
+
+.Letrero{
+    -fx-font-size: 40px;
+    -fx-font-family: "Bahnschrift";
+
+}
+
+
+.logo{
+    -fx-background-image: url("img/logo_dogpuccino.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.textoDog{
+    -fx-background-image: url("img/logo_dogpuccino.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
