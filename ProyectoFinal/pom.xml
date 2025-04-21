@@ -14,6 +14,8 @@
 <junit.version>5.10.2</junit.version>  </properties>
 
   <dependencies>
+
+
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
@@ -109,6 +111,9 @@
       <artifactId>ojdbc11</artifactId>
       <version>21.11.0.0</version>
     </dependency>
+
+
+
 
 
   </dependencies>
