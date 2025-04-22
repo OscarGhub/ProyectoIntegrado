@@ -11,6 +11,7 @@ module com.proyecto.proyectofinal {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires java.desktop;
 
     opens controlador to javafx.fxml;
     opens modelo to javafx.base;
