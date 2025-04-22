@@ -5,26 +5,72 @@
     -fx-background-position: center;
 }
 
-.Contenedor_Usuarios{
-
-    -fx-border-radius: 25px;
+.fondo_registro {
+    -fx-background-color: #af7474;
 }
 
-.Letrero{
+.botones_registro {
+    -fx-background-color: #b47b7b;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.2), 5, 0.0, 2, 2);
+    -fx-transition: all 0.2s ease-in-out;
+}
+
+
+.botones_registro:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-background-color: #a14e4e;
+}
+
+
+.label_estilo {
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-effect: dropshadow(gaussian, rgb(180, 123, 123), 2, 0.2, 1, 1);
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-padding: 2px 4px;
+}
+
+
+.label_estilo_formulario {
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-effect: dropshadow(gaussian, rgb(180, 123, 123), 2, 0.2, 1, 1);
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-padding: 2px 4px;
+}
+
+
+.label_estilo_letreros {
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
     -fx-font-size: 40px;
-    -fx-font-family: "Bahnschrift";
+    -fx-effect: dropshadow(gaussian, rgb(180, 123, 123), 2, 0.2, 1, 1);
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-padding: 2px 4px;
+}
+
+
+.label_estiloBlanco {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgb(0, 0, 0), 2, 0.2, 1, 1);
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-padding: 2px 4px;
 
 }
 
 
-.logo{
-    -fx-background-image: url("img/logo_dogpuccino.png");
-    -fx-background-size: cover;
-    -fx-background-position: center;
-}
 
-.textoDog{
-    -fx-background-image: url("img/logo_dogpuccino.png");
-    -fx-background-size: cover;
-    -fx-background-position: center;
-}
+
