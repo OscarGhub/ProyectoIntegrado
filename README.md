@@ -4,7 +4,12 @@ Trabajo de: Samuel, Pedro y Oscar.
 
 Estructura proyecto ( JavaFX )
 
- USUARIOS cliente y protectora
+USUARIOS cliente y protectora
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+ERRORES O PROBLEMAS ENCONTRADOS DURANTE EL DESARROLLO DE LA APLICACIÓN EN JAVA FX:
+- Modificar el tamaño de los contenedores, imagenes, textos y el encabezado de las tablas a la hora de hacerlo responsive.
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
