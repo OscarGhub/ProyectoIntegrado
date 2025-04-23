@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import modelo.EncriptarContrasenia;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,6 +67,8 @@ public class solicitarCitaController {
     @FXML
     private TextField cajaTextTipoVia;
 
+
+
     @FXML
     void btnEnviarAc(ActionEvent event) {
 
@@ -84,7 +87,7 @@ public class solicitarCitaController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Inicio");
             stage.setScene(escena);
 
 
@@ -109,7 +112,7 @@ public class solicitarCitaController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Solicitar adopción");
             stage.setScene(escena);
 
 
@@ -133,7 +136,7 @@ public class solicitarCitaController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Ver citas");
             stage.setScene(escena);
 
 
@@ -159,7 +162,7 @@ public class solicitarCitaController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Ver perros");
             stage.setScene(escena);
 
 

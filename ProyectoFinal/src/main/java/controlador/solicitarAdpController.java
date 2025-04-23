@@ -65,7 +65,7 @@ public class solicitarAdpController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Solicitar Cita");
             stage.setScene(escena);
 
 
@@ -90,7 +90,7 @@ public class solicitarAdpController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Ver citas");
             stage.setScene(escena);
 
 
@@ -115,7 +115,7 @@ public class solicitarAdpController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Ver perros");
             stage.setScene(escena);
 
 

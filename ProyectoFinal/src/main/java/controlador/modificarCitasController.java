@@ -33,7 +33,7 @@ public class modificarCitasController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Modificar perros");
             stage.setScene(escena);
 
 
@@ -57,7 +57,7 @@ public class modificarCitasController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Inicio");
             stage.setScene(escena);
 
 

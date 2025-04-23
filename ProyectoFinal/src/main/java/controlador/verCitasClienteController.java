@@ -54,7 +54,7 @@ public class verCitasClienteController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Inicio");
             stage.setScene(escena);
 
 
@@ -73,19 +73,19 @@ public class verCitasClienteController {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/solicitarAdopcion.fxml"));
             Parent root = fxmlLoader.load();
-            solicitarCitaController controlador = fxmlLoader.getController();
+            solicitarAdpController controlador = fxmlLoader.getController();
 
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Solicitar adopción");
             stage.setScene(escena);
 
 
             stage.show();
 
         } catch (Exception e) {
-            Logger.getLogger(solicitarCitaController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(solicitarAdpController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -102,7 +102,7 @@ public class verCitasClienteController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Solicitar cita");
             stage.setScene(escena);
 
 
@@ -126,7 +126,7 @@ public class verCitasClienteController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Ver perros");
             stage.setScene(escena);
 
 

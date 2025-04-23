@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import modelo.EncriptarContrasenia;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +28,10 @@ public class registroProtectoraController {
 
     @FXML
     private TextField cajaTextUsuario;
+
+    private String contrasenia;
+
+    private boolean sesionIniciada = false;
 
     @FXML
     void btnConfitmarAc(ActionEvent event) {
@@ -54,8 +59,10 @@ public class registroProtectoraController {
                     // Crear la nueva escena
                     Scene escena = new Scene(root);
                     Stage stage = new Stage();
-                    stage.setTitle("Registro Cliente");
+                    stage.setTitle("Modificar perros");
                     stage.setScene(escena);
+
+
 
                     // Mostrar la nueva ventana
                     stage.show();
@@ -96,11 +103,11 @@ public class registroProtectoraController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Inicio");
             stage.setScene(escena);
 
             // Mostrar la nueva ventana y esperar a que se cierre
-            stage.showAndWait();
+            stage.show();
 
         } catch (Exception e) {
             Logger.getLogger(inicioControlador.class.getName()).log(Level.SEVERE, null, e);

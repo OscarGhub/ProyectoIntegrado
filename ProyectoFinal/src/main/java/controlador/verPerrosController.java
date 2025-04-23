@@ -39,7 +39,7 @@ public class verPerrosController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Inicio");
             stage.setScene(escena);
 
 
@@ -63,7 +63,7 @@ public class verPerrosController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Solicitar adopción");
             stage.setScene(escena);
 
 
@@ -87,7 +87,7 @@ public class verPerrosController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Solicitar cita");
             stage.setScene(escena);
 
 
@@ -111,7 +111,7 @@ public class verPerrosController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Ver citas");
             stage.setScene(escena);
 
 

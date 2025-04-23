@@ -12,6 +12,7 @@ module com.proyecto.proyectofinal {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires java.desktop;
+    requires jbcrypt;
 
     opens controlador to javafx.fxml;
     opens modelo to javafx.base;

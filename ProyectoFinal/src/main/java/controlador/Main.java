@@ -28,5 +28,6 @@ public class Main extends Application {
         /*Conectar con la base de datos*/
         Connection con = ConnectionManager.getInstance().getConnection();
         launch();
+
     }
 }

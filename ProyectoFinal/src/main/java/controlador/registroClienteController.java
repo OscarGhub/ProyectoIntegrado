@@ -10,6 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import modelo.EncriptarContrasenia;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,6 +29,9 @@ public class registroClienteController {
     @FXML
     private TextField cajaTextUsuario;
 
+    private String contraseniaEncriptada="";
+
+    private boolean sesionIniciada = false;
 
 
     @FXML
@@ -42,7 +47,7 @@ public class registroClienteController {
             contrasenia = contrasenia.trim();
             usuario = usuario.trim();
 
-            if (contrasenia.equalsIgnoreCase("usuario") && usuario.equalsIgnoreCase("usuario")) {
+            if (usuario.equalsIgnoreCase("usuario")) {
 
                 try {
                     // Cerrar la ventana actual
@@ -55,8 +60,19 @@ public class registroClienteController {
                     // Crear la nueva escena
                     Scene escena = new Scene(root);
                     Stage stage = new Stage();
-                    stage.setTitle("Registro Cliente");
+                    stage.setTitle("Ver perros");
                     stage.setScene(escena);
+
+
+                    if (sesionIniciada==false){
+                        contraseniaEncriptada=EncriptarContrasenia.encriptarContraseia("cliente", contrasenia);
+                        sesionIniciada = true;
+                    }else {
+                        if (EncriptarContrasenia.validarContrasenia(contrasenia,contraseniaEncriptada)==false){
+                            mostrarAlerta("Error","Contraseña incorrecta",Alert.AlertType.WARNING);
+                        }
+                    }
+
 
                     // Mostrar la nueva ventana
                     stage.show();
@@ -98,7 +114,7 @@ public class registroClienteController {
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Inicio");
             stage.setScene(escena);
 
 
