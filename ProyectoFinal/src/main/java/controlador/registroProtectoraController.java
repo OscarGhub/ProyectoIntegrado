@@ -100,7 +100,7 @@ public class registroProtectoraController {
             stage.setScene(escena);
 
             // Mostrar la nueva ventana y esperar a que se cierre
-            stage.showAndWait();
+            stage.show();
 
         } catch (Exception e) {
             Logger.getLogger(inicioControlador.class.getName()).log(Level.SEVERE, null, e);
