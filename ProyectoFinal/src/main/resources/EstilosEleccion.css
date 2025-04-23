@@ -1,7 +1,7 @@
 .mi-alerta-personalizada {
     -fx-font-family: "Segoe UI", sans-serif;
     -fx-font-size: 14px;
-    -fx-background-image: url("img/perroAlert.png");
+    -fx-background-image: url("img/fondoAlert.jpg");
     -fx-background-size: cover;
     -fx-background-position: center;
     -fx-border-width: 2px;
@@ -10,7 +10,7 @@
     -fx-padding: 20;
 }
 .dialog-pane .button-bar {
-    -fx-padding: 0px 50px 60px 0px;
+    -fx-padding: 0px 60px 60px 0px;
     -fx-alignment: center;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .dialog-pane .button-bar .button {
-    -fx-background-color: #be7979;
+    -fx-background-color: #c5a3a3;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 5px;
