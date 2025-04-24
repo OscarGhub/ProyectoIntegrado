@@ -1,0 +1,35 @@
+.fondo {
+    -fx-background-image: url("png-clipart-stars-background-blue-fashion.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.fondoTabla{
+    -fx-background-color: #7ca3e1;
+}
+
+.fondoTablaColumna{
+    -fx-background-color: #4d7fff;
+    -fx-font-family: "Arial Black";
+}
+
+.boton {
+    -fx-background-color: #7f8c8d;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0.3, 0, 2);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.boton:hover {
+    -fx-background-color: #ecf0f1; /* gris claro */
+    -fx-text-fill: #ff001e;
+    -fx-border-color: #ff4b00;
+    -fx-effect: dropshadow(gaussian, rgb(255, 0, 30), 6, 0.4, 0, 3);
+}
