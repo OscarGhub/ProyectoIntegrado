@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.Node;
+import modelo.alertas;
 
 
 public class inicioControlador {
@@ -26,33 +27,16 @@ public class inicioControlador {
 
     @FXML
     void btnClienteAc(ActionEvent event) {
-        // Crear alerta con tipo de confirmación
-        Alert alert = new Alert(null);
 
-
-        // Botones personalizados
-        ButtonType btnIniciarS = new ButtonType("Iniciar Sesión");
-        ButtonType btnRegistrarse = new ButtonType("Registrarse");
-        ButtonType btnCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
-        alert.getButtonTypes().setAll(btnIniciarS, btnRegistrarse );
-
-        // Estilo personalizado
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("/EstilosEleccion.css").toExternalForm());
-        dialogPane.getStyleClass().add("mi-alerta-personalizada");
-
-        Optional<ButtonType> resultado = alert.showAndWait();
+        Optional<ButtonType> resultado =modelo.alertas.crearAlertaEleccion(this);
 
         if (resultado.isPresent()) {
             try {
-                if (resultado.get() == btnIniciarS) {
-                    // Acción para Iniciar Sesión
+                if (resultado.get().getText().contains("Iniciar")) {
                     abrirVentana("/vista/iniciarSesionCliente.fxml", "Iniciar Sesión", event);
-                } else if (resultado.get() == btnRegistrarse) {
-                    // Acción para Registrarse
+                } else if (resultado.get().getText().contains("Registrarse")) {
                     abrirVentana("/vista/registroCliente.fxml", "Registro Cliente", event);
                 }
-                // Si es cancelar o se cierra con la X, no hace nada
             } catch (Exception e) {
                 Logger.getLogger(verPerrosController.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -76,34 +60,15 @@ public class inicioControlador {
     @FXML
     void btnProtectoraAc(ActionEvent event) {
 
-
-        // Crear alerta con tipo de confirmación
-        Alert alert = new Alert(null);
-
-
-        // Botones personalizados
-        ButtonType btnIniciarS = new ButtonType("Iniciar Sesión");
-        ButtonType btnRegistrarse = new ButtonType("Registrarse");
-        ButtonType btnCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
-        alert.getButtonTypes().setAll(btnIniciarS, btnRegistrarse );
-
-        // Estilo personalizado
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("/EstilosEleccion.css").toExternalForm());
-        dialogPane.getStyleClass().add("mi-alerta-personalizada");
-
-        Optional<ButtonType> resultado = alert.showAndWait();
+        Optional<ButtonType> resultado =modelo.alertas.crearAlertaEleccion(this);
 
         if (resultado.isPresent()) {
             try {
-                if (resultado.get() == btnIniciarS) {
-                    // Acción para Iniciar Sesión
+                if (resultado.get().getText().contains("Iniciar")) {
                     abrirVentana("/vista/iniciarSesionProtectora.fxml", "Iniciar Sesión", event);
-                } else if (resultado.get() == btnRegistrarse) {
-                    // Acción para Registrarse
+                } else if (resultado.get().getText().contains("Registrarse")) {
                     abrirVentana("/vista/registroProtectora.fxml", "Registro Cliente", event);
                 }
-                // Si es cancelar o se cierra con la X, no hace nada
             } catch (Exception e) {
                 Logger.getLogger(verPerrosController.class.getName()).log(Level.SEVERE, null, e);
             }

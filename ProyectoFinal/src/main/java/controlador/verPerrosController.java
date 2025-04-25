@@ -3,16 +3,20 @@ package controlador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class verPerrosController {
+public class verPerrosController implements Initializable {
 
     @FXML
     private Button btnSalir;
@@ -25,6 +29,9 @@ public class verPerrosController {
 
     @FXML
     private Button btnVerCitas;
+
+    @FXML
+    private ImageView imgUsuario;
 
     @FXML
     void btnSalirAc(ActionEvent event) {
@@ -120,6 +127,11 @@ public class verPerrosController {
         } catch (Exception e) {
             Logger.getLogger(verCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        modelo.animaciones.animarAgrandar(imgUsuario);
     }
 
 }

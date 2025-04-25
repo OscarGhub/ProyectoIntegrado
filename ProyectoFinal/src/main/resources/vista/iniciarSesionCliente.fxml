@@ -58,7 +58,7 @@
                 <RowConstraints maxHeight="154.39998168945314" minHeight="10.0" prefHeight="154.39998168945314" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-                <ImageView fitHeight="65.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                <ImageView fx:id="imgUsuario" fitHeight="65.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                     <image>
                         <Image url="@../img/login-removebg-preview.png" />
                     </image>
