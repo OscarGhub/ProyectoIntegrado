@@ -16,13 +16,10 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class verPerrosController implements Initializable {
+public class SolicitarAdpController implements Initializable {
 
     @FXML
     private Button btnSalir;
-
-    @FXML
-    private Button btnSolicitarADP;
 
     @FXML
     private Button btnSolicitarCita;
@@ -31,89 +28,70 @@ public class verPerrosController implements Initializable {
     private Button btnVerCitas;
 
     @FXML
+    private Button btnVerPerros;
+
+    @FXML
     private ImageView imgUsuario;
 
     @FXML
     void btnSalirAc(ActionEvent event) {
+
         try {
             // Cerrar la ventana actual
             ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/inicio.fxml"));
             Parent root = fxmlLoader.load();
-            inicioControlador controlador = fxmlLoader.getController();
+            InicioControlador controlador = fxmlLoader.getController();
 
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Inicio");
+            stage.setTitle("Registro Cliente");
             stage.setScene(escena);
-
 
             stage.show();
 
         } catch (Exception e) {
-            Logger.getLogger(inicioControlador.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-
-    @FXML
-    void btnSolicitarADPAc(ActionEvent event) {
-        try {
-            // Cerrar la ventana actual
-            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/solicitarAdopcion.fxml"));
-            Parent root = fxmlLoader.load();
-            solicitarAdpController controlador = fxmlLoader.getController();
-
-            // Crear la nueva escena
-            Scene escena = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Solicitar adopción");
-            stage.setScene(escena);
-
-
-            stage.show();
-
-        } catch (Exception e) {
-            Logger.getLogger(solicitarAdpController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
     @FXML
     void btnSolicitarCitaAc(ActionEvent event) {
+
         try {
             // Cerrar la ventana actual
             ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/solicitarCita.fxml"));
             Parent root = fxmlLoader.load();
-            solicitarCitaController controlador = fxmlLoader.getController();
+            SolicitarCitaController controlador = fxmlLoader.getController();
 
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Solicitar cita");
+            stage.setTitle("Solicitar Cita");
             stage.setScene(escena);
 
 
             stage.show();
 
         } catch (Exception e) {
-            Logger.getLogger(solicitarCitaController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(SolicitarCitaController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
     @FXML
     void btnVerCitasAc(ActionEvent event) {
+
         try {
             // Cerrar la ventana actual
             ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/verCitasCliente.fxml"));
             Parent root = fxmlLoader.load();
-            verCitasClienteController controlador = fxmlLoader.getController();
+            VerCitasClienteController controlador = fxmlLoader.getController();
 
             // Crear la nueva escena
             Scene escena = new Scene(root);
@@ -125,13 +103,38 @@ public class verPerrosController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-            Logger.getLogger(verCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    @FXML
+    void btnVerPerrosAc(ActionEvent event) {
+
+        try {
+            // Cerrar la ventana actual
+            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/verPerros.fxml"));
+            Parent root = fxmlLoader.load();
+            VerPerrosController controlador = fxmlLoader.getController();
+
+            // Crear la nueva escena
+            Scene escena = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Ver perros");
+            stage.setScene(escena);
+
+
+            stage.show();
+
+        } catch (Exception e) {
+            Logger.getLogger(VerPerrosController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        modelo.animaciones.animarAgrandar(imgUsuario);
+        modelo.Animaciones.animarAgrandar(imgUsuario);
     }
 
 }

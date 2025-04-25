@@ -2,11 +2,15 @@ package modelo;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
-import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-public class animaciones {
+public class Animaciones {
+
+    /**
+     * Método para animar la imagen del usuario.
+     * @param imagen La imagen que se va a animar.
+     */
 
     public static void animarImagenUsuario(ImageView imagen) {
         FadeTransition fade = new FadeTransition(Duration.seconds(1.5), imagen);

@@ -12,10 +12,9 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.Node;
-import modelo.alertas;
 
 
-public class inicioControlador {
+public class InicioControlador {
 
     @FXML
     private Button btnCliente;
@@ -28,7 +27,7 @@ public class inicioControlador {
     @FXML
     void btnClienteAc(ActionEvent event) {
 
-        Optional<ButtonType> resultado =modelo.alertas.crearAlertaEleccion(this);
+        Optional<ButtonType> resultado =modelo.Alertas.crearAlertaEleccion(this);
 
         if (resultado.isPresent()) {
             try {
@@ -38,7 +37,7 @@ public class inicioControlador {
                     abrirVentana("/vista/registroCliente.fxml", "Registro Cliente", event);
                 }
             } catch (Exception e) {
-                Logger.getLogger(verPerrosController.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(VerPerrosController.class.getName()).log(Level.SEVERE, null, e);
             }
         }
     }
@@ -60,7 +59,7 @@ public class inicioControlador {
     @FXML
     void btnProtectoraAc(ActionEvent event) {
 
-        Optional<ButtonType> resultado =modelo.alertas.crearAlertaEleccion(this);
+        Optional<ButtonType> resultado =modelo.Alertas.crearAlertaEleccion(this);
 
         if (resultado.isPresent()) {
             try {
@@ -70,7 +69,7 @@ public class inicioControlador {
                     abrirVentana("/vista/registroProtectora.fxml", "Registro Cliente", event);
                 }
             } catch (Exception e) {
-                Logger.getLogger(verPerrosController.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(VerPerrosController.class.getName()).log(Level.SEVERE, null, e);
             }
         }
     }

@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class modificarCitasController implements Initializable {
+public class ModificarCitasController implements Initializable {
 
     @FXML
     private Button brnModificarPerros;
@@ -35,7 +35,7 @@ public class modificarCitasController implements Initializable {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/modificarPerros.fxml"));
             Parent root = fxmlLoader.load();
-            modificarPerrosController controlador = fxmlLoader.getController();
+            ModificarPerrosController controlador = fxmlLoader.getController();
 
             // Crear la nueva escena
             Scene escena = new Scene(root);
@@ -47,7 +47,7 @@ public class modificarCitasController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-            Logger.getLogger(modificarPerrosController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ModificarPerrosController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -59,7 +59,7 @@ public class modificarCitasController implements Initializable {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/inicio.fxml"));
             Parent root = fxmlLoader.load();
-            inicioControlador controlador = fxmlLoader.getController();
+            InicioControlador controlador = fxmlLoader.getController();
 
             // Crear la nueva escena
             Scene escena = new Scene(root);
@@ -71,13 +71,13 @@ public class modificarCitasController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-            Logger.getLogger(inicioControlador.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        modelo.animaciones.animarAgrandar(imgProtectora);
+        modelo.Animaciones.animarAgrandar(imgProtectora);
     }
 
 }

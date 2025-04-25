@@ -7,7 +7,7 @@ import javafx.scene.control.DialogPane;
 
 import java.util.Optional;
 
-public class alertas {
+public class Alertas {
 
     public static Optional<ButtonType> crearAlertaEleccion(Object claseActual) {
 

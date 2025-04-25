@@ -11,14 +11,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import modelo.EncriptarContrasenia;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class solicitarCitaController implements Initializable {
+public class SolicitarCitaController implements Initializable {
 
     @FXML
     private Button btnEnviar;
@@ -87,7 +86,7 @@ public class solicitarCitaController implements Initializable {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/inicio.fxml"));
             Parent root = fxmlLoader.load();
-            inicioControlador controlador = fxmlLoader.getController();
+            InicioControlador controlador = fxmlLoader.getController();
 
             // Crear la nueva escena
             Scene escena = new Scene(root);
@@ -99,7 +98,7 @@ public class solicitarCitaController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-            Logger.getLogger(inicioControlador.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -112,7 +111,7 @@ public class solicitarCitaController implements Initializable {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/solicitarAdopcion.fxml"));
             Parent root = fxmlLoader.load();
-            solicitarAdpController controlador = fxmlLoader.getController();
+            SolicitarAdpController controlador = fxmlLoader.getController();
 
             // Crear la nueva escena
             Scene escena = new Scene(root);
@@ -124,7 +123,7 @@ public class solicitarCitaController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-            Logger.getLogger(solicitarAdpController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(SolicitarAdpController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -136,7 +135,7 @@ public class solicitarCitaController implements Initializable {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/verCitasCliente.fxml"));
             Parent root = fxmlLoader.load();
-            verCitasClienteController controlador = fxmlLoader.getController();
+            VerCitasClienteController controlador = fxmlLoader.getController();
 
             // Crear la nueva escena
             Scene escena = new Scene(root);
@@ -148,7 +147,7 @@ public class solicitarCitaController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-            Logger.getLogger(verCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
         }
 
     }
@@ -162,7 +161,7 @@ public class solicitarCitaController implements Initializable {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/verPerros.fxml"));
             Parent root = fxmlLoader.load();
-            verPerrosController controlador = fxmlLoader.getController();
+            VerPerrosController controlador = fxmlLoader.getController();
 
             // Crear la nueva escena
             Scene escena = new Scene(root);
@@ -174,13 +173,13 @@ public class solicitarCitaController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-            Logger.getLogger(verPerrosController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(VerPerrosController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        modelo.animaciones.animarAgrandar(imgUsuario);
+        modelo.Animaciones.animarAgrandar(imgUsuario);
     }
 
 
