@@ -3,18 +3,22 @@ package controlador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import modelo.EncriptarContrasenia;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class solicitarCitaController {
+public class solicitarCitaController implements Initializable {
 
     @FXML
     private Button btnEnviar;
@@ -67,7 +71,8 @@ public class solicitarCitaController {
     @FXML
     private TextField cajaTextTipoVia;
 
-
+    @FXML
+    private ImageView imgUsuario;
 
     @FXML
     void btnEnviarAc(ActionEvent event) {
@@ -171,6 +176,11 @@ public class solicitarCitaController {
         } catch (Exception e) {
             Logger.getLogger(verPerrosController.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        modelo.animaciones.animarAgrandar(imgUsuario);
     }
 
 

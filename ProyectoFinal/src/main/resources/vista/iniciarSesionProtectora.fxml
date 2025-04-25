@@ -58,7 +58,7 @@
           <RowConstraints maxHeight="154.39998168945314" minHeight="10.0" prefHeight="154.39998168945314" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="51.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+            <ImageView fx:id="imgProtectora" fitHeight="51.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <image>
                   <Image url="@../img/casaPerropng-removebg-preview.png" />
                </image>
