@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -13,25 +15,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.solicitarCitaController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.SolicitarCitaController">
     <left>
-        <VBox alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="195.0" style="-fx-background-color: #a14e4e;" BorderPane.alignment="CENTER">
+        <VBox alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="195.0" style="-fx-background-color: #dbab84;" BorderPane.alignment="CENTER">
             <children>
-                <Label styleClass="label_estiloBlanco" text="Cliente">
-                    <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../img/login-removebg-preview.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <opaqueInsets>
-                        <Insets />
-                    </opaqueInsets>
-                    <VBox.margin>
-                        <Insets bottom="40.0" top="30.0" />
-                    </VBox.margin>
-                </Label>
+                  <ImageView fx:id="imgUsuario" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="label_estilo">
+                      <image>
+                          <Image url="@../img/login-removebg-preview.png" />
+                      </image>
+               <VBox.margin>
+                  <Insets bottom="35.0" top="35.0" />
+               </VBox.margin>
+                  </ImageView>
                 <Button fx:id="btnVerPerros" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="50.0" mnemonicParsing="false" onAction="#btnVerPerrosAc" styleClass="botones_registro" text=" Ver perros" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets bottom="20.0" left="15.0" right="15.0" />
@@ -89,11 +84,11 @@
     <center>
         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
-                <Label contentDisplay="CENTER" styleClass="label_estilo_letreros" text="Solicitud">
-                    <VBox.margin>
-                        <Insets top="30.0" />
-                    </VBox.margin>
-                </Label>
+            <ImageView fitHeight="108.0" fitWidth="267.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/2.png" />
+               </image>
+            </ImageView>
             <GridPane alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="233.0" VBox.vgrow="ALWAYS">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.20001220703125" minWidth="10.0" prefWidth="88.79998779296875" />
@@ -104,6 +99,7 @@
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
@@ -140,11 +136,6 @@
                         <Insets left="5.0" right="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="cajaTextFechaNacimiento" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <GridPane.margin>
-                        <Insets left="5.0" right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
                   <TextField fx:id="cajaTextTelef" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="5.0" right="10.0" />
@@ -175,16 +166,15 @@
                         <Insets left="5.0" right="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="cajaTextTipoVia" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                     <GridPane.margin>
-                        <Insets left="5.0" right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
                   <TextField fx:id="cajaTextNvia" GridPane.columnIndex="3" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="5.0" right="10.0" />
                      </GridPane.margin>
                   </TextField>
+                  <ChoiceBox fx:id="choiceBoxTipoVia" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <DatePicker fx:id="datePickerFechaNacimiento" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <DatePicker fx:id="datePickerFechaCita" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label styleClass="label_estilo_formulario" text="Fecha cita" GridPane.rowIndex="6" />
                </children>
             </GridPane>
             <Button fx:id="btnEnviar" mnemonicParsing="false" onAction="#btnEnviarAc" prefHeight="34.0" prefWidth="142.0" styleClass="botones_registro" text="Enviar">

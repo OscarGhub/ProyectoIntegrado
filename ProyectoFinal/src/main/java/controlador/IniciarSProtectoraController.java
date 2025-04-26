@@ -3,17 +3,22 @@ package controlador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class registroClienteController {
+public class IniciarSProtectoraController implements Initializable {
 
     @FXML
     private Button btnConfitmar;
@@ -27,7 +32,12 @@ public class registroClienteController {
     @FXML
     private TextField cajaTextUsuario;
 
+    @FXML
+    private ImageView imgProtectora;
 
+    private String contrasenia;
+
+    private boolean sesionIniciada = false;
 
     @FXML
     void btnConfitmarAc(ActionEvent event) {
@@ -48,21 +58,23 @@ public class registroClienteController {
                     // Cerrar la ventana actual
                     ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/verPerros.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/modificarPerros.fxml"));
                     Parent root = fxmlLoader.load();
-                    verPerrosController controlador = fxmlLoader.getController();
+                    ModificarPerrosController controlador = fxmlLoader.getController();
 
                     // Crear la nueva escena
                     Scene escena = new Scene(root);
                     Stage stage = new Stage();
-                    stage.setTitle("Registro Cliente");
+                    stage.setTitle("Modificar perros");
                     stage.setScene(escena);
+
+
 
                     // Mostrar la nueva ventana
                     stage.show();
 
                 } catch (Exception e) {
-                    Logger.getLogger(verPerrosController.class.getName()).log(Level.SEVERE, null, e);
+                    Logger.getLogger(ModificarPerrosController.class.getName()).log(Level.SEVERE, null, e);
                     mostrarAlerta("Error", "No se pudo abrir la nueva ventana.", Alert.AlertType.ERROR);
                 }
 
@@ -86,26 +98,25 @@ public class registroClienteController {
 
     @FXML
     void btnVolverAc(ActionEvent event) {
-
         try {
             // Cerrar la ventana actual
             ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/inicio.fxml"));
             Parent root = fxmlLoader.load();
-            inicioControlador controlador = fxmlLoader.getController();
+            InicioControlador controlador = fxmlLoader.getController();
 
             // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Registro Cliente");
+            stage.setTitle("Inicio");
             stage.setScene(escena);
 
-
+            // Mostrar la nueva ventana y esperar a que se cierre
             stage.show();
 
         } catch (Exception e) {
-            Logger.getLogger(inicioControlador.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -117,6 +128,11 @@ public class registroClienteController {
     @FXML
     void cajaTextUsuarioAc(ActionEvent event) {
 
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        modelo.Animaciones.animarImagenUsuario(imgProtectora);
     }
 
 }

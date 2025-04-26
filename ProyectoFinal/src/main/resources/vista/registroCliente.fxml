@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.registroClienteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistroClienteController">
     <left>
         <GridPane prefHeight="400.0" prefWidth="350.0" BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -19,29 +20,13 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-                <ImageView fitHeight="203.0" fitWidth="203.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <ImageView fitHeight="300.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                     <image>
                         <Image url="@../img/logo_dogpuccino.png" />
                     </image>
                 </ImageView>
-                <Label styleClass="label_estilo" text="CafePerros@gmail.com" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                    <GridPane.margin>
-                        <Insets bottom="20.0" />
-                    </GridPane.margin>
-                </Label>
-                <Label styleClass="label_estilo" text="Dogpuccino" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                    <GridPane.margin>
-                        <Insets top="50.0" />
-                    </GridPane.margin>
-                </Label>
-                <Label styleClass="label_estilo" text="+ 34 722 69 46 99" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                    <GridPane.margin>
-                        <Insets bottom="90.0" />
-                    </GridPane.margin>
-                </Label>
             </children>
         </GridPane>
     </left>
@@ -52,46 +37,71 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="143.99998779296874" minHeight="10.0" prefHeight="104.00000610351563" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="160.8000144958496" minHeight="10.0" prefHeight="75.19999389648436" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="160.8000144958496" minHeight="10.0" prefHeight="75.19999389648436" vgrow="ALWAYS" />
                 <RowConstraints maxHeight="160.8000144958496" minHeight="10.0" prefHeight="75.19999389648436" vgrow="ALWAYS" />
-                <RowConstraints maxHeight="131.80000915527341" minHeight="10.0" prefHeight="67.20001831054688" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="131.80000915527341" minHeight="10.0" prefHeight="75.19999389648436" vgrow="ALWAYS" />
                 <RowConstraints maxHeight="154.39998168945314" minHeight="10.0" prefHeight="154.39998168945314" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-                <ImageView fitHeight="65.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                    <image>
-                        <Image url="@../img/login-removebg-preview.png" />
-                    </image>
-                </ImageView>
-                <Label styleClass="label_estiloBlanco" text="Usuario" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                <Label styleClass="label_estiloBlanco" text="Contraseña" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                     <GridPane.margin>
-                        <Insets right="230.0" />
+                        <Insets right="185.0" />
                     </GridPane.margin>
                 </Label>
-                <Label styleClass="label_estiloBlanco" text="Contraseña" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                <Label styleClass="label_estiloBlanco" text="Confirmar C" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                     <GridPane.margin>
-                        <Insets right="225.0" />
+                        <Insets right="185.0" />
                     </GridPane.margin>
                 </Label>
-                <TextField fx:id="cajaTextContrasenia" maxWidth="-Infinity" prefHeight="26.0" prefWidth="199.0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-                    <GridPane.margin>
-                        <Insets right="40.0" />
-                    </GridPane.margin>
-                </TextField>
-                <TextField fx:id="cajaTextUsuario" layoutX="120.0" layoutY="238.0" maxWidth="-Infinity" prefHeight="26.0" prefWidth="199.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
-                    <GridPane.margin>
-                        <Insets right="40.0" />
-                    </GridPane.margin>
-                </TextField>
-                <Button fx:id="btnConfitmar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnConfitmarAc" style="-fx-border-color: #482828;" styleClass="botones_registro" text="Enviar" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                <Button fx:id="btnConfitmar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnConfitmarAc" style="-fx-border-color: #482828;" styleClass="botones_registro" text="Enviar" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                     <GridPane.margin>
                         <Insets bottom="40.0" left="40.0" right="40.0" />
                     </GridPane.margin>
                 </Button>
-                <Button fx:id="btnVolver" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnVolverAc" style="-fx-border-color: #482828;" styleClass="botones_registro" text="Volver" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                <Button fx:id="btnVolver" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnVolverAc" style="-fx-border-color: #482828;" styleClass="botones_registro" text="Volver" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                     <GridPane.margin>
                         <Insets left="40.0" right="40.0" top="50.0" />
                     </GridPane.margin>
                 </Button>
+                <PasswordField fx:id="cajaTextContraseniaConfirmar" layoutX="120.0" layoutY="238.0" maxWidth="-Infinity" prefHeight="26.0" prefWidth="174.0" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                    <GridPane.margin>
+                        <Insets right="40.0" />
+                    </GridPane.margin>
+                </PasswordField>
+            <Label styleClass="label_estiloBlanco" text="Gmail" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets left="40.0" />
+               </GridPane.margin>
+            </Label>
+            <Label styleClass="label_estiloBlanco" text="Usuario" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets left="40.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="cajaTextUsuario" maxWidth="-Infinity" prefHeight="26.0" prefWidth="174.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets right="40.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="cajaTextGmail" maxWidth="-Infinity" prefHeight="26.0" prefWidth="174.0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets right="40.0" />
+               </GridPane.margin>
+            </TextField>
+            <ImageView fx:id="imgUsuario" fitHeight="40.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <image>
+                  <Image url="@../img/login-removebg-preview.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets top="20.0" />
+               </GridPane.margin>
+            </ImageView>
+            <PasswordField fx:id="cajaTextContrasenia" maxWidth="-Infinity" prefHeight="26.0" prefWidth="174.0" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets right="40.0" />
+               </GridPane.margin>
+            </PasswordField>
             </children>
         </GridPane>
     </right>

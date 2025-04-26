@@ -1,4 +1,4 @@
-Pasar acceso a GitHub a: EDDesarrollo, Lenguajes de Marca, Programación.
+Pasar acceso a GitHub a: EDDesarrollo, Lenguajes de Marca, Programación. Hecho.
 
 Contraseña: hash en BCrypt.
 
