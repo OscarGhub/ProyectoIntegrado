@@ -10,6 +10,7 @@ USUARIOS cliente y protectora
 
 ERRORES O PROBLEMAS ENCONTRADOS DURANTE EL DESARROLLO DE LA APLICACIÓN EN JAVA FX:
 - Modificar el tamaño de los contenedores, imagenes, textos y el encabezado de las tablas a la hora de hacerlo responsive.
+- Algunos botones que abren o cierran ventanas no han podido ser modificados e implementar los metodos "abrirVentana" y "cerrarVentana" ya que tienen una estructura diferente.
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
