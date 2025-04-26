@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
+import modelo.Ventanas;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,22 +31,8 @@ public class ModificarPerrosController implements Initializable {
     @FXML
     void brnModificarCitasAc(ActionEvent event) {
         try {
-            // Cerrar la ventana actual
-            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/modificarCitas.fxml"));
-            Parent root = fxmlLoader.load();
-            ModificarCitasController controlador = fxmlLoader.getController();
-
-            // Crear la nueva escena
-            Scene escena = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Modificar citas");
-            stage.setScene(escena);
-
-
-            stage.show();
-
+            Ventanas.cerrarVentana(event);
+            Ventanas.abrirVentana("/vista/modificarCitas.fxml", "Modificar citas");
         } catch (Exception e) {
             Logger.getLogger(ModificarCitasController.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -54,27 +41,12 @@ public class ModificarPerrosController implements Initializable {
     @FXML
     void btnSalirAc(ActionEvent event) {
         try {
-            // Cerrar la ventana actual
-            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/inicio.fxml"));
-            Parent root = fxmlLoader.load();
-            InicioControlador controlador = fxmlLoader.getController();
-
-            // Crear la nueva escena
-            Scene escena = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Inicio");
-            stage.setScene(escena);
-
-
-            stage.show();
-
+            Ventanas.cerrarVentana(event);
+            Ventanas.abrirVentana("/vista/inicio.fxml", "Inicio");
         } catch (Exception e) {
             Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

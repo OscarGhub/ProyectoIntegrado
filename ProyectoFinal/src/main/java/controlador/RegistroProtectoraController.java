@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.Ventanas;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,25 +42,12 @@ public class RegistroProtectoraController implements Initializable {
     @FXML
     private ImageView imgProtectora;
 
+
     @FXML
     void btnConfitmarAc(ActionEvent event) {
         try {
-            // Cerrar la ventana actual
-            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/modificarPerros.fxml"));
-            Parent root = fxmlLoader.load();
-            ModificarPerrosController controlador = fxmlLoader.getController();
-
-            // Crear la nueva escena
-            Scene escena = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Inicio");
-            stage.setScene(escena);
-
-
-            stage.show();
-
+            Ventanas.cerrarVentana(event);
+            Ventanas.abrirVentana("/vista/modificarPerros.fxml", "Inicio");
         } catch (Exception e) {
             Logger.getLogger(ModificarPerrosController.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -68,22 +56,8 @@ public class RegistroProtectoraController implements Initializable {
     @FXML
     void btnVolverAc(ActionEvent event) {
         try {
-            // Cerrar la ventana actual
-            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/inicio.fxml"));
-            Parent root = fxmlLoader.load();
-            InicioControlador controlador = fxmlLoader.getController();
-
-            // Crear la nueva escena
-            Scene escena = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Inicio");
-            stage.setScene(escena);
-
-
-            stage.show();
-
+            Ventanas.cerrarVentana(event);
+            Ventanas.abrirVentana("/vista/inicio.fxml", "Inicio");
         } catch (Exception e) {
             Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -93,7 +67,5 @@ public class RegistroProtectoraController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modelo.Animaciones.animarImagenUsuario(imgProtectora);
     }
-
-
 
 }
