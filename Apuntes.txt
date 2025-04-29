@@ -1,7 +1,0 @@
-Pasar acceso a GitHub a: EDDesarrollo, Lenguajes de Marca, Programación.
-
-Contraseña: hash en BCrypt.
-
-El proyecto tiene que tener el punto de vista de dos usuarios, el proyecto desde el punto de vista del usuario, donde se puede logear,
-ver sus citas, reservar citas, apartado de notificaciones arriba a la derecha donde ver si se cancela una cita o alguna modificación.
-Por otro lado, el apartado de Administrador, donde puede poner y quitar perros, cambiar horarios (opcional), etc.
