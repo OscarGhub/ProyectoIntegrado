@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class iniciarSProtectoraController implements Initializable {
+public class IniciarSProtectoraController implements Initializable {
 
     @FXML
     private Button btnConfitmar;
@@ -60,7 +60,7 @@ public class iniciarSProtectoraController implements Initializable {
 
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/modificarPerros.fxml"));
                     Parent root = fxmlLoader.load();
-                    modificarPerrosController controlador = fxmlLoader.getController();
+                    ModificarPerrosController controlador = fxmlLoader.getController();
 
                     // Crear la nueva escena
                     Scene escena = new Scene(root);
@@ -74,7 +74,7 @@ public class iniciarSProtectoraController implements Initializable {
                     stage.show();
 
                 } catch (Exception e) {
-                    Logger.getLogger(modificarPerrosController.class.getName()).log(Level.SEVERE, null, e);
+                    Logger.getLogger(ModificarPerrosController.class.getName()).log(Level.SEVERE, null, e);
                     mostrarAlerta("Error", "No se pudo abrir la nueva ventana.", Alert.AlertType.ERROR);
                 }
 
@@ -104,7 +104,7 @@ public class iniciarSProtectoraController implements Initializable {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/inicio.fxml"));
             Parent root = fxmlLoader.load();
-            inicioControlador controlador = fxmlLoader.getController();
+            InicioControlador controlador = fxmlLoader.getController();
 
             // Crear la nueva escena
             Scene escena = new Scene(root);
@@ -116,7 +116,7 @@ public class iniciarSProtectoraController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-            Logger.getLogger(inicioControlador.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -132,7 +132,7 @@ public class iniciarSProtectoraController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        modelo.animaciones.animarImagenUsuario(imgProtectora);
+        modelo.Animaciones.animarImagenUsuario(imgProtectora);
     }
 
 }

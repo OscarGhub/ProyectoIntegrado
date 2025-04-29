@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class iniciarSClienteController implements Initializable {
+public class IniciarSClienteController implements Initializable {
 
     @FXML
     private Button btnConfitmar;
@@ -62,7 +62,7 @@ public class iniciarSClienteController implements Initializable {
 
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/verPerros.fxml"));
                     Parent root = fxmlLoader.load();
-                    verPerrosController controlador = fxmlLoader.getController();
+                    VerPerrosController controlador = fxmlLoader.getController();
 
                     // Crear la nueva escena
                     Scene escena = new Scene(root);
@@ -85,7 +85,7 @@ public class iniciarSClienteController implements Initializable {
                     stage.show();
 
                 } catch (Exception e) {
-                    Logger.getLogger(verPerrosController.class.getName()).log(Level.SEVERE, null, e);
+                    Logger.getLogger(VerPerrosController.class.getName()).log(Level.SEVERE, null, e);
                     mostrarAlerta("Error", "No se pudo abrir la nueva ventana.", Alert.AlertType.ERROR);
                 }
 
@@ -98,7 +98,7 @@ public class iniciarSClienteController implements Initializable {
         }
     }
 
-    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+    protected void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
         alerta.setHeaderText(null);
@@ -116,7 +116,7 @@ public class iniciarSClienteController implements Initializable {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/inicio.fxml"));
             Parent root = fxmlLoader.load();
-            inicioControlador controlador = fxmlLoader.getController();
+            InicioControlador controlador = fxmlLoader.getController();
 
             // Crear la nueva escena
             Scene escena = new Scene(root);
@@ -128,7 +128,7 @@ public class iniciarSClienteController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-            Logger.getLogger(inicioControlador.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -144,7 +144,7 @@ public class iniciarSClienteController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        modelo.animaciones.animarImagenUsuario(imgUsuario);
+        modelo.Animaciones.animarImagenUsuario(imgUsuario);
     }
 
 }
