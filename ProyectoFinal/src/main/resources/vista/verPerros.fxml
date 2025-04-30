@@ -9,6 +9,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -81,48 +84,436 @@
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="85.0" fitWidth="267.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/4.png" />
                </image>
             </ImageView>
-            <TabPane maxHeight="1.7976931348623157E308" prefHeight="522.0" prefWidth="505.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane maxHeight="1.7976931348623157E308" prefHeight="522.0" prefWidth="505.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
               <tabs>
-                <Tab text="P1">
+                <Tab text="Chihuahua">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Label layoutX="238.0" layoutY="108.0" text="P1" />
+                              <GridPane layoutX="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="506.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="ALWAYS" maxWidth="257.6000091552734" minWidth="10.0" prefWidth="132.7999755859375" />
+                                  <ColumnConstraints hgrow="ALWAYS" maxWidth="337.6000244140625" minWidth="10.0" prefWidth="337.6000244140625" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                </rowConstraints>
+                                 <children>
+                                    <ImageView fitHeight="65.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <image>
+                                          <Image url="@../img/chihuahua.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="label_estilo" text="Nombre : Perro 1" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Edad : " GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Fecha Nacimiento : " GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Nombre : Kilombo" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="botones_registro" text="Solicitar Cita" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets right="30.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                              </GridPane>
                            </children>
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab text="P2">
+                <Tab text="Pug">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Label layoutX="238.0" layoutY="120.0" text="P2" />
+                              <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="506.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="257.6000091552734" minWidth="10.0" prefWidth="132.7999755859375" />
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="337.6000244140625" minWidth="10.0" prefWidth="337.6000244140625" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fitHeight="65.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <image>
+                                          <Image url="@../img/Pugg.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="label_estilo" text="Nombre : Perro 2" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Edad : " GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Fecha Nacimiento : " GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Nombre : Kilombo" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="botones_registro" text="Solicitar Cita" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets right="30.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                              </GridPane>
                            </children>
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab text="P3">
+                  <Tab text="Bulldog">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Label layoutX="238.0" layoutY="128.0" text="P3" />
+                              <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="506.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="257.6000091552734" minWidth="10.0" prefWidth="132.7999755859375" />
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="337.6000244140625" minWidth="10.0" prefWidth="337.6000244140625" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fitHeight="65.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <image>
+                                          <Image url="@../img/bulldog.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="label_estilo" text="Nombre : Perro 3" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Edad : " GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Fecha Nacimiento : " GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Nombre : Kilombo" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="botones_registro" text="Solicitar Cita" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets right="30.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                              </GridPane>
                            </children>
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="P4">
+                  <Tab text="Golden retriever">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Label layoutX="238.0" layoutY="128.0" text="P4" />
+                              <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="506.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="257.6000091552734" minWidth="10.0" prefWidth="132.7999755859375" />
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="337.6000244140625" minWidth="10.0" prefWidth="337.6000244140625" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fitHeight="65.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <image>
+                                          <Image url="@../img/golden-retriever.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="label_estilo" text="Nombre : Perro 4" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Edad : " GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Fecha Nacimiento : " GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Nombre : Kilombo" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="botones_registro" text="Solicitar Cita" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets right="30.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                              </GridPane>
                            </children>
                         </AnchorPane>
                     </content>
+                  </Tab>
+                  <Tab text="Husky siberiano">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="506.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="257.6000091552734" minWidth="10.0" prefWidth="132.7999755859375" />
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="337.6000244140625" minWidth="10.0" prefWidth="337.6000244140625" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fitHeight="65.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <image>
+                                          <Image url="@../img/husky.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="label_estilo" text="Nombre : Perro 5" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Edad : " GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Fecha Nacimiento : " GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Nombre : Kilombo" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="botones_registro" text="Solicitar Cita" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets right="30.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Rottweiler">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="506.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="257.6000091552734" minWidth="10.0" prefWidth="132.7999755859375" />
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="337.6000244140625" minWidth="10.0" prefWidth="337.6000244140625" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fitHeight="65.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <image>
+                                          <Image url="@../img/chop.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="label_estilo" text="Nombre : Perro 6" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Edad : " GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Fecha Nacimiento : " GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Nombre : Kilombo" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="botones_registro" text="Solicitar Cita" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets right="30.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="American Bully">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="506.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="257.6000091552734" minWidth="10.0" prefWidth="132.7999755859375" />
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="337.6000244140625" minWidth="10.0" prefWidth="337.6000244140625" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fitHeight="65.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <image>
+                                          <Image url="@../img/AmericanBully.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="label_estilo" text="Nombre : Perro 7" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Edad : " GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Fecha Nacimiento : " GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Nombre : Kilombo" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="botones_registro" text="Solicitar Cita" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets right="30.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Shiba Inu ">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="506.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="257.6000091552734" minWidth="10.0" prefWidth="132.7999755859375" />
+                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="337.6000244140625" minWidth="10.0" prefWidth="337.6000244140625" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fitHeight="65.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <image>
+                                          <Image url="@../img/shiba.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="label_estilo" text="Nombre : Perro 8" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Edad : " GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Fecha Nacimiento : " GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label styleClass="label_estilo" text="Nombre : Kilombo" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets top="7.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="botones_registro" text="Solicitar Cita" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets right="30.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
                   </Tab>
               </tabs>
                <VBox.margin>

@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import modelo.Ventanas;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
