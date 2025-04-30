@@ -4,6 +4,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.util.Pair;
+import java.util.Optional;
 
 import java.util.Optional;
 
@@ -66,4 +70,48 @@ public class Alertas {
 
         alert.showAndWait();
     }
+
+
+    public static Optional<Pair<String, String>> crearAlertaUsuario(Object claseActual,String label) {
+
+        Dialog<Pair<String, String>> dialog = new Dialog<>();
+        dialog.setTitle("Confirmar Usuario");
+        dialog.setHeaderText(null);
+
+
+        ButtonType btnConfirmar = new ButtonType("Confirmar", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(btnConfirmar, ButtonType.CANCEL);
+
+
+        Label lblUsuario = new Label(label);
+        TextField txtUsuario = new TextField();
+
+        Label lblConfirmar = new Label("Confirmar "+label);
+        TextField txtConfirmar = new TextField();
+
+
+        VBox vbox = new VBox(10);
+        vbox.setPrefWidth(300);
+        vbox.getChildren().addAll(lblUsuario, txtUsuario, lblConfirmar, txtConfirmar);
+
+
+        dialog.getDialogPane().setContent(vbox);
+
+
+
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == btnConfirmar) {
+                return new Pair<>(txtUsuario.getText(), txtConfirmar.getText());
+            }
+            return null;
+        });
+
+        return dialog.showAndWait();
+    }
+
+
+
+
+
+
 }
