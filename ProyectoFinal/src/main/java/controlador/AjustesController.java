@@ -5,11 +5,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import modelo.Ventanas;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class ajustesController implements Initializable {
+public class AjustesController implements Initializable {
 
     @FXML
     private Button btnSalir;
@@ -52,24 +55,43 @@ public class ajustesController implements Initializable {
 
     @FXML
     void btnSalirAc(ActionEvent event) {
-
+        try {
+            Ventanas.cerrarVentana(event);
+            Ventanas.abrirVentana("/vista/inicio.fxml", "Inicio");
+        } catch (Exception e) {
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     @FXML
-    void btnSolicitarAdpAc(ActionEvent event) {
-
+    void btnSolicitarADPAc(ActionEvent event) {
+        try {
+            Ventanas.cerrarVentana(event);
+            Ventanas.abrirVentana("/vista/solicitarAdopcion.fxml", "Solicitar adopción");
+        } catch (Exception e) {
+            Logger.getLogger(SolicitarAdpController.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     @FXML
     void btnVerCitasAc(ActionEvent event) {
-
+        try {
+            Ventanas.cerrarVentana(event);
+            Ventanas.abrirVentana("/vista/verCitasCliente.fxml", "Ver citas");
+        } catch (Exception e) {
+            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     @FXML
     void btnVerPerrosAc(ActionEvent event) {
-
+        try {
+            Ventanas.cerrarVentana(event);
+            Ventanas.abrirVentana("/vista/verPerros.fxml", "Ver perros");
+        } catch (Exception e) {
+            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

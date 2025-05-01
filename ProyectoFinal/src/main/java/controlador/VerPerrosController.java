@@ -26,13 +26,16 @@ public class VerPerrosController implements Initializable {
     private Button btnSolicitarADP;
 
     @FXML
-    private Button btnSolicitarCita;
+    private Button btnAjustes;
 
     @FXML
     private Button btnVerCitas;
 
     @FXML
     private ImageView imgUsuario;
+
+    @FXML
+    private Button btnSolicitarCita;
 
     @FXML
     void btnSalirAc(ActionEvent event) {
@@ -55,10 +58,10 @@ public class VerPerrosController implements Initializable {
     }
 
     @FXML
-    void btnSolicitarCitaAc(ActionEvent event) {
+    void btnAjustesAc(ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
-            Ventanas.abrirVentana("/vista/solicitarCita.fxml", "Solicitar cita");
+            Ventanas.abrirVentana("/vista/ajustes.fxml", "Ajustes");
         } catch (Exception e) {
             Logger.getLogger(SolicitarCitaController.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -74,6 +77,14 @@ public class VerPerrosController implements Initializable {
         }
     }
 
+    @FXML
+    void btnSolicitarCitasAc(ActionEvent event) {
+        try {
+            Ventanas.abrirVentana("/vista/solicitarCita.fxml", "Solicitar citas");
+        } catch (Exception e) {
+            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

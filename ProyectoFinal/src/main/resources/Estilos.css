@@ -43,7 +43,7 @@
 .label_estilo_formulario {
     -fx-text-fill: #000000;
     -fx-font-weight: bold;
-    -fx-font-size: 12px;
+    -fx-font-size: 15px;
     -fx-effect: dropshadow(gaussian, rgb(180, 123, 123), 2, 0.2, 1, 1);
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
     -fx-padding: 2px 4px;

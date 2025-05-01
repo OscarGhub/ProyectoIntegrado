@@ -28,7 +28,7 @@ public class VerCitasClienteController implements Initializable {
     private Button btnSolicitarCita;
 
     @FXML
-    private Button btnSolicitarCitas;
+    private Button btnAjustes;
 
     @FXML
     private Button btnVerCitas;
@@ -69,10 +69,10 @@ public class VerCitasClienteController implements Initializable {
     }
 
     @FXML
-    void btnSolicitarCitasAc(ActionEvent event) {
+    void btnAjustesAc(ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
-            Ventanas.abrirVentana("/vista/solicitarCita.fxml", "Solicitar cita");
+            Ventanas.abrirVentana("/vista/ajustes.fxml", "Ajustes");
         } catch (Exception e) {
             Logger.getLogger(SolicitarCitaController.class.getName()).log(Level.SEVERE, null, e);
         }
