@@ -56,22 +56,38 @@ public class SolicitarCitaController implements Initializable {
         String usuario = "C##PROYECTOINTEGRADO";
         String contrasena = "123456";
 
-        String sql = "INSERT INTO CITA (correo, fecha_cita, donacion) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO CITA (correo_electronico, fecha_cita, donacion) VALUES (?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(url, usuario, contrasena);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             String correoElectronico = formulario.getCorreo_electronico();
+
+            // Verificar si el correo existe en la tabla CLIENTE
+            String verificaCorreoSQL = "SELECT COUNT(*) FROM CLIENTE WHERE correo_electronico = ?";
+            try (PreparedStatement verificaCorreoStmt = connection.prepareStatement(verificaCorreoSQL)) {
+                verificaCorreoStmt.setString(1, correoElectronico);
+                ResultSet rs = verificaCorreoStmt.executeQuery();
+                rs.next();
+                int count = rs.getInt(1);
+
+                if (count == 0) {
+                    System.out.println("El correo electrónico no existe en la tabla CLIENTE.");
+                    return; // Detener la ejecución si el correo no está registrado
+                }
+            }
+
+            // Convertir la fecha de la cita
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date fecha = dateFormat.parse(formulario.getFecha_cita());
             java.sql.Date fechaSQL = new java.sql.Date(fecha.getTime());
+
             String donacion = formulario.getDonacion();
 
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, correoElectronico);
-            pstmt.setDate(2, fechaSQL);
-            pstmt.setString(3, donacion);
-            pstmt.executeUpdate();
+            // Insertar la cita en la base de datos
+            preparedStatement.setString(1, correoElectronico);
+            preparedStatement.setDate(2, fechaSQL);
+            preparedStatement.setString(3, donacion);
 
             preparedStatement.executeUpdate();
 
@@ -85,6 +101,7 @@ public class SolicitarCitaController implements Initializable {
             System.out.println("Error al convertir la fecha: " + formulario.getFecha_cita());
         }
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
