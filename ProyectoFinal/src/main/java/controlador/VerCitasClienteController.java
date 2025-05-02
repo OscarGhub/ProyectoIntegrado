@@ -1,5 +1,7 @@
 package controlador;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +14,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.Cita;
 import modelo.Ventanas;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,31 +27,22 @@ public class VerCitasClienteController implements Initializable {
 
     @FXML
     private Button btnSalir;
-
     @FXML
     private Button btnSolicitarCita;
-
     @FXML
     private Button btnSolicitarCitas;
-
     @FXML
     private Button btnVerCitas;
-
     @FXML
     private TableColumn<?, ?> colEstado;
-
     @FXML
     private TableColumn<?, ?> colFecha;
-
     @FXML
     private TableColumn<?, ?> colPerro;
-
     @FXML
     private TableView<?> tablaCitas;
-
     @FXML
     private ImageView imgUsuario;
-
     @FXML
     void btnSalirAc(ActionEvent event) {
         try {
@@ -87,13 +82,6 @@ public class VerCitasClienteController implements Initializable {
             Logger.getLogger(VerPerrosController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
-
-    @FXML
-    void tablaCitasAc(ActionEvent event) {
-
-    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
