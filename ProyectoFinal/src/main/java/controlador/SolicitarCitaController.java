@@ -1,27 +1,20 @@
 package controlador;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import modelo.FormularioAdopcion;
-import modelo.FormularioCita;
-import modelo.TipoVia;
-import modelo.Ventanas;
+import javafx.scene.control.*;
+import modelo.*;
 
 import java.net.URL;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.sql.*;
+import java.util.stream.Collectors;
 
 public class SolicitarCitaController implements Initializable {
 
@@ -34,6 +27,9 @@ public class SolicitarCitaController implements Initializable {
     @FXML
     private TextField cajaTextDonacion;
 
+    @FXML
+    private ComboBox<String> horaCita;
+
     // Método que se ejecuta cuando el usuario hace clic en "Enviar"
     @FXML
     void btnEnviarAc(ActionEvent event) {
@@ -42,11 +38,15 @@ public class SolicitarCitaController implements Initializable {
         String fechaCita = dataPickerFechaCita.getValue().toString();
         String donacion = cajaTextDonacion.getText();
 
-        // Crear el objeto Formulario
-        FormularioCita formulario = new FormularioCita(correo, fechaCita, donacion);
+        // Obtener la hora seleccionada del ComboBox
+        String horaSeleccionada = horaCita.getValue();  // La hora seleccionada es un String como "08:00"
+
+        // Crear el objeto FormularioCita
+        FormularioCita formulario = new FormularioCita(correo, fechaCita, donacion, horaSeleccionada);
         formulario.setCorreo_electronico(correo);
         formulario.setDonacion(donacion);
         formulario.setFecha_cita(fechaCita);
+        formulario.setHora_cita(horaSeleccionada);  // Establecer la hora seleccionada
 
         guardarEnBaseDeDatos(formulario);
     }
@@ -105,6 +105,22 @@ public class SolicitarCitaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Llenar el ComboBox con las horas del enum Hora (obtenemos los textos de las horas)
+        horaCita.setItems(FXCollections.observableArrayList(
+                Arrays.stream(Hora.values()) // Usamos stream para convertir el array de Hora
+                        .map(Hora::getHoraTexto) // Usamos el método getHoraTexto para obtener el String
+                        .collect(Collectors.toList()) // Convertimos a lista
+        ));
+
+        // Si quieres seleccionar un valor por defecto, por ejemplo, HORA_08
+        horaCita.setValue(Hora.HORA_08.getHoraTexto());
     }
 
+    public ComboBox<String> getHoraCita() {
+        return horaCita;
+    }
+
+    public void setHoraCita(ComboBox<String> horaCita) {
+        this.horaCita = horaCita;
+    }
 }

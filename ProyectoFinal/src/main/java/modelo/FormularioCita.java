@@ -4,11 +4,13 @@ public class FormularioCita {
     private String correo_electronico;
     private String fecha_cita;
     private String donacion;
+    private String hora_cita;
 
-    public FormularioCita(String correo_electronico, String fecha_cita, String donacion) {
+    public FormularioCita(String correo_electronico, String fecha_cita, String donacion, String hora_cita) {
         this.correo_electronico = correo_electronico;
         this.fecha_cita = fecha_cita;
         this.donacion = donacion;
+        this.hora_cita = hora_cita;
     }
 
     public String getCorreo_electronico() {
@@ -33,6 +35,14 @@ public class FormularioCita {
 
     public void setDonacion(String donacion) {
         this.donacion = donacion;
+    }
+
+    public String getHora_cita() {
+        return hora_cita;
+    }
+
+    public void setHora_cita(String hora_cita) {
+        this.hora_cita = hora_cita;
     }
 
     @Override

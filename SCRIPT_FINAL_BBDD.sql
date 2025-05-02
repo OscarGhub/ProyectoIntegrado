@@ -142,6 +142,7 @@ CREATE TABLE cita (
     donacion NUMBER(10,2),
     estado VARCHAR2(50) DEFAULT 'pendiente',
     fecha_cita DATE,
+    hora_cita VARCHAR2(10),
     cliente_id NUMBER,
     fecha_alta DATE,
     fecha_modificacion DATE,
