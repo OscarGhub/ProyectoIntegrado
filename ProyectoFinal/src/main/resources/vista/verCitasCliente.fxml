@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VerCitasClienteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VerCitasClienteController">
     <left>
         <VBox alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="195.0" style="-fx-background-color: #dbab84;" BorderPane.alignment="CENTER">
             <children>
@@ -22,18 +18,6 @@
                   <Insets bottom="35.0" top="35.0" />
                </VBox.margin>
                   </ImageView>
-                <Button fx:id="btnVerPerros" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="50.0" mnemonicParsing="false" onAction="#btnVerPerrosAc" styleClass="botones_registro" text=" Ver perros" VBox.vgrow="ALWAYS">
-                    <VBox.margin>
-                        <Insets bottom="20.0" left="15.0" right="15.0" />
-                    </VBox.margin>
-                    <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../img/huellaPerro-removebg-preview.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
                 <Button fx:id="btnSolicitarAdp" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="50.0" mnemonicParsing="false" onAction="#btnSolicitarAdpAc" styleClass="botones_registro" text=" Solicitar Adp" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets bottom="20.0" left="15.0" right="15.0" />
@@ -48,6 +32,18 @@
                     <font>
                         <Font size="11.0" />
                     </font>
+                </Button>
+                <Button fx:id="btnVerPerros" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="50.0" mnemonicParsing="false" onAction="#btnVerPerrosAc" styleClass="botones_registro" text=" Ver perros" VBox.vgrow="ALWAYS">
+                    <VBox.margin>
+                        <Insets bottom="20.0" left="15.0" right="15.0" />
+                    </VBox.margin>
+                    <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../img/huellaPerro-removebg-preview.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
                 </Button>
                 <Button fx:id="btnAjustes" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="50.0" mnemonicParsing="false" onAction="#btnAjustesAc" styleClass="botones_registro" text="Ajustes" VBox.vgrow="ALWAYS">
                     <VBox.margin>
@@ -77,19 +73,25 @@
         </VBox>
     </left>
     <center>
-        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER" prefHeight="418.0" prefWidth="535.0" BorderPane.alignment="CENTER">
             <children>
             <ImageView fitHeight="150.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/1.png" />
                </image>
             </ImageView>
-            <TableView fx:id="tablaCitas" onSort="#tablaCitasAc" prefHeight="366.0" prefWidth="505.0" VBox.vgrow="ALWAYS">
-              <columns>
-                <TableColumn fx:id="colFecha" prefWidth="159.99994200468063" text="Fecha" />
-                <TableColumn fx:id="colPerro" prefWidth="164.0" text="Perro" />
-                  <TableColumn fx:id="colEstado" prefWidth="181.0" text="Estado" />
-              </columns>
+            <TableView fx:id="tablaCitas" onSort="#cargarDatos" prefHeight="366.0" prefWidth="505.0" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colNombreCliente" prefWidth="71.0" text="Nombre" />
+                    <TableColumn fx:id="colApellido1" prefWidth="82.0" text="1er Apellido" />
+                    <TableColumn fx:id="colApellido2" prefWidth="87.0" text="2do Apellido" />
+                    <TableColumn fx:id="colCorreoCliente" prefWidth="110.0" text="Correo Cliente" />
+                    <TableColumn fx:id="colCorreoUsuario" prefWidth="110.0" text="Correo Usuario" />
+                    <TableColumn fx:id="colFechaCita" prefWidth="80.0" text="Fecha Cita" />
+                    <TableColumn fx:id="colNombrePerro" prefWidth="75.0" text="Perro" />
+                    <TableColumn fx:id="colEstado" prefWidth="95.0" text="Estado" />
+                    <TableColumn fx:id="colDonacion" prefWidth="95.0" text="Donacion" />
+                </columns>
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
