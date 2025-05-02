@@ -1,26 +1,17 @@
 package modelo;
 
-public class Usuario {
-    private String usuario;
+public class Ajustes {
+
+    private String usuarionuevo;
     private String gmail;
     private String contrasenia;
 
-    public Usuario(String usuario, String gmail, String contrasenia) {
-        this.usuario = usuario;
-        this.gmail = gmail;
-        this.contrasenia = contrasenia;
+    public String getUsuarionuevo() {
+        return usuarionuevo;
     }
 
-    public Usuario() {
-
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setUsuarionuevo(String usuarionuevo) {
+        this.usuarionuevo = usuarionuevo;
     }
 
     public String getGmail() {
@@ -38,4 +29,6 @@ public class Usuario {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
+
+
 }

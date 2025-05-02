@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.Usuario;
 import modelo.Ventanas;
 
 import java.net.URL;
@@ -45,8 +46,30 @@ public class RegistroClienteController implements Initializable {
     @FXML
     void btnConfitmarAc(ActionEvent event) {
         try {
-            Ventanas.cerrarVentana(event);
-            Ventanas.abrirVentana("/vista/verPerros.fxml", "Ver perros");
+            if (modelo.SesionInciada.iniciarSesion() == true) {
+                modelo.Alertas.mostrarAlertaAviso(this, "Error", "Usted ya está registrado en la aplicación.");
+            } else {
+
+                Usuario usuario = new Usuario();
+
+                String usuarioname = cajaTextUsuario.getText();
+                String gmail = cajaTextGmail.getText();
+                String contrasenia = cajaTextContrasenia.getText();
+                String confirmarContrasenia = cajaTextContraseniaConfirmar.getText();
+
+                usuario.setUsuario(usuarioname);
+                usuario.setContrasenia(contrasenia);
+                usuario.setGmail(gmail);
+
+                if (contrasenia.equals(confirmarContrasenia)) {
+                    modelo.SesionInciada.iniciarSesion(usuario);
+                } else {
+                    modelo.Alertas.mostrarAlertaError(this, "Contraseña Incorrecta", "Error al ingresar los datos.");
+                }
+
+                Ventanas.cerrarVentana(event);
+                Ventanas.abrirVentana("/vista/verPerros.fxml", "Ver perros");
+            }
         } catch (Exception e) {
             Logger.getLogger(VerPerrosController.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -66,6 +89,4 @@ public class RegistroClienteController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modelo.Animaciones.animarImagenUsuario(imgUsuario);
     }
-
-
 }

@@ -36,65 +36,27 @@ public class IniciarSClienteController implements Initializable {
     @FXML
     private ImageView imgUsuario;
 
-    private String contraseniaEncriptada="";
 
-    private boolean sesionIniciada = false;
 
 
     @FXML
     void btnConfitmarAc(ActionEvent event) {
         try {
-            String contrasenia = cajaTextContrasenia.getText();
-            String usuario = cajaTextUsuario.getText();
+            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
-            if (contrasenia == null || usuario == null) {
-                throw new NullPointerException("Uno de los campos está vacío (null)");
-            }
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/verPerros.fxml"));
+            Parent root = fxmlLoader.load();
+            VerPerrosController controlador = fxmlLoader.getController();
 
-            contrasenia = contrasenia.trim();
-            usuario = usuario.trim();
-
-            if (usuario.equalsIgnoreCase("usuario")) {
-
-                try {
-                    // Cerrar la ventana actual
-                    ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/verPerros.fxml"));
-                    Parent root = fxmlLoader.load();
-                    VerPerrosController controlador = fxmlLoader.getController();
-
-                    // Crear la nueva escena
-                    Scene escena = new Scene(root);
-                    Stage stage = new Stage();
-                    stage.setTitle("Ver perros");
-                    stage.setScene(escena);
-
-
-                    if (sesionIniciada==false){
-                        contraseniaEncriptada=EncriptarContrasenia.encriptarContraseia("cliente", contrasenia);
-                        sesionIniciada = true;
-                    }else {
-                        if (EncriptarContrasenia.validarContrasenia(contrasenia,contraseniaEncriptada)==false){
-                            mostrarAlerta("Error","Contraseña incorrecta",Alert.AlertType.WARNING);
-                        }
-                    }
-
-
-                    // Mostrar la nueva ventana
-                    stage.show();
-
-                } catch (Exception e) {
-                    Logger.getLogger(VerPerrosController.class.getName()).log(Level.SEVERE, null, e);
-                    mostrarAlerta("Error", "No se pudo abrir la nueva ventana.", Alert.AlertType.ERROR);
-                }
-
-            } else {
-                mostrarAlerta("Credenciales incorrectas", "Usuario o contraseña incorrectos.", Alert.AlertType.WARNING);
-            }
+            Scene escena = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Ver perros");
+            stage.setScene(escena);
+            stage.show();
 
         } catch (Exception e) {
-            mostrarAlerta("Campos vacíos", "Por favor, rellena todos los campos.", Alert.AlertType.ERROR);
+            Logger.getLogger(VerPerrosController.class.getName()).log(Level.SEVERE, null, e);
+            mostrarAlerta("Error", "No se pudo abrir la nueva ventana.", Alert.AlertType.ERROR);
         }
     }
 
