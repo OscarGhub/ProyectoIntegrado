@@ -54,14 +54,14 @@ public class CitasController {
         String user = "C##PROYECTOINTEGRADO";
         String password = "123456";
 
-        String query = "SELECT c.donacion, c.estado, c.fecha_cita, " +
-                "cli.nombre, cli.apellido1, cli.apellido2, cli.correo_electronico AS correo_cliente, " +
-                "u.correo_electronico_cliente AS correo_usuario, p.nombre AS nombre_perro " +
-                "FROM cita c " +
-                "JOIN cliente cli ON c.cliente_id = cli.cliente_id " +
-                "LEFT JOIN usuario_cliente u ON cli.cliente_id = u.cliente_id " +
-                "LEFT JOIN solicitud_adopcion sa ON sa.cliente_id = cli.cliente_id " +
-                "LEFT JOIN perro p ON sa.perro_id = p.perro_id";
+        String query = "SELECT c.donacion, c.estado, c.fecha_cita, "
+                + "cli.nombre, cli.apellido1, cli.apellido2, cli.correo_electronico AS correo_cliente, "
+                + "u.correo_electronico_cliente AS correo_usuario, p.nombre AS nombre_perro "
+                + "FROM cita c "
+                + "JOIN cliente cli ON c.cliente_id = cli.cliente_id "
+                + "LEFT JOIN usuario_cliente u ON cli.cliente_id = u.cliente_id "
+                + "LEFT JOIN solicitud_adopcion sa ON sa.cliente_id = cli.cliente_id "
+                + "LEFT JOIN perro p ON sa.perro_id = p.perro_id";
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
              Statement stmt = conn.createStatement();
@@ -76,7 +76,7 @@ public class CitasController {
                         rs.getString("nombre"),
                         rs.getString("apellido1"),
                         rs.getString("apellido2"),
-                        rs.getString("correo_electronico_cliente"),
+                        rs.getString("correo_cliente"),
                         rs.getString("correo_usuario"),
                         rs.getString("nombre_perro")
                 );
@@ -84,12 +84,9 @@ public class CitasController {
                 rowCount++;
             }
 
-            // Imprimir el número de columnas cargadas
             System.out.println("Columnas cargadas: " + rowCount);
+            tablaCitas.setItems(listaCitas);
 
-            tablaCitas.setItems(listaCitas);  // Asignar la lista a la tabla
-
-            // Si no se han cargado columnas, lo imprimimos
             if (rowCount == 0) {
                 System.out.println("No se encontraron datos.");
             }
