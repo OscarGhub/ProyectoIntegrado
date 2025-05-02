@@ -57,8 +57,8 @@ public class RegistroClienteController implements Initializable {
                 String contrasenia = cajaTextContrasenia.getText();
                 String confirmarContrasenia = cajaTextContraseniaConfirmar.getText();
 
-                usuario.setUsuario(usuarioname);
-                usuario.setContrasenia(contrasenia);
+                usuario.setUsername(usuarioname);
+                usuario.setPassword(contrasenia);
                 usuario.setGmail(gmail);
 
                 if (contrasenia.equals(confirmarContrasenia)) {

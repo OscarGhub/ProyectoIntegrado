@@ -106,9 +106,4 @@ public class Alertas {
         return dialog.showAndWait();
     }
 
-
-
-
-
-
 }
