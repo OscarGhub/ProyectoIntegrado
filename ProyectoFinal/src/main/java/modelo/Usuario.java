@@ -1,41 +1,4 @@
 package modelo;
 
 public class Usuario {
-    private String usuario;
-    private String gmail;
-    private String contrasenia;
-
-    public Usuario(String usuario, String gmail, String contrasenia) {
-        this.usuario = usuario;
-        this.gmail = gmail;
-        this.contrasenia = contrasenia;
-    }
-
-    public Usuario() {
-
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getGmail() {
-        return gmail;
-    }
-
-    public void setGmail(String gmail) {
-        this.gmail = gmail;
-    }
-
-    public String getContrasenia() {
-        return contrasenia;
-    }
-
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
 }
