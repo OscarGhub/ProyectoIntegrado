@@ -38,8 +38,7 @@ public class Alertas {
         alert.setContentText(contenido);
 
         DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(claseActual.getClass().getResource("/EstilosEleccion.css").toExternalForm());
-        dialogPane.getStyleClass().add("mi-alerta-personalizada");
+
 
         alert.showAndWait();
     }
@@ -52,8 +51,7 @@ public class Alertas {
         alert.setContentText(contenido);
 
         DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(claseActual.getClass().getResource("/EstilosEleccion.css").toExternalForm());
-        dialogPane.getStyleClass().add("mi-alerta-personalizada");
+
 
         alert.showAndWait();
     }
@@ -65,8 +63,7 @@ public class Alertas {
         alert.setContentText(contenido);
 
         DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(claseActual.getClass().getResource("/EstilosEleccion.css").toExternalForm());
-        dialogPane.getStyleClass().add("mi-alerta-personalizada");
+
 
         alert.showAndWait();
     }
