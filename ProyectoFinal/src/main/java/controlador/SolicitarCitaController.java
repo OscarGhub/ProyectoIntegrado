@@ -30,6 +30,9 @@ public class SolicitarCitaController implements Initializable {
     @FXML
     private ComboBox<String> horaCita;
 
+    @FXML
+    private Button btnEnviar;
+
     // Método que se ejecuta cuando el usuario hace clic en "Enviar"
     @FXML
     void btnEnviarAc(ActionEvent event) {
@@ -56,12 +59,27 @@ public class SolicitarCitaController implements Initializable {
         String usuario = "C##PROYECTOINTEGRADO";
         String contrasena = "123456";
 
-        String sql = "INSERT INTO CITA (correo_electronico, fecha_cita, donacion) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO CITA (cliente_id, correo_electronico, fecha_cita, donacion, hora_cita) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(url, usuario, contrasena);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             String correoElectronico = formulario.getCorreo_electronico();
+
+            // 1. Obtener cliente_id desde correo
+            String obtieneClienteIdSQL = "SELECT cliente_id FROM CLIENTE WHERE correo_electronico = ?";
+            int clienteId = -1;
+
+            try (PreparedStatement obtieneClienteStmt = connection.prepareStatement(obtieneClienteIdSQL)) {
+                obtieneClienteStmt.setString(1, correoElectronico);
+                ResultSet rs = obtieneClienteStmt.executeQuery();
+                if (rs.next()) {
+                    clienteId = rs.getInt("cliente_id");
+                } else {
+                    System.out.println("Correo no encontrado, no se puede obtener cliente_id.");
+                    return;
+                }
+            }
 
             // Verificar si el correo existe en la tabla CLIENTE
             String verificaCorreoSQL = "SELECT COUNT(*) FROM CLIENTE WHERE correo_electronico = ?";
@@ -85,9 +103,11 @@ public class SolicitarCitaController implements Initializable {
             String donacion = formulario.getDonacion();
 
             // Insertar la cita en la base de datos
-            preparedStatement.setString(1, correoElectronico);
-            preparedStatement.setDate(2, fechaSQL);
-            preparedStatement.setString(3, donacion);
+            preparedStatement.setInt(1, clienteId);
+            preparedStatement.setString(2, correoElectronico);
+            preparedStatement.setDate(3, fechaSQL);
+            preparedStatement.setString(4, donacion);
+            preparedStatement.setString(5, formulario.getHora_cita());
 
             preparedStatement.executeUpdate();
 
@@ -105,22 +125,14 @@ public class SolicitarCitaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Llenar el ComboBox con las horas del enum Hora (obtenemos los textos de las horas)
         horaCita.setItems(FXCollections.observableArrayList(
-                Arrays.stream(Hora.values()) // Usamos stream para convertir el array de Hora
-                        .map(Hora::getHoraTexto) // Usamos el método getHoraTexto para obtener el String
-                        .collect(Collectors.toList()) // Convertimos a lista
+                Arrays.stream(Hora.values())
+                        .map(Hora::getHoraTexto)
+                        .collect(Collectors.toList())
         ));
 
         // Si quieres seleccionar un valor por defecto, por ejemplo, HORA_08
         horaCita.setValue(Hora.HORA_08.getHoraTexto());
     }
 
-    public ComboBox<String> getHoraCita() {
-        return horaCita;
-    }
-
-    public void setHoraCita(ComboBox<String> horaCita) {
-        this.horaCita = horaCita;
-    }
 }
