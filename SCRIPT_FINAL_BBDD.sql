@@ -368,6 +368,7 @@ FOR EACH ROW
 BEGIN
     :NEW.fecha_modificacion := SYSDATE;
 END;
+/
 
 -- Disparador para INSERT Solicitud-Adopcion
 CREATE OR REPLACE TRIGGER fecha_solicitud_disparador_insert
@@ -501,8 +502,8 @@ DELETE FROM protectora;
 
 -- Selects ID
 
-SELECT id_protectora FROM protectora;
-SELECT id_cliente FROM cliente;
+SELECT protectora_id FROM protectora;
+SELECT cliente_id FROM cliente;
 SELECT id_raza FROM raza;
 SELECT id_patologia FROM patologia;
 
