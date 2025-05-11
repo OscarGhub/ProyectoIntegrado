@@ -76,7 +76,7 @@ public class SolicitarCitaController implements Initializable {
                 if (rs.next()) {
                     clienteId = rs.getInt("cliente_id");
                 } else {
-                    System.out.println("Correo no encontrado, no se puede obtener cliente_id.");
+                    Alertas.mostrarAlertaWarningGeneral("Correo no encontrado", "El correo electrónico ingresado no está registrado como cliente.");
                     return;
                 }
             }
@@ -98,7 +98,15 @@ public class SolicitarCitaController implements Initializable {
             // Convertir la fecha de la cita
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date fecha = dateFormat.parse(formulario.getFecha_cita());
+            Date fechaActual = new Date();
+
+            if (fecha.before(fechaActual)) {
+                Alertas.mostrarAlertaWarningGeneral("Fecha no válida", "La fecha seleccionada no puede ser anterior a la fecha actual.");
+                return;
+            }
+
             java.sql.Date fechaSQL = new java.sql.Date(fecha.getTime());
+
 
             String donacion = formulario.getDonacion();
 
@@ -111,7 +119,8 @@ public class SolicitarCitaController implements Initializable {
 
             preparedStatement.executeUpdate();
 
-            System.out.println("Datos insertados correctamente en la base de datos");
+            Alertas.mostrarConfirmacion("Cita registrada", "La cita se ha guardado correctamente.");
+
 
         } catch (SQLException e) {
             e.printStackTrace();
