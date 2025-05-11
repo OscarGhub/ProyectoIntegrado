@@ -28,28 +28,61 @@ public class RegistroProtectoraController implements Initializable {
     private Button btnVolver;
 
     @FXML
-    private PasswordField cajaTextContrasenia;
+    private TextField cajaCodigoPostal;
 
     @FXML
-    private PasswordField cajaTextContraseniaConfirmar;
+    private TextField cajaCorreoElectronico;
 
     @FXML
-    private TextField cajaTextGmail;
+    private TextField cajaLocalidad;
+
+    @FXML
+    private TextField cajaNombreVia;
+
+    @FXML
+    private TextField cajaPais;
+
+    @FXML
+    private TextField cajaProvincia;
+
+    @FXML
+    private TextField cajaTelefono;
 
     @FXML
     private TextField cajaTextUsuario;
 
     @FXML
-    private ImageView imgProtectora;
+    private TextField cajaTipoVia;
+
+    @FXML
+    private ImageView imgUsuario;
 
 
     @FXML
     void btnConfitmarAc(ActionEvent event) {
         try {
-            Ventanas.cerrarVentana(event);
-            Ventanas.abrirVentana("/vista/modificarPerros.fxml", "Inicio");
+            modelo.Protectora protectora = new modelo.Protectora();
+            protectora.setNombreUsuario(cajaTextUsuario.getText());
+            protectora.setContrasena(cajaTextUsuario.getText());
+            protectora.setCorreoElectronico(cajaCorreoElectronico.getText());
+            protectora.setTelefono(cajaTelefono.getText());
+            protectora.setCodigoPostal(cajaCodigoPostal.getText());
+            protectora.setLocalidad(cajaLocalidad.getText());
+            protectora.setProvincia(cajaProvincia.getText());
+            protectora.setPais(cajaPais.getText());
+            protectora.setTipoVia(cajaTipoVia.getText());
+            protectora.setNombreVia(cajaNombreVia.getText());
+
+            boolean registrado = Dao.RegistroProtectoraDAO.registrarProtectora(protectora);
+
+            if (registrado) {
+                modelo.Alertas.mostrarAlertaAviso(null, "Éxito", "Protectora registrada correctamente.");
+                Ventanas.cerrarVentana(event);
+                Ventanas.abrirVentana("/vista/modificarPerros.fxml", "Inicio");
+            }
+
         } catch (Exception e) {
-            Logger.getLogger(ModificarPerrosController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(RegistroProtectoraController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -65,7 +98,7 @@ public class RegistroProtectoraController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        modelo.Animaciones.animarImagenUsuario(imgProtectora);
+        modelo.Animaciones.animarImagenUsuario(imgUsuario);
     }
 
 }
