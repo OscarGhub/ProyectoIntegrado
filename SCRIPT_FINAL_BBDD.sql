@@ -523,7 +523,7 @@ SELECT cliente_id FROM cliente;
 SELECT id_raza FROM raza;
 SELECT id_patologia FROM patologia;
 
--- INSERTS de prueba
+-- INSERTS de datos
 
 -- 1. Insertar protectora
 INSERT INTO protectora (cif, nombre, telefono, correo_electronico, localidad, provincia, pais, tipo_via, nombre_via, codigo_postal)
@@ -544,20 +544,85 @@ VALUES ('luciaPG', '1234secure', 'lucia.perez@gmail.com', 1);
 INSERT INTO usuario_protectora (nombre_usuario, contrasena, correo_electronico, id_protectora)
 VALUES ('adminEsperanza', 'admin123', 'admin@protectora.org', 1);
 
--- 5. Insertar raza y patología
-INSERT INTO raza (nombre)
-VALUES ('Labrador');
+-- 5. Insertar patología
+INSERT INTO patologia (nombre) VALUES ('Alergia');
+INSERT INTO patologia (nombre) VALUES ('Displasia de cadera');
+INSERT INTO patologia (nombre) VALUES ('Problemas dentales');
+INSERT INTO patologia (nombre) VALUES ('Artritis');
+INSERT INTO patologia (nombre) VALUES ('Cardiopatía');
+INSERT INTO patologia (nombre) VALUES ('Cáncer');
 
-INSERT INTO patologia (nombre)
-VALUES ('Displasia de cadera');
 
--- 6. Insertar perro (con cliente NULL y protectora definida)
+-- 5.1. Insertar raza
+INSERT INTO raza (nombre) VALUES ('Labrador');
+INSERT INTO raza (nombre) VALUES ('Bulldog');
+INSERT INTO raza (nombre) VALUES ('Chihuahua');
+INSERT INTO raza (nombre) VALUES ('Pastor Alemán');
+INSERT INTO raza (nombre) VALUES ('Beagle');
+INSERT INTO raza (nombre) VALUES ('Poodle');
+INSERT INTO raza (nombre) VALUES ('Doberman');
+INSERT INTO raza (nombre) VALUES ('Rottweiler');
+INSERT INTO raza (nombre) VALUES ('Boxer');
+INSERT INTO raza (nombre) VALUES ('Pitbull');
+
+-- 6. Insertar perro
 INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)
-VALUES ('Toby', 'toby.jpg', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 1, 'M', 'No', 1, NULL);
+VALUES ('NombreChihuahua', 'chihuahua.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 1, 'M', 'No', 1, NULL);
+
+-- Repetir para los demás perros
+INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)
+VALUES ('NombreBulldog', 'bulldog.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 1, 'M', 'No', 1, NULL);
+
+INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)
+VALUES ('NombreShibaInu', 'shiba.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 1, 'M', 'No', 1, NULL);
+
+INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)
+VALUES ('NombreGoldenRetriever', 'golden-retriever.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 1, 'M', 'No', 1, NULL);
+
+INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)
+VALUES ('NombreHuskySiberiano', 'husky.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 1, 'M', 'No', 1, NULL);
+
+INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)
+VALUES ('NombreRottweiler', 'chop.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 1, 'M', 'No', 1, NULL);
+
+INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)
+VALUES ('NombrePug', 'Pugg.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 1, 'M', 'No', 1, NULL);
 
 -- 7. Insertar perro_patología
+-- Para perro 1
 INSERT INTO perro_patologia (perro_id, id_patologia, descripcion_pat)
 VALUES (1, 1, 'Leve, requiere control veterinario anual');
+
+INSERT INTO perro_patologia (perro_id, id_patologia, descripcion_pat)
+VALUES (1, 2, 'Moderada, necesita tratamiento médico ocasional');
+
+INSERT INTO perro_patologia (perro_id, id_patologia, descripcion_pat)
+VALUES (1, 3, 'Grave, requiere atención médica urgente y tratamiento constante');
+
+-- Para perro 2
+INSERT INTO perro_patologia (perro_id, id_patologia, descripcion_pat)
+VALUES (2, 1, 'Leve, seguimiento veterinario cada 6 meses');
+
+INSERT INTO perro_patologia (perro_id, id_patologia, descripcion_pat)
+VALUES (2, 4, 'Moderada, necesita medicamentos regulares para control');
+
+-- Para perro 3
+INSERT INTO perro_patologia (perro_id, id_patologia, descripcion_pat)
+VALUES (3, 2, 'Leve, seguimiento veterinario anual');
+
+INSERT INTO perro_patologia (perro_id, id_patologia, descripcion_pat)
+VALUES (3, 5, 'Severa, necesita intervención quirúrgica y atención continua');
+
+-- Para perro 4
+INSERT INTO perro_patologia (perro_id, id_patologia, descripcion_pat)
+VALUES (4, 1, 'Leve, control veterinario anual recomendado');
+
+INSERT INTO perro_patologia (perro_id, id_patologia, descripcion_pat)
+VALUES (4, 6, 'Grave, necesita terapia intensiva y seguimiento médico');
+
+-- Para perro 5
+INSERT INTO perro_patologia (perro_id, id_patologia, descripcion_pat)
+VALUES (5, 3, 'Moderada, control veterinario cada 3 meses');
 
 -- 8. Insertar solicitud de adopción
 INSERT INTO solicitud_adopcion (perro_id, cliente_id, donacion, estado)

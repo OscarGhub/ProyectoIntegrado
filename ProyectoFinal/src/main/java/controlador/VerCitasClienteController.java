@@ -28,10 +28,10 @@ public class VerCitasClienteController implements Initializable {
     @FXML private TableColumn<CitasInfo, String> colEstado;
     @FXML private TableColumn<CitasInfo, Double> colDonacion;
     @FXML private TableColumn<CitasInfo, LocalDate> colFechaCita;
+    @FXML private TableColumn<CitasInfo, String> colHoraCita;
     @FXML private TableColumn<CitasInfo, String> colNombreCliente;
     @FXML private TableColumn<CitasInfo, String> colApellido1;
     @FXML private TableColumn<CitasInfo, String> colApellido2;
-    @FXML private TableColumn<CitasInfo, String> colCorreoCliente;
     @FXML private TableColumn<CitasInfo, String> colCorreoUsuario;
     @FXML private TableColumn<CitasInfo, String> colNombrePerro;
 
@@ -54,10 +54,10 @@ public class VerCitasClienteController implements Initializable {
         colNombreCliente.setCellValueFactory(new PropertyValueFactory<>("nombreCliente"));
         colApellido1.setCellValueFactory(new PropertyValueFactory<>("apellido1"));
         colApellido2.setCellValueFactory(new PropertyValueFactory<>("apellido2"));
-        colCorreoCliente.setCellValueFactory(new PropertyValueFactory<>("correoCliente"));
-        colCorreoUsuario.setCellValueFactory(new PropertyValueFactory<>("correoUsuario"));
-        colFechaCita.setCellValueFactory(new PropertyValueFactory<>("fechaCita"));
         colNombrePerro.setCellValueFactory(new PropertyValueFactory<>("nombrePerro"));
+        colFechaCita.setCellValueFactory(new PropertyValueFactory<>("fechaCita"));
+        colHoraCita.setCellValueFactory(new PropertyValueFactory<>("horaCita"));
+        colCorreoUsuario.setCellValueFactory(new PropertyValueFactory<>("correoUsuario"));
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
         colDonacion.setCellValueFactory(new PropertyValueFactory<>("donacion"));
 
@@ -73,8 +73,8 @@ public class VerCitasClienteController implements Initializable {
         String user = "C##PROYECTOINTEGRADO";
         String password = "123456";
 
-        String query = "SELECT c.donacion, c.estado, c.fecha_cita, " +
-                "cli.nombre, cli.apellido1, cli.apellido2, cli.correo_electronico AS correo_cliente, " +
+        String query = "SELECT c.donacion, c.estado, c.fecha_cita, c.hora_cita, " +
+                "cli.nombre, cli.apellido1, cli.apellido2," +
                 "u.correo_electronico AS correo_usuario, p.nombre AS nombre_perro " +
                 "FROM cita c " +
                 "JOIN cliente cli ON c.cliente_id = cli.cliente_id " +
@@ -91,10 +91,10 @@ public class VerCitasClienteController implements Initializable {
                         rs.getDouble("donacion"),
                         rs.getString("estado"),
                         rs.getDate("fecha_cita").toLocalDate(),
+                        rs.getString("hora_cita"),
                         rs.getString("nombre"),
                         rs.getString("apellido1"),
                         rs.getString("apellido2"),
-                        rs.getString("correo_cliente"),
                         rs.getString("correo_usuario"),
                         rs.getString("nombre_perro")
                 );
