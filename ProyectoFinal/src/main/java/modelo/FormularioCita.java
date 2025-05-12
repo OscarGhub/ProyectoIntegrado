@@ -5,12 +5,14 @@ public class FormularioCita {
     private String fecha_cita;
     private String donacion;
     private String hora_cita;
+    private Perro perro;
 
-    public FormularioCita(String correo_electronico, String fecha_cita, String donacion, String hora_cita) {
+    public FormularioCita(String correo_electronico, String fecha_cita, String donacion, String hora_cita, Perro perro) {
         this.correo_electronico = correo_electronico;
         this.fecha_cita = fecha_cita;
         this.donacion = donacion;
         this.hora_cita = hora_cita;
+        this.perro = perro;
     }
 
     public String getCorreo_electronico() {
@@ -45,12 +47,16 @@ public class FormularioCita {
         this.hora_cita = hora_cita;
     }
 
-    @Override
-    public String toString() {
-        return "FormularioCita{" +
-                "correo_electronico='" + correo_electronico + '\'' +
-                ", fecha_cita=" + fecha_cita +
-                ", donacion=" + donacion +
-                '}';
+    public Perro getPerro() {
+        return perro;
+    }
+
+    public void setPerro(Perro perro) {
+        this.perro = perro;
+    }
+
+    // Si solo necesitas el nombre del perro, puedes agregar este método.
+    public String getNombrePerro() {
+        return perro != null ? perro.getNombre() : null;
     }
 }

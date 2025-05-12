@@ -12,6 +12,11 @@ public class Perro {
     private LocalDate fecha_modificacion;
 
 
+    public Perro(int perro_id, String nombre) {
+        this.perro_id = perro_id;
+        this.nombre = nombre;
+    }
+
     public Perro(int perro_id, String nombre, String raza, Sexo sexo, boolean adoptado, LocalDate fecha_alta, LocalDate fecha_modificacion){
      this.perro_id = perro_id;
      this.nombre = nombre;
@@ -51,6 +56,7 @@ public class Perro {
 
     @Override
     public String toString() {
-        return super.toString();
+        return nombre;
     }
+
 }

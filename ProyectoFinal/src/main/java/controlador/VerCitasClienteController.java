@@ -75,7 +75,7 @@ public class VerCitasClienteController implements Initializable {
 
         String query = "SELECT c.donacion, c.estado, c.fecha_cita, c.hora_cita, " +
                 "cli.nombre, cli.apellido1, cli.apellido2," +
-                "u.correo_electronico AS correo_usuario, p.nombre AS nombre_perro " +
+                "u.correo_electronico AS correo_usuario, c.nombre_perro AS nombre_perro " +
                 "FROM cita c " +
                 "JOIN cliente cli ON c.cliente_id = cli.cliente_id " +
                 "LEFT JOIN usuario_cliente u ON cli.cliente_id = u.cliente_id " +
