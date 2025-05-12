@@ -70,10 +70,6 @@ public class RegistroClienteController implements Initializable {
     @FXML
     void btnConfitmarAc(ActionEvent event) {
         try {
-            if (modelo.SesionInciada.iniciarSesion()) {
-                modelo.Alertas.mostrarAlertaAviso(this, "Error", "Usted ya está registrado en la aplicación.");
-                return;
-            }
 
             Usuario usuario = new Usuario();
             usuario.setNombre(cajaTextUsuario.getText());

@@ -3,7 +3,6 @@ package Dao;
 import modelo.Protectora;
 import utils.ConnectionManager;
 import modelo.Alertas;
-
 import java.sql.*;
 
 public class RegistroProtectoraDAO {
@@ -23,7 +22,7 @@ public class RegistroProtectoraDAO {
             }
 
             // 2. Validar si ya existe el nombre de usuario en usuario_protectora
-            String checkUsuario = "SELECT COUNT(*) FROM usuario_protectora WHERE nombre_usuario = ?";
+            String checkUsuario = "SELECT COUNT(*) FROM protectora WHERE nombre = ?";
             try (PreparedStatement stmtCheckUsuario = conn.prepareStatement(checkUsuario)) {
                 stmtCheckUsuario.setString(1, protectora.getNombreUsuario());
                 ResultSet rsUsuario = stmtCheckUsuario.executeQuery();
@@ -58,7 +57,7 @@ public class RegistroProtectoraDAO {
             }
 
             String insertUsuario = """
-                INSERT INTO usuario_protectora (nombre_usuario, contrasena, correo_electronico, protectora_id, fecha_alta)
+                INSERT INTO usuario_protectora (nombre_usuario, contrasena, correo_electronico, id_protectora, fecha_alta)
                 VALUES (?, ?, ?, ?, SYSDATE)
             """;
             try (PreparedStatement stmtUsuario = conn.prepareStatement(insertUsuario)) {

@@ -15,7 +15,6 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/vista/verPerros.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700, 400);
 
-
         scene.getStylesheets().add(getClass().getResource("/estilos.css").toExternalForm());
 
         stage.setTitle("Dogpuccino");

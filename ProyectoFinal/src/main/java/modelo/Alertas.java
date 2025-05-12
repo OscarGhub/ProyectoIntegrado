@@ -71,8 +71,9 @@ public class Alertas {
 
     public static Optional<Pair<String, String>> crearAlertaUsuario(Object claseActual,String label) {
 
+
         Dialog<Pair<String, String>> dialog = new Dialog<>();
-        dialog.setTitle("Confirmar Usuario");
+        dialog.setTitle("Ajustes");
         dialog.setHeaderText(null);
 
 
@@ -82,6 +83,8 @@ public class Alertas {
 
         Label lblUsuario = new Label(label);
         TextField txtUsuario = new TextField();
+
+
 
         Label lblConfirmar = new Label("Confirmar "+label);
         TextField txtConfirmar = new TextField();
