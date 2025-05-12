@@ -189,6 +189,7 @@ CREATE TABLE cita (
     cliente_id NUMBER,
     fecha_alta DATE,
     fecha_modificacion DATE,
+    nombre_perro VARCHAR(100),
     
     CONSTRAINT fk_cita_cliente FOREIGN KEY (cliente_id)
         REFERENCES cliente(cliente_id)
