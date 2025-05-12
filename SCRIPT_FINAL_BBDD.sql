@@ -195,7 +195,6 @@ CREATE TABLE cita (
     hora_cita VARCHAR2(10),
     cliente_id NUMBER,
     perro_id NUMBER,
-    nombre_perro VARCHAR2(50),
     protectora_id NUMBER,
     fecha_alta TIMESTAMP,
     fecha_modificacion TIMESTAMP,
