@@ -2,14 +2,9 @@ package controlador;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import modelo.Ventanas;
 
 import java.net.URL;
@@ -17,13 +12,13 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SolicitarAdpController implements Initializable {
+public class AjustesController implements Initializable {
 
     @FXML
     private Button btnSalir;
 
     @FXML
-    private Button btnAjustes;
+    private Button btnSolicitarAdp;
 
     @FXML
     private Button btnVerCitas;
@@ -32,25 +27,49 @@ public class SolicitarAdpController implements Initializable {
     private Button btnVerPerros;
 
     @FXML
+    private ImageView imgTuerca1;
+
+    @FXML
+    private ImageView imgTuerca2;
+
+    @FXML
+    private ImageView imgTuerca3;
+
+    @FXML
     private ImageView imgUsuario;
+
+    @FXML
+    void btnModContraseniaAc(ActionEvent event) {
+        modelo.Alertas.crearAlertaUsuario(event.getSource(),"Contraseña");
+    }
+
+    @FXML
+    void btnModGmailAc(ActionEvent event) {
+        modelo.Alertas.crearAlertaUsuario(event.getSource(),"Gmail");
+    }
+
+    @FXML
+    void btnModUsarioAc(ActionEvent event) {
+        modelo.Alertas.crearAlertaUsuario(event.getSource(),"Usuario");
+    }
 
     @FXML
     void btnSalirAc(ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
-            Ventanas.abrirVentana("/vista/inicio.fxml", "Registro Cliente");
+            Ventanas.abrirVentana("/vista/inicio.fxml", "Inicio");
         } catch (Exception e) {
             Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
     @FXML
-    void btnAjustesAc(ActionEvent event) {
+    void btnSolicitarADPAc(ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
-            Ventanas.abrirVentana("/vista/ajustes.fxml", "Ajustes");
+            Ventanas.abrirVentana("/vista/solicitarAdopcion.fxml", "Solicitar adopción");
         } catch (Exception e) {
-            Logger.getLogger(SolicitarCitaController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(SolicitarAdpController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -70,13 +89,16 @@ public class SolicitarAdpController implements Initializable {
             Ventanas.cerrarVentana(event);
             Ventanas.abrirVentana("/vista/verPerros.fxml", "Ver perros");
         } catch (Exception e) {
-            Logger.getLogger(VerPerrosController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        modelo.Animaciones.animarAgrandar(imgUsuario);
+        modelo.Animaciones.animarImagenUsuario(imgUsuario);
+        modelo.Animaciones.animarRotacion(imgTuerca1);
+        modelo.Animaciones.animarRotacion(imgTuerca2);
+        modelo.Animaciones.animarRotacion(imgTuerca3);
     }
 
 }

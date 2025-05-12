@@ -1,6 +1,7 @@
 package modelo;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -29,4 +30,14 @@ public class Animaciones {
         escalar.setCycleCount(ScaleTransition.INDEFINITE);
         escalar.play();
     }
+
+    public static void animarRotacion(ImageView imagen) {
+        RotateTransition rotar = new RotateTransition(Duration.seconds(6), imagen);
+        rotar.setByAngle(360);
+        rotar.setCycleCount(RotateTransition.INDEFINITE);
+        rotar.setInterpolator(javafx.animation.Interpolator.LINEAR);
+        rotar.play();
+    }
+
+
 }

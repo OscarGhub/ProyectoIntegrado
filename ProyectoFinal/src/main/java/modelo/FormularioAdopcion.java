@@ -1,6 +1,6 @@
 package modelo;
 
-public class Formulario {
+public class FormularioAdopcion {
     private String nombre;
     private String apellido1;
     private String apellido2;
@@ -16,11 +16,11 @@ public class Formulario {
     private String fechaCita;
 
     // Constructor sin parámetros para ser utilizado en el controlador
-    public Formulario() {}
+    public FormularioAdopcion() {}
 
     // Constructor con parámetros
 
-    public Formulario(String nombre, String apellido1, String apellido2, String fecha_nacimiento, String telefono, String correo, String codigo_postal, String localidad, String provincia, String pais, TipoVia tipoVia, String num_via, String fechaCita) {
+    public FormularioAdopcion(String nombre, String apellido1, String apellido2, String fecha_nacimiento, String telefono, String correo, String codigo_postal, String localidad, String provincia, String pais, TipoVia tipoVia, String num_via, String fechaCita) {
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;

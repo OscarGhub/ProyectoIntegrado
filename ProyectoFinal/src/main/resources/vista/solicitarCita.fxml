@@ -2,7 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -13,90 +13,24 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.SolicitarCitaController">
-    <left>
-        <VBox alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="195.0" style="-fx-background-color: #dbab84;" BorderPane.alignment="CENTER">
-            <children>
-                  <ImageView fx:id="imgUsuario" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="label_estilo">
-                      <image>
-                          <Image url="@../img/login-removebg-preview.png" />
-                      </image>
-               <VBox.margin>
-                  <Insets bottom="35.0" top="35.0" />
-               </VBox.margin>
-                  </ImageView>
-                <Button fx:id="btnVerPerros" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="50.0" mnemonicParsing="false" onAction="#btnVerPerrosAc" styleClass="botones_registro" text=" Ver perros" VBox.vgrow="ALWAYS">
-                    <VBox.margin>
-                        <Insets bottom="20.0" left="15.0" right="15.0" />
-                    </VBox.margin>
-                    <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../img/huellaPerro-removebg-preview.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button fx:id="btnSolicitarAdp" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="50.0" mnemonicParsing="false" onAction="#btnSolicitarAdpAc" styleClass="botones_registro" text=" Solicitar Adp" VBox.vgrow="ALWAYS">
-                    <VBox.margin>
-                        <Insets bottom="20.0" left="15.0" right="15.0" />
-                    </VBox.margin>
-                    <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../img/huellaPerro-removebg-preview.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font size="11.0" />
-                    </font>
-                </Button>
-                <Button fx:id="btnVerCitas" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="50.0" mnemonicParsing="false" onAction="#btnVerCitasAc" styleClass="botones_registro" text=" Ver citas" VBox.vgrow="ALWAYS">
-                    <VBox.margin>
-                        <Insets bottom="20.0" left="15.0" right="15.0" />
-                    </VBox.margin>
-                    <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../img/huellaPerro-removebg-preview.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button fx:id="btnSalir" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="50.0" mnemonicParsing="false" onAction="#btnSalirAc" styleClass="botones_registro" text="  Salir" VBox.vgrow="ALWAYS">
-                    <VBox.margin>
-                        <Insets bottom="20.0" left="15.0" right="15.0" />
-                    </VBox.margin>
-                    <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../img/huellaPerro-removebg-preview.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-            </children>
-        </VBox>
-    </left>
     <center>
-        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="712.0" BorderPane.alignment="CENTER">
             <children>
-            <ImageView fitHeight="108.0" fitWidth="267.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="93.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/2.png" />
                </image>
             </ImageView>
             <GridPane alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="233.0" VBox.vgrow="ALWAYS">
               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.20001220703125" minWidth="10.0" prefWidth="88.79998779296875" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.5999633789062" minWidth="10.0" prefWidth="168.00001220703126" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.20001220703125" minWidth="10.0" prefWidth="89.19997558593752" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.4000244140625" minWidth="10.0" prefWidth="158.4000244140625" />
               </columnConstraints>
               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
@@ -109,75 +43,19 @@
                   <Insets left="25.0" right="25.0" top="15.0" />
                </VBox.margin>
                <children>
-                  <Label styleClass="label_estilo_formulario" text="Nombre" />
-                  <Label styleClass="label_estilo_formulario" text="Apellido 1" GridPane.rowIndex="1" />
-                  <Label styleClass="label_estilo_formulario" text="Apellido 2" GridPane.rowIndex="2" />
-                  <Label styleClass="label_estilo_formulario" text="F. Nacimiento" GridPane.rowIndex="3" />
-                  <Label styleClass="label_estilo_formulario" text="Teléfono" GridPane.rowIndex="4" />
-                  <Label styleClass="label_estilo_formulario" text="C. Electrónico" GridPane.rowIndex="5" />
-                  <Label styleClass="label_estilo_formulario" text="C. Postal" GridPane.columnIndex="2" />
-                  <Label styleClass="label_estilo_formulario" text="Localidad" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Label styleClass="label_estilo_formulario" text="Provincia" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Label styleClass="label_estilo_formulario" text="País" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Label styleClass="label_estilo_formulario" text="Tipo vía" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <Label styleClass="label_estilo_formulario" text="N. Vía" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <TextField fx:id="cajaTextNombre" GridPane.columnIndex="1">
-                     <GridPane.margin>
-                        <Insets left="5.0" right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="cajaTextApellido1" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="5.0" right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="cajaTextApellido2" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="5.0" right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="cajaTextTelef" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <GridPane.margin>
-                        <Insets left="5.0" right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="cajaTextCorreoElect" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <GridPane.margin>
-                        <Insets left="5.0" right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="cajaTextCodigoP" GridPane.columnIndex="3">
-                     <GridPane.margin>
-                        <Insets left="5.0" right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="cajaTextLocalidad" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="5.0" right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="cajaTextProvincia" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="5.0" right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="cajaTextPais" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                     <GridPane.margin>
-                        <Insets left="5.0" right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="cajaTextNvia" GridPane.columnIndex="3" GridPane.rowIndex="5">
-                     <GridPane.margin>
-                        <Insets left="5.0" right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <ChoiceBox fx:id="choiceBoxTipoVia" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                  <DatePicker fx:id="datePickerFechaNacimiento" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <DatePicker fx:id="datePickerFechaCita" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Label styleClass="label_estilo_formulario" text="Fecha cita" GridPane.rowIndex="6" />
+                  <DatePicker fx:id="dataPickerFechaCita" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label styleClass="label_estilo_formulario" text="Correo electrónico :" GridPane.rowIndex="2" />
+                  <Label styleClass="label_estilo_formulario" text="Fecha cita : " GridPane.rowIndex="4" />
+                  <Label styleClass="label_estilo_formulario" text="Donación :" GridPane.rowIndex="8" />
+                  <TextField fx:id="cajaTextCorreoElectronico" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="cajaTextDonacion" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label styleClass="label_estilo_formulario" text="Hora cita : " GridPane.rowIndex="6" />
+                  <ComboBox fx:id="horaCita" prefHeight="25.0" prefWidth="159.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label styleClass="label_estilo_formulario" text="Perro:" />
+                  <ComboBox fx:id="perroCita" prefHeight="25.0" prefWidth="159.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-            <Button fx:id="btnEnviar" mnemonicParsing="false" onAction="#btnEnviarAc" prefHeight="34.0" prefWidth="142.0" styleClass="botones_registro" text="Enviar">
+            <Button fx:id="btnEnviar" mnemonicParsing="false" onAction="#btnEnviarAc" prefHeight="31.0" prefWidth="242.0" styleClass="botones_registro" text="Enviar">
                <VBox.margin>
                   <Insets bottom="20.0" top="15.0" />
                </VBox.margin>
