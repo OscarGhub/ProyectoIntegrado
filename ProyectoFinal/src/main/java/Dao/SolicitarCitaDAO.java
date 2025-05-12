@@ -14,7 +14,8 @@ public class SolicitarCitaDAO {
     private final String contrasena = "123456";
 
     public boolean insertarCita(FormularioCita formulario) {
-        String sql = "INSERT INTO CITA (cliente_id, correo_electronico, fecha_cita, donacion, hora_cita, nombre_perro) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO CITA (cliente_id, correo_electronico, fecha_cita, donacion, hora_cita, perro_id, nombre_perro) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
 
         try (Connection connection = DriverManager.getConnection(url, usuario, contrasena);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -45,7 +46,8 @@ public class SolicitarCitaDAO {
             preparedStatement.setDate(3, fechaSQL);
             preparedStatement.setString(4, formulario.getDonacion());
             preparedStatement.setString(5, formulario.getHora_cita());
-            preparedStatement.setString(6, formulario.getNombrePerro());
+            preparedStatement.setInt(6, formulario.getPerro().getPerro_id());
+            preparedStatement.setString(7, formulario.getPerro().getNombre());
 
             preparedStatement.executeUpdate();
             return true;

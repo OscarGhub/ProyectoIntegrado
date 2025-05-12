@@ -59,4 +59,9 @@ public class FormularioCita {
     public String getNombrePerro() {
         return perro != null ? perro.getNombre() : null;
     }
+
+    public int getPerroId() {
+        return perro != null ? perro.getPerro_id() : -1;
+    }
+
 }
