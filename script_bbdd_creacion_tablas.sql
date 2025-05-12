@@ -265,8 +265,6 @@ VALUES ('No', 'No', 'Si', 'No', 2, 2, SYSDATE, SYSDATE);
 
 
 
-
-
 SELECT c.donacion, c.estado, c.fecha_cita, cli.nombre, cli.apellido1, cli.apellido2, cli.correo_electronico AS correo_cliente,
        u.correo_electronico_cliente AS correo_usuario, p.nombre AS nombre_perro 
 FROM cita c 
