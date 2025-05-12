@@ -29,6 +29,8 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.4000244140625" minWidth="10.0" prefWidth="158.4000244140625" />
               </columnConstraints>
               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
@@ -41,14 +43,16 @@
                   <Insets left="25.0" right="25.0" top="15.0" />
                </VBox.margin>
                <children>
-                  <DatePicker fx:id="dataPickerFechaCita" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label styleClass="label_estilo_formulario" text="Correo electrónico :" />
-                  <Label styleClass="label_estilo_formulario" text="Fecha cita : " GridPane.rowIndex="2" />
-                  <Label styleClass="label_estilo_formulario" text="Donación :" GridPane.rowIndex="6" />
-                  <TextField fx:id="cajaTextCorreoElectronico" GridPane.columnIndex="1" />
-                  <TextField fx:id="cajaTextDonacion" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Label styleClass="label_estilo_formulario" text="Hora cita : " GridPane.rowIndex="4" />
-                  <ComboBox fx:id="horaCita" prefHeight="25.0" prefWidth="159.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <DatePicker fx:id="dataPickerFechaCita" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label styleClass="label_estilo_formulario" text="Correo electrónico :" GridPane.rowIndex="2" />
+                  <Label styleClass="label_estilo_formulario" text="Fecha cita : " GridPane.rowIndex="4" />
+                  <Label styleClass="label_estilo_formulario" text="Donación :" GridPane.rowIndex="8" />
+                  <TextField fx:id="cajaTextCorreoElectronico" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="cajaTextDonacion" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label styleClass="label_estilo_formulario" text="Hora cita : " GridPane.rowIndex="6" />
+                  <ComboBox fx:id="horaCita" prefHeight="25.0" prefWidth="159.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label styleClass="label_estilo_formulario" text="Perro:" />
+                  <ComboBox fx:id="perroCita" prefHeight="25.0" prefWidth="159.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <Button fx:id="btnEnviar" mnemonicParsing="false" onAction="#btnEnviarAc" prefHeight="31.0" prefWidth="242.0" styleClass="botones_registro" text="Enviar">

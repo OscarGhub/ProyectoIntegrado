@@ -29,16 +29,40 @@ public class RegistroClienteController implements Initializable {
     private Button btnVolver;
 
     @FXML
-    private PasswordField cajaTextContrasenia;
+    private TextField cajaApellido;
 
     @FXML
-    private PasswordField cajaTextContraseniaConfirmar;
+    private TextField cajaApellido2;
 
     @FXML
-    private TextField cajaTextGmail;
+    private TextField cajaCodigoPostal;
+
+    @FXML
+    private TextField cajaCorreoElectronico;
+
+    @FXML
+    private TextField cajaFechaNacimiento;
+
+    @FXML
+    private TextField cajaLocalidad;
+
+    @FXML
+    private TextField cajaNombreVia;
+
+    @FXML
+    private TextField cajaPais;
+
+    @FXML
+    private TextField cajaProvincia;
+
+    @FXML
+    private TextField cajaTelefono;
 
     @FXML
     private TextField cajaTextUsuario;
+
+    @FXML
+    private TextField cajaTipoVia;
 
     @FXML
     private ImageView imgUsuario;
@@ -46,32 +70,37 @@ public class RegistroClienteController implements Initializable {
     @FXML
     void btnConfitmarAc(ActionEvent event) {
         try {
-            if (modelo.SesionInciada.iniciarSesion() == true) {
+            if (modelo.SesionInciada.iniciarSesion()) {
                 modelo.Alertas.mostrarAlertaAviso(this, "Error", "Usted ya está registrado en la aplicación.");
-            } else {
+                return;
+            }
 
-                Usuario usuario = new Usuario();
+            Usuario usuario = new Usuario();
+            usuario.setNombre(cajaTextUsuario.getText());
+            usuario.setApellido1(cajaApellido.getText());
+            usuario.setApellido2(cajaApellido2.getText());
+            usuario.setFechaNacimiento(cajaFechaNacimiento.getText()); // formato YYYY-MM-DD
+            usuario.setTelefono(cajaTelefono.getText());
+            usuario.setCorreoElectronico(cajaCorreoElectronico.getText());
+            usuario.setCodigoPostal(cajaCodigoPostal.getText());
+            usuario.setLocalidad(cajaLocalidad.getText());
+            usuario.setProvincia(cajaProvincia.getText());
+            usuario.setPais(cajaPais.getText());
+            usuario.setTipoVia(cajaTipoVia.getText());
+            usuario.setNombreVia(cajaNombreVia.getText());
 
-                String usuarioname = cajaTextUsuario.getText();
-                String gmail = cajaTextGmail.getText();
-                String contrasenia = cajaTextContrasenia.getText();
-                String confirmarContrasenia = cajaTextContraseniaConfirmar.getText();
+            usuario.setNombreUsuario(cajaTextUsuario.getText()); // mismo campo que nombre
+            usuario.setContrasena(""); // Aquí deberías enlazar un PasswordField y obtener la contraseña real
 
-                usuario.setUsername(usuarioname);
-                usuario.setPassword(contrasenia);
-                usuario.setGmail(gmail);
+            boolean registrado = Dao.RegistroClienteDAO.registrarClienteYUsuario(usuario);
 
-                if (contrasenia.equals(confirmarContrasenia)) {
-                    modelo.SesionInciada.iniciarSesion(usuario);
-                } else {
-                    modelo.Alertas.mostrarAlertaError(this, "Contraseña Incorrecta", "Error al ingresar los datos.");
-                }
-
+            if (registrado) {
+                modelo.Alertas.mostrarAlertaAviso(null, "Éxito", "Registro completado correctamente.");
                 Ventanas.cerrarVentana(event);
                 Ventanas.abrirVentana("/vista/verPerros.fxml", "Ver perros");
             }
         } catch (Exception e) {
-            Logger.getLogger(VerPerrosController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(RegistroClienteController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
