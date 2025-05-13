@@ -63,6 +63,7 @@ public class RegistroClienteController implements Initializable {
     @FXML
     private DatePicker campoFecha;
 
+
     @FXML
     private ComboBox<String> comboTipoVia;
 
@@ -76,7 +77,6 @@ public class RegistroClienteController implements Initializable {
             usuario.setNombre(cajaTextUsuario.getText());
             usuario.setApellido1(cajaApellido.getText());
             usuario.setApellido2(cajaApellido2.getText());
-            usuario.setFechaNacimiento(campoFecha.getValue().toString()); // <-- FECHA
             usuario.setTelefono(cajaTelefono.getText());
             usuario.setCorreoElectronico(cajaCorreoElectronico.getText());
             usuario.setCodigoPostal(cajaCodigoPostal.getText());
@@ -87,6 +87,7 @@ public class RegistroClienteController implements Initializable {
             usuario.setNombreVia(cajaNombreVia.getText());
             usuario.setNombreUsuario(cajaTextUsuario.getText());
             usuario.setContrasena(cajaContrasenia.getText());
+            usuario.setFechaNacimiento(campoFecha.getValue().toString());
 
             boolean registrado = Dao.RegistroClienteDAO.registrarClienteYUsuario(usuario);
 

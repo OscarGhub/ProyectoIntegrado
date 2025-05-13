@@ -8,10 +8,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.TipoVia;
 import modelo.Ventanas;
 
 import java.net.URL;
@@ -29,6 +31,9 @@ public class RegistroProtectoraController implements Initializable {
 
     @FXML
     private TextField cajaCodigoPostal;
+
+    @FXML
+    private PasswordField cajaContrasenia;
 
     @FXML
     private TextField cajaCorreoElectronico;
@@ -52,7 +57,7 @@ public class RegistroProtectoraController implements Initializable {
     private TextField cajaTextUsuario;
 
     @FXML
-    private TextField cajaTipoVia;
+    private ComboBox<String> cajaTipoVia;
 
     @FXML
     private ImageView imgUsuario;
@@ -63,14 +68,14 @@ public class RegistroProtectoraController implements Initializable {
         try {
             modelo.Protectora protectora = new modelo.Protectora();
             protectora.setNombreUsuario(cajaTextUsuario.getText());
-            protectora.setContrasena(cajaTextUsuario.getText());
+            protectora.setContrasena(cajaContrasenia.getText());
             protectora.setCorreoElectronico(cajaCorreoElectronico.getText());
             protectora.setTelefono(cajaTelefono.getText());
             protectora.setCodigoPostal(cajaCodigoPostal.getText());
             protectora.setLocalidad(cajaLocalidad.getText());
             protectora.setProvincia(cajaProvincia.getText());
             protectora.setPais(cajaPais.getText());
-            protectora.setTipoVia(cajaTipoVia.getText());
+            protectora.setTipoVia(cajaTipoVia.getValue());
             protectora.setNombreVia(cajaNombreVia.getText());
 
             boolean registrado = Dao.RegistroProtectoraDAO.registrarProtectora(protectora);
@@ -99,6 +104,9 @@ public class RegistroProtectoraController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modelo.Animaciones.animarImagenUsuario(imgUsuario);
+        for (TipoVia tipo : TipoVia.values()) {
+            cajaTipoVia.getItems().add(tipo.name().charAt(0) + tipo.name().substring(1).toLowerCase());
+        }
     }
 
 }
