@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ModificarCitasController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ModificarCitasController">
     <left>
         <VBox alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="195.0" style="-fx-background-color: #dbab84;" BorderPane.alignment="CENTER">
             <children>
@@ -57,13 +57,17 @@
                   <Image url="@../img/6.png" />
                </image>
             </ImageView>
-            <TableView fx:id="tablaModCitas" maxHeight="1.7976931348623157E308" prefHeight="309.0" prefWidth="505.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tablaCitas" maxHeight="1.7976931348623157E308" prefHeight="309.0" prefWidth="505.0" VBox.vgrow="ALWAYS">
               <columns>
-                <TableColumn prefWidth="92.0" text="Cliente" />
-                <TableColumn prefWidth="92.0" text="Perro" />
-                  <TableColumn prefWidth="92.0" text="Fecha" />
-                  <TableColumn prefWidth="92.0" text="Donación" />
-                  <TableColumn prefWidth="92.0" text="Estado" />
+                <TableColumn fx:id="colNombreCliente" prefWidth="92.0" text="Nombre" />
+                  <TableColumn fx:id="colApellido1" prefWidth="92.0" text="Apellido 1" />
+                  <TableColumn fx:id="colApellido2" prefWidth="92.0" text="Apellido 2" />
+                  <TableColumn fx:id="colEstado" prefWidth="92.0" text="Estado" />
+                  <TableColumn fx:id="colDonacion" prefWidth="92.0" text="Donación" />
+                  <TableColumn fx:id="colFechaCita" prefWidth="92.0" text="Fecha" />
+                  <TableColumn fx:id="colHoraCita" prefWidth="92.0" text="Hora" />
+                <TableColumn fx:id="colNombrePerro" prefWidth="92.0" text="Perro" />
+                  <TableColumn fx:id="colCorreoUsuario" prefWidth="92.0" text="Correo Usuario" />
               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" left="20.0" right="20.0" />

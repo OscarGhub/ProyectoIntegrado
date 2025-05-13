@@ -52,7 +52,50 @@ public class SolicitarCitaController implements Initializable {
             return;
         }
 
-        // Suponiendo que FormularioCita ahora acepta un int en lugar de String para el perro
+        if (!donacion.isBlank()) {
+            try {
+                double donacionValor = Double.parseDouble(donacion);
+                if (donacionValor < 3.0) {
+                    Alertas.mostrarAlertaError("Donación insuficiente", "Donación inválida.", "Si va a donar la donación debe ser de al menos 3 euros.");
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                Alertas.mostrarAlertaError("Error de formato", "Donación no válida.", "Introduce una cantidad numérica o deja el campo vacío.");
+                return;
+            }
+        }
+
+        String consulta = "SELECT COUNT(*) AS total, " +
+                "SUM(CASE WHEN hora_cita = '" + horaSeleccionada + "' THEN 1 ELSE 0 END) AS enEsaHora " +
+                "FROM cita " +
+                "WHERE perro_id = " + perroSeleccionado.getPerro_id() +
+                " AND fecha_cita = TO_DATE('" + fechaCita + "', 'YYYY-MM-DD')";
+
+        try (Connection conn = ConnectionManager.getInstance().getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(consulta)) {
+
+            if (rs.next()) {
+                int totalCitas = rs.getInt("total");
+                int citasEnEsaHora = rs.getInt("enEsaHora");
+
+                if (citasEnEsaHora > 0) {
+                    Alertas.mostrarAlertaError("Conflicto de horario", "Este perro ya tiene una cita a esa hora.", "Elige otra hora.");
+                    return;
+                }
+
+                if (totalCitas >= 3) {
+                    Alertas.mostrarAlertaError("Cupo diario lleno", "Este perro ya tiene 3 citas ese día.", "Elige otra fecha.");
+                    return;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alertas.mostrarAlertaError("Error", "No se pudo verificar la disponibilidad del perro.", "Intenta de nuevo más tarde.");
+            return;
+        }
+
+        // Guardar la cita si pasa las validaciones
         FormularioCita formulario = new FormularioCita(
                 correo, fechaCita, donacion, horaSeleccionada, perroSeleccionado
         );
