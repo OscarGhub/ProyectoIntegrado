@@ -9,12 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.Cita;
 import modelo.CitasInfo;
 import modelo.Ventanas;
 import java.net.URL;
@@ -28,6 +30,8 @@ public class ModificarCitasController implements Initializable {
 
     @FXML
     private Button brnModificarPerros;
+
+    @FXML private Button btnModificarCita;
 
     @FXML
     private Button btnSalir;
@@ -65,6 +69,36 @@ public class ModificarCitasController implements Initializable {
             Ventanas.abrirVentana("/vista/inicio.fxml", "Inicio");
         } catch (Exception e) {
             Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    @FXML
+    void btnModificarCitaAc(ActionEvent event) {
+        CitasInfo citaSeleccionada = tablaCitas.getSelectionModel().getSelectedItem();
+        if (citaSeleccionada != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/modificarCitaPopup.fxml"));
+                Parent root = loader.load();
+
+                ModificarCitaPopUpController popupController = loader.getController();
+                popupController.setDatosCita(citaSeleccionada);
+
+                Stage popupStage = new Stage();
+                popupStage.setTitle("Modificar Cita");
+                popupStage.setScene(new Scene(root));
+                popupStage.showAndWait();
+
+                cargarDatos();
+
+            } catch (Exception e) {
+                Logger.getLogger(ModificarCitasController.class.getName()).log(Level.SEVERE, null, e);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText(null);
+            alert.setContentText("Selecciona una cita para modificar.");
+            alert.showAndWait();
         }
     }
 
@@ -130,5 +164,55 @@ public class ModificarCitasController implements Initializable {
 
     }
 
+    @FXML
+    private void btnCancelarCitaAc(ActionEvent event) {
+        CitasInfo citaSeleccionada = tablaCitas.getSelectionModel().getSelectedItem();
+        if (citaSeleccionada != null) {
+            try {
+                String url = "jdbc:oracle:thin:@localhost:1521:xe";
+                String user = "C##PROYECTOINTEGRADO";
+                String password = "123456";
+
+                // SQL UPDATE usando una combinación de fecha, hora y nombre del cliente
+                String updateQuery = "UPDATE cita SET estado = ? WHERE fecha_cita = ? AND hora_cita = ? AND cliente_id = (SELECT cliente_id FROM cliente WHERE nombre = ?)";
+
+                try (Connection conn = DriverManager.getConnection(url, user, password);
+                     PreparedStatement pstmt = conn.prepareStatement(updateQuery)) {
+
+                    pstmt.setString(1, "Cancelada");
+                    pstmt.setDate(2, Date.valueOf(citaSeleccionada.getFechaCita())); // convertir LocalDate a Date
+                    pstmt.setString(3, citaSeleccionada.getHoraCita());
+                    pstmt.setString(4, citaSeleccionada.getNombreCliente());
+
+                    int rowsAffected = pstmt.executeUpdate();
+                    if (rowsAffected > 0) {
+                        citaSeleccionada.setEstado("Cancelada");
+                        tablaCitas.refresh(); // Refresca la tabla
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Confirmación");
+                        alert.setHeaderText(null);
+                        alert.setContentText("La cita ha sido cancelada correctamente.");
+                        alert.showAndWait();
+                    } else {
+                        throw new SQLException("No se encontró la cita para cancelar.");
+                    }
+                }
+
+            } catch (SQLException e) {
+                Logger.getLogger(ModificarCitasController.class.getName()).log(Level.SEVERE, null, e);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Error al cancelar la cita.");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("Advertencia");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Por favor, selecciona una cita para cancelar.");
+            alerta.showAndWait();
+        }
+    }
 
 }
