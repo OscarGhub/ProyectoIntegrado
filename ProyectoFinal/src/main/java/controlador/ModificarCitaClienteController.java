@@ -48,6 +48,11 @@ public class ModificarCitaClienteController {
             citaSeleccionada.setFechaCita(fechaCita.getValue());
             citaSeleccionada.setHoraCita(horaCita.getText());
 
+            // Verificamos el estado y si no es "Pendiente", lo cambiamos a "Pendiente"
+            if (!"Pendiente".equals(citaSeleccionada.getEstado())) {
+                citaSeleccionada.setEstado("Pendiente");
+            }
+
             // Llamar al método que guarda la cita en la base de datos
             guardarCambiosCita(citaSeleccionada);
         }
@@ -60,8 +65,8 @@ public class ModificarCitaClienteController {
         String user = "C##PROYECTOINTEGRADO";
         String password = "123456";
 
-        // Consulta SQL para actualizar la cita
-        String query = "UPDATE cita SET fecha_cita = ?, hora_cita = ? " +
+        // Consulta SQL para actualizar la cita, incluyendo el estado
+        String query = "UPDATE cita SET fecha_cita = ?, hora_cita = ?, estado = ? " +
                 "WHERE cliente_id = (SELECT cliente_id FROM cliente WHERE nombre = ?) " +
                 "AND perro_id = (SELECT perro_id FROM perro WHERE nombre = ?) " +
                 "AND fecha_cita = ? AND hora_cita = ?";
@@ -72,11 +77,11 @@ public class ModificarCitaClienteController {
             // Establecer los parámetros en la consulta SQL
             pstmt.setDate(1, Date.valueOf(cita.getFechaCita()));  // fecha_cita
             pstmt.setString(2, cita.getHoraCita());               // hora_cita
-
-            pstmt.setString(3, cita.getNombreCliente());          // nombre_cliente
-            pstmt.setString(4, cita.getNombrePerro());            // nombre_perro
-            pstmt.setDate(5, Date.valueOf(fechaCitaOriginal));  // fecha original
-            pstmt.setString(6, horaCitaOriginal);               // hora original
+            pstmt.setString(3, cita.getEstado());                // estado (ahora será "Pendiente" si lo modificamos)
+            pstmt.setString(4, cita.getNombreCliente());          // nombre_cliente
+            pstmt.setString(5, cita.getNombrePerro());            // nombre_perro
+            pstmt.setDate(6, Date.valueOf(fechaCitaOriginal));    // fecha original
+            pstmt.setString(7, horaCitaOriginal);                // hora original
 
             // Ejecutar la actualización
             int rowsAffected = pstmt.executeUpdate();
