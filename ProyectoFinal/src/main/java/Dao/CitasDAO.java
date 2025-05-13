@@ -1,0 +1,69 @@
+package Dao;
+
+import modelo.CitasInfo;
+import utils.ConnectionManager;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CitasDAO {
+
+    public List<CitasInfo> obtenerCitas() {
+        List<CitasInfo> listaCitas = new ArrayList<>();
+        String query = "SELECT c.donacion, c.estado, c.fecha_cita, c.hora_cita, " +
+                "cli.nombre, cli.apellido1, cli.apellido2, " +
+                "u.correo_electronico AS correo_usuario, p.nombre AS nombre_perro " +
+                "FROM cita c " +
+                "JOIN cliente cli ON c.cliente_id = cli.cliente_id " +
+                "LEFT JOIN usuario_cliente u ON cli.cliente_id = u.cliente_id " +
+                "LEFT JOIN solicitud_adopcion sa ON sa.cliente_id = cli.cliente_id " +
+                "LEFT JOIN perro p ON c.perro_id = p.perro_id";
+
+        try (Connection conn = ConnectionManager.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                CitasInfo cita = new CitasInfo(
+                        rs.getDouble("donacion"),
+                        rs.getString("estado"),
+                        rs.getDate("fecha_cita").toLocalDate(),
+                        rs.getString("hora_cita"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido1"),
+                        rs.getString("apellido2"),
+                        rs.getString("correo_usuario"),
+                        rs.getString("nombre_perro")
+                );
+                listaCitas.add(cita);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Considera usar un logger
+        }
+
+        return listaCitas;
+    }
+
+    public boolean cancelarCita(CitasInfo cita) {
+        String updateQuery = "UPDATE cita SET estado = ? " +
+                "WHERE fecha_cita = ? AND hora_cita = ? AND cliente_id = (" +
+                "SELECT cliente_id FROM cliente WHERE nombre = ? AND apellido1 = ? AND apellido2 = ?)";
+
+        try (Connection conn = ConnectionManager.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(updateQuery)) {
+
+            pstmt.setString(1, "Cancelada");
+            pstmt.setDate(2, Date.valueOf(cita.getFechaCita()));
+            pstmt.setString(3, cita.getHoraCita());
+            pstmt.setString(4, cita.getNombreCliente());
+            pstmt.setString(5, cita.getApellido1());
+            pstmt.setString(6, cita.getApellido2());
+
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace(); // Considera usar un logger
+            return false;
+        }
+    }
+}
