@@ -30,7 +30,7 @@ public class SolicitarCitaController implements Initializable {
     @FXML
     private Button btnEnviar;
 
-    // Método que se ejecuta cuando el usuario hace clic en "Enviar"
+    // Metodo que se ejecuta cuando el usuario hace clic en "Enviar"
     @FXML
     void btnEnviarAc(ActionEvent event) {
         String correo = cajaTextCorreoElectronico.getText();

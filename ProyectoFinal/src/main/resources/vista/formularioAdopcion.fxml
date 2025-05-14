@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10.0"
+      xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controlador.FormularioAdopcionController">
+
+    <children>
+        <Label text="Formulario de Adopción" style="-fx-font-weight: bold; -fx-font-size: 16px;">
+            <VBox.margin>
+                <Insets bottom="15.0"/>
+            </VBox.margin>
+        </Label>
+
+        <Label text="Datos Personales:" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="txtNombre" promptText="Nombre"/>
+        <TextField fx:id="txtApellido1" promptText="Primer Apellido"/>
+        <TextField fx:id="txtApellido2" promptText="Segundo Apellido"/>
+        <TextField fx:id="txtCorreo" promptText="Correo Electrónico"/>
+
+        <Label text="Datos del Perro:" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="txtNombrePerro" promptText="Nombre del Perro"/>
+        <TextField fx:id="txtRazaPerro" promptText="Raza"/>
+        <TextField fx:id="txtSexoPerro" promptText="Sexo"/>
+
+        <Label text="Información de la Solicitud:" style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="comboEstado" promptText="Estado"/>
+
+        <HBox alignment="CENTER" spacing="15.0">
+            <children>
+                <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarSolicitud" text="Confirmar" style="-fx-background-color: #dbab84;"/>
+                <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#salirFormulario" text="Cancelar" style="-fx-background-color: #dbab84;"/>
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+</VBox>
