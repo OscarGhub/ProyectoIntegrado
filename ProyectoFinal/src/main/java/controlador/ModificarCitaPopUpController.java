@@ -1,13 +1,13 @@
 package controlador;
 
+import Dao.PopUpDAO;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import modelo.Alertas;
 import modelo.CitasInfo;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 
 public class ModificarCitaPopUpController {
 
@@ -15,10 +15,10 @@ public class ModificarCitaPopUpController {
     @FXML private TextField txtHoraCita;
     @FXML private TextField txtEstado;
 
-    private CitasInfo cita;
+    private CitasInfo citaOriginal;
 
     public void setDatosCita(CitasInfo cita) {
-        this.cita = cita;
+        this.citaOriginal = cita;
 
         datePickerFechaCita.setValue(cita.getFechaCita());
         txtHoraCita.setText(cita.getHoraCita());
@@ -28,32 +28,23 @@ public class ModificarCitaPopUpController {
     @FXML
     void btnGuardarCambios() {
         try {
-            String url = "jdbc:oracle:thin:@localhost:1521:xe";
-            String user = "C##PROYECTOINTEGRADO";
-            String password = "123456";
+            // Crear objeto con los datos modificados
+            CitasInfo citaModificada = new CitasInfo();
+            citaModificada.setFechaCita(datePickerFechaCita.getValue());
+            citaModificada.setHoraCita(txtHoraCita.getText());
+            citaModificada.setEstado(txtEstado.getText());
 
-            String sql = "UPDATE cita SET fecha_cita = ?, hora_cita = ?, estado = ? " +
-                    "WHERE fecha_cita = ? AND hora_cita = ?";
+            // Guardar cambios en la base de datos
+            new PopUpDAO().actualizarCita(citaOriginal, citaModificada);
 
-            try (Connection conn = DriverManager.getConnection(url, user, password);
-                 PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-                stmt.setDate(1, java.sql.Date.valueOf(datePickerFechaCita.getValue()));
-                stmt.setString(2, txtHoraCita.getText());
-                stmt.setString(3, txtEstado.getText());
-
-                stmt.setDate(4, java.sql.Date.valueOf(cita.getFechaCita()));
-                stmt.setString(5, cita.getHoraCita());
-
-                stmt.executeUpdate();
-            }
-
-            // Cierra la ventana al guardar
+            // Cerrar ventana
             Stage stage = (Stage) datePickerFechaCita.getScene().getWindow();
             stage.close();
 
         } catch (Exception e) {
             e.printStackTrace();
+            Alertas.mostrarAlertaError("Error","Error al guardar los cambios.","No se pudieron guardar los cambios.");
         }
     }
+
 }

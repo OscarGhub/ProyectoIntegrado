@@ -1,22 +1,21 @@
 package controlador;
 
+import Dao.CitasDAO;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import modelo.CitasInfo;
+import modelo.Ventanas;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-import modelo.CitasInfo;
-import modelo.Ventanas;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
-import java.sql.*;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -43,6 +42,8 @@ public class VerCitasClienteController implements Initializable {
     @FXML private Button btnSalir;
 
     private final ObservableList<CitasInfo> listaCitas = FXCollections.observableArrayList();
+
+    private CitasDAO citasDAO = new CitasDAO(); // Instancia de CitasDAO
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,113 +89,25 @@ public class VerCitasClienteController implements Initializable {
             return cell;
         });
 
-        cargarDatos();
+        cargarDatos(); // Cargar los datos de las citas
     }
 
     @FXML
     private void cargarDatos() {
         listaCitas.clear();
-
-        String url = "jdbc:oracle:thin:@localhost:1521:xe";
-        String user = "C##PROYECTOINTEGRADO";
-        String password = "123456";
-
-        String query = "SELECT c.donacion, c.estado, c.fecha_cita, c.hora_cita, " +
-                "cli.nombre, cli.apellido1, cli.apellido2," +
-                "u.correo_electronico AS correo_usuario, p.nombre AS nombre_perro " +
-                "FROM cita c " +
-                "JOIN cliente cli ON c.cliente_id = cli.cliente_id " +
-                "LEFT JOIN usuario_cliente u ON cli.cliente_id = u.cliente_id " +
-                "LEFT JOIN solicitud_adopcion sa ON sa.cliente_id = cli.cliente_id " +
-                "LEFT JOIN perro p ON c.perro_id = p.perro_id";
-
-        try (Connection conn = DriverManager.getConnection(url, user, password);
-             PreparedStatement pstmt = conn.prepareStatement(query);
-             ResultSet rs = pstmt.executeQuery()) {
-
-            while (rs.next()) {
-                CitasInfo citas = new CitasInfo(
-                        rs.getDouble("donacion"),
-                        rs.getString("estado"),
-                        rs.getDate("fecha_cita").toLocalDate(),
-                        rs.getString("hora_cita"),
-                        rs.getString("nombre"),
-                        rs.getString("apellido1"),
-                        rs.getString("apellido2"),
-                        rs.getString("correo_usuario"),
-                        rs.getString("nombre_perro")
-                );
-                listaCitas.add(citas);
-            }
-            tablaCitas.setItems(listaCitas);
-
-        } catch (SQLException e) {
-            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, "Error al cargar los datos de la base de datos", e);
-        }
-
+        listaCitas.addAll(citasDAO.obtenerCitas()); // Usar CitasDAO para cargar las citas
+        tablaCitas.setItems(listaCitas);
     }
 
-    @FXML
-    private void editarCita(MouseEvent event) throws Exception {
-        CitasInfo citaSeleccionada = tablaCitas.getSelectionModel().getSelectedItem();
-        if (citaSeleccionada != null) {
-            // Llamar a un método para abrir la ventana de modificación de cita
-            abrirModificarCitaDialogo(citaSeleccionada);
-        } else {
-            // Mostrar un mensaje de error si no hay cita seleccionada
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Por favor, selecciona una cita para modificar.", ButtonType.OK);
-            alert.showAndWait();
-        }
-    }
-
-    private void abrirModificarCitaDialogo(CitasInfo citaSeleccionada) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/modificarCitaCliente.fxml"));
-        Parent root = loader.load();
-
-        ModificarCitaClienteController modificarCitaClienteController = loader.getController();
-        modificarCitaClienteController.setCitaSeleccionada(citaSeleccionada);
-
-        // Mostrar la nueva ventana
-        Stage stage = new Stage();
-        stage.setTitle("Modificar Cita");
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-
-
-    // Método para guardar los cambios de la cita sin usar el ID
     @FXML
     private void guardarCambiosCita(CitasInfo cita) {
-        String url = "jdbc:oracle:thin:@localhost:1521:xe";
-        String user = "C##PROYECTOINTEGRADO";
-        String password = "123456";
-
-        // Realizamos una actualización basándonos en la fecha_cita y hora_cita
-        String query = "UPDATE cita SET fecha_cita = ?, hora_cita = ?, estado = ? " +
-                "WHERE fecha_cita = ? AND hora_cita = ? AND cliente_id = (SELECT cliente_id FROM cliente WHERE nombre = ?) " +
-                "AND perro_id = (SELECT perro_id FROM perro WHERE nombre = ?)";
-
-        try (Connection conn = DriverManager.getConnection(url, user, password);
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
-
-            pstmt.setDate(1, Date.valueOf(cita.getFechaCita()));
-            pstmt.setString(2, cita.getHoraCita());
-            pstmt.setString(3, cita.getEstado());
-
-            // Condiciones para identificar la cita: fecha_cita, hora_cita, nombre_cliente y nombre_perro
-            pstmt.setDate(4, Date.valueOf(cita.getFechaCita()));
-            pstmt.setString(5, cita.getHoraCita());
-            pstmt.setString(6, cita.getNombreCliente());
-            pstmt.setString(7, cita.getNombrePerro());
-
-            pstmt.executeUpdate();
-
-        } catch (SQLException e) {
-            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, "Error al actualizar la cita", e);
+        if (citasDAO.cancelarCita(cita)) { // Usar CitasDAO para cancelar la cita
+            cargarDatos(); // Recargar los datos después de la actualización
+        } else {
+            // Mostrar mensaje de error si no se pudo cancelar
+            Alert alert = new Alert(Alert.AlertType.ERROR, "No se pudo cancelar la cita.", ButtonType.OK);
+            alert.showAndWait();
         }
-
-        // Recargar los datos de la tabla
-        cargarDatos();
     }
 
     @FXML
@@ -244,4 +157,19 @@ public class VerCitasClienteController implements Initializable {
     public void setColDonacion(TableColumn<CitasInfo, Double> colDonacion) {
         this.colDonacion = colDonacion;
     }
+
+    private void abrirModificarCitaDialogo(CitasInfo citaSeleccionada) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/modificarCitaCliente.fxml"));
+        Parent root = loader.load();
+
+        ModificarCitaClienteController modificarCitaClienteController = loader.getController();
+        modificarCitaClienteController.setCitaSeleccionada(citaSeleccionada);
+
+        // Mostrar la nueva ventana
+        Stage stage = new Stage();
+        stage.setTitle("Modificar Cita");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
 }
