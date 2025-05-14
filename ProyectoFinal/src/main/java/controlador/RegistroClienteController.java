@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.EncriptarContrasenia;
 import modelo.TipoVia;
 import modelo.Usuario;
 import modelo.Ventanas;
@@ -86,7 +87,8 @@ public class RegistroClienteController implements Initializable {
             usuario.setTipoVia(obtenerTipoViaDesdeTexto(comboTipoVia.getValue()).toString()); // <-- TIPO VIA
             usuario.setNombreVia(cajaNombreVia.getText());
             usuario.setNombreUsuario(cajaTextUsuario.getText());
-            usuario.setContrasena(cajaContrasenia.getText());
+            String contraseniaEncriptada = EncriptarContrasenia.encriptar(cajaContrasenia.getText());
+            usuario.setContrasena(contraseniaEncriptada);
             usuario.setFechaNacimiento(campoFecha.getValue().toString());
 
             boolean registrado = Dao.RegistroClienteDAO.registrarClienteYUsuario(usuario);

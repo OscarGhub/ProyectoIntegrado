@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.Alertas;
 import modelo.EncriptarContrasenia;
 import modelo.Ventanas;
 
@@ -45,16 +46,30 @@ public class IniciarSClienteController implements Initializable {
     @FXML
     void btnConfitmarAc(ActionEvent event) {
         try {
+            String usuario = cajaTextUsuario.getText();
+            String contraseniaPlana = cajaTextContrasenia.getText();
 
-            boolean valido = IniciarSesionClienteDao.inicioSesionCliente(cajaTextUsuario.getText(), cajaTextContrasenia.getText());
-            if (valido) {
-                Ventanas.cerrarVentana(event);
-                Ventanas.abrirVentana("/vista/verPerros.fxml", "Ver perros");
+            if(usuario.isEmpty() || contraseniaPlana.isEmpty()) {
+                Alertas.mostrarAlertaError(null,"Error", "Usuario y contraseña son obligatorios");
+                return;
             }
 
+            String hashAlmacenado = IniciarSesionClienteDao.obtenerHashContrasenia(usuario);
 
-        }catch (Exception e){
-            Logger.getLogger(RegistroClienteController.class.getName()).log(Level.SEVERE, null, e);
+            if(hashAlmacenado == null) {
+                Alertas.mostrarAlertaError(null, "Error","Usuario no encontrado");
+                return;
+            }
+
+            if(EncriptarContrasenia.verificar(contraseniaPlana, hashAlmacenado)) {
+                Ventanas.cerrarVentana(event);
+                Ventanas.abrirVentana("/vista/verPerros.fxml", "Ver perros");
+            } else {
+                Alertas.mostrarAlertaError(null,"Error", "Contraseña incorrecta");
+            }
+        } catch (Exception e) {
+            Logger.getLogger(IniciarSClienteController.class.getName()).log(Level.SEVERE, null, e);
+            Alertas.mostrarAlertaError(null,"Error", "Ocurrió un error al iniciar sesión");
         }
     }
 
