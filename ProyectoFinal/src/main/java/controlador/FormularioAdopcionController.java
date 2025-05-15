@@ -22,15 +22,9 @@ public class FormularioAdopcionController {
     @FXML private TextField txtNombrePerro;
     @FXML private TextField txtRazaPerro;
     @FXML private TextField txtSexoPerro;
-    @FXML private ComboBox<String> comboEstado;
     @FXML private Button btnGuardar;
     @FXML private Button btnCancelar;
 
-    @FXML
-    public void initialize() {
-        comboEstado.getItems().addAll("Pendiente", "Aprobado", "Rechazado");
-        comboEstado.setValue("Pendiente");
-    }
 
     @FXML
     public void guardarSolicitud(ActionEvent event) {
@@ -48,12 +42,11 @@ public class FormularioAdopcionController {
             String nombre_perro = txtNombrePerro.getText().trim();
             String raza_perro = txtRazaPerro.getText().trim();
             String sexo = txtSexoPerro.getText().trim();
-            String estado = comboEstado.getValue();
 
             Connection conn = ConnectionManager.getInstance().getConnection();
 
-            String sql = "INSERT INTO solicitud_adopcion (nombre, apellido1, apellido2, correo, nombre_perro, raza_perro, sexo, estado) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO solicitud_adopcion (nombre, apellido1, apellido2, correo, nombre_perro, raza_perro, sexo) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, nombre);
@@ -63,7 +56,6 @@ public class FormularioAdopcionController {
                 stmt.setString(5, nombre_perro);
                 stmt.setString(6, raza_perro);
                 stmt.setString(7, sexo);
-                stmt.setString(8, estado);
 
                 int filas = stmt.executeUpdate();
 
@@ -88,8 +80,7 @@ public class FormularioAdopcionController {
                 txtCorreo.getText().isEmpty() ||
                 txtNombrePerro.getText().isEmpty() ||
                 txtRazaPerro.getText().isEmpty() ||
-                txtSexoPerro.getText().isEmpty() ||
-                comboEstado.getValue() == null;
+                txtSexoPerro.getText().isEmpty();
     }
 
     public void setNombrePerro(String nombrePerro) {
@@ -98,7 +89,7 @@ public class FormularioAdopcionController {
 
         try {
             Connection conn = ConnectionManager.getInstance().getConnection();
-            String sql = "SELECT r.nombre AS nombre_raza, p.sexo " +
+            String sql = "SELECT r.nombre AS nombre_raza, p.\"SEXO\" " +  // Ajusta a p.sexo si el campo no está entre comillas
                     "FROM perro p " +
                     "JOIN raza r ON p.raza = r.id_raza " +
                     "WHERE p.nombre = ?";
@@ -107,7 +98,7 @@ public class FormularioAdopcionController {
                 var rs = stmt.executeQuery();
                 if (rs.next()) {
                     String nombreRaza = rs.getString("nombre_raza");
-                    String sexo = rs.getString("sexo");
+                    String sexo = rs.getString(2); // o rs.getString("SEXO") si Oracle devuelve el nombre así
 
                     txtRazaPerro.setText(nombreRaza);
                     txtRazaPerro.setEditable(false);

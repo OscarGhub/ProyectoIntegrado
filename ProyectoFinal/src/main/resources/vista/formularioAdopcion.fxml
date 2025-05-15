@@ -33,9 +33,6 @@
         <TextField fx:id="txtRazaPerro" promptText="Raza"/>
         <TextField fx:id="txtSexoPerro" promptText="Sexo"/>
 
-        <Label text="Información de la Solicitud:" style="-fx-font-weight: bold;"/>
-        <ComboBox fx:id="comboEstado" promptText="Estado"/>
-
         <HBox alignment="CENTER" spacing="15.0">
             <children>
                 <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarSolicitud" text="Confirmar" style="-fx-background-color: #dbab84;"/>
