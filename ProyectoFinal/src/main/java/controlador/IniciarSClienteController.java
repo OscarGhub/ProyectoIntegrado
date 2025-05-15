@@ -42,7 +42,6 @@ public class IniciarSClienteController implements Initializable {
 
 
 
-
     @FXML
     void btnConfitmarAc(ActionEvent event) {
         try {

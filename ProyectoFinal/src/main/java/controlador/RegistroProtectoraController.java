@@ -13,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.EncriptarContrasenia;
 import modelo.TipoVia;
 import modelo.Ventanas;
 
@@ -68,7 +69,8 @@ public class RegistroProtectoraController implements Initializable {
         try {
             modelo.Protectora protectora = new modelo.Protectora();
             protectora.setNombreUsuario(cajaTextUsuario.getText());
-            protectora.setContrasena(cajaContrasenia.getText());
+            String contraseniaEncriptada = EncriptarContrasenia.encriptar(cajaContrasenia.getText());
+            protectora.setContrasena(contraseniaEncriptada);
             protectora.setCorreoElectronico(cajaCorreoElectronico.getText());
             protectora.setTelefono(cajaTelefono.getText());
             protectora.setCodigoPostal(cajaCodigoPostal.getText());

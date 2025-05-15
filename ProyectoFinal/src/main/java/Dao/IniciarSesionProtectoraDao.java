@@ -6,39 +6,27 @@ import utils.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class IniciarSesionProtectoraDao {
 
-    public static boolean inicioSesionProtectora(String usuario, String contrasenia) {
-        boolean resultado = false;
+    public static String obtenerHashContraseniaP(String nombreUsuario) {
+        String sql = "SELECT contrasena FROM usuario_protectora WHERE nombre_usuario = ?";
 
-        try (Connection connection = ConnectionManager.getInstance().getConnection()) {
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+            stmt.setString(1, nombreUsuario);
+            ResultSet rs = stmt.executeQuery();
 
-            String query = "SELECT * FROM usuario_protectora WHERE nombre_usuario = ? AND contrasena = ?";
-
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setString(1, usuario);
-                statement.setString(2, contrasenia);
-                ResultSet rs = statement.executeQuery();
-
-                if (rs.next()) {
-                    resultado = true;
-                } else {
-                    Alertas.mostrarAlertaError(null, "Error", "Usuario o contraseña incorrectos.");
-                }
-
-            } catch (Exception e) {
-                Alertas.mostrarAlertaError(null, "Error", "Error en la consulta.");
-                e.printStackTrace();
+            if(rs.next()) {
+                return rs.getString("contrasena");
             }
+            return null;
 
-        } catch (Exception e) {
-            Alertas.mostrarAlertaError(null, "Error", "Error al conectar con la base de datos.");
+        } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
-
-        return resultado;
     }
-
 }
