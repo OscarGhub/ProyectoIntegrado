@@ -172,4 +172,24 @@ public class VerCitasClienteController implements Initializable {
         stage.show();
     }
 
+    @FXML
+    void btnCitas(ActionEvent event) {
+        try {
+            Ventanas.cerrarVentana(event);
+            Ventanas.abrirVentana("/vista/historialCitas.fxml", "Historial Citas");
+        } catch (Exception e) {
+            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, "Error al abrir la ventana de inicio", e);
+        }
+    }
+
+    @FXML
+    void btnAdopcion(ActionEvent event) {
+        try {
+            Ventanas.cerrarVentana(event);
+            Ventanas.abrirVentana("/vista/historialAdopciones.fxml", "Historial Adopciones");
+        } catch (Exception e) {
+            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, "Error al abrir la ventana de inicio", e);
+        }
+    }
+
 }
