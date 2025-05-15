@@ -88,7 +88,6 @@ public class Perro {
 
     @Override
     public String toString() {
-        return nombre + " (" + raza + ")";
+        return nombre;
     }
-
 }
