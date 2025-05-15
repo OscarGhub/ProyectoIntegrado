@@ -35,27 +35,46 @@ public class FormularioAdopcionController {
         }
 
         try {
-            String nombre = txtNombre.getText().trim();
-            String apellido1 = txtApellido1.getText().trim();
-            String apellido2 = txtApellido2.getText().trim();
-            String correo = txtCorreo.getText().trim();
-            String nombre_perro = txtNombrePerro.getText().trim();
-            String raza_perro = txtRazaPerro.getText().trim();
-
+            String nombrePerro = txtNombrePerro.getText().trim();
+            String correoCliente = txtCorreo.getText().trim();
 
             Connection conn = ConnectionManager.getInstance().getConnection();
 
-            String sql = "INSERT INTO solicitud_adopcion (nombre, apellido1, apellido2, correo, nombre_perro, raza_perro) " +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
+            // Obtener el ID del perro
+            String queryPerro = "SELECT perro_id FROM perro WHERE nombre = ?";
+            int perroId = -1;
+            try (PreparedStatement stmt = conn.prepareStatement(queryPerro)) {
+                stmt.setString(1, nombrePerro);
+                var rs = stmt.executeQuery();
+                if (rs.next()) {
+                    perroId = rs.getInt("perro_id");
+                } else {
+                    mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se encontró el perro en la base de datos.");
+                    return;
+                }
+            }
 
-            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                stmt.setString(1, nombre);
-                stmt.setString(2, apellido1);
-                stmt.setString(3, apellido2);
-                stmt.setString(4, correo);
-                stmt.setString(5, nombre_perro);
-                stmt.setString(6, raza_perro);
+            // Obtener el ID del cliente
+            String queryCliente = "SELECT cliente_id FROM cliente WHERE correo_electronico = ?";
+            int clienteId = -1;
+            try (PreparedStatement stmt = conn.prepareStatement(queryCliente)) {
+                stmt.setString(1, correoCliente);
+                var rs = stmt.executeQuery();
+                if (rs.next()) {
+                    clienteId = rs.getInt("cliente_id");
+                } else {
+                    mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se encontró el cliente en la base de datos.");
+                    return;
+                }
+            }
 
+            // Insertar solicitud de adopción
+            String insertSQL = "INSERT INTO solicitud_adopcion (perro_id, cliente_id, donacion, estado) VALUES (?, ?, ?, ?)";
+            try (PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
+                stmt.setInt(1, perroId);
+                stmt.setInt(2, clienteId);
+                stmt.setDouble(3, 0.0); // Puedes reemplazar esto si capturas donación
+                stmt.setString(4, "pendiente"); // Estado por defecto
 
                 int filas = stmt.executeUpdate();
 
@@ -67,11 +86,13 @@ public class FormularioAdopcionController {
                     mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo registrar la solicitud.");
                 }
             }
+
         } catch (Exception e) {
             mostrarAlerta(Alert.AlertType.ERROR, "Error", "Ocurrió un error: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
 
     private boolean camposVacios() {
         return txtNombre.getText().isEmpty() ||
