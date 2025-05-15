@@ -95,15 +95,37 @@ public class FormularioAdopcionController {
     public void setNombrePerro(String nombrePerro) {
         txtNombrePerro.setText(nombrePerro);
         txtNombrePerro.setEditable(false);
+
+        try {
+            Connection conn = ConnectionManager.getInstance().getConnection();
+            String sql = "SELECT r.nombre AS nombre_raza, p.sexo " +
+                    "FROM perro p " +
+                    "JOIN raza r ON p.raza = r.id_raza " +
+                    "WHERE p.nombre = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, nombrePerro);
+                var rs = stmt.executeQuery();
+                if (rs.next()) {
+                    String nombreRaza = rs.getString("nombre_raza");
+                    String sexo = rs.getString("sexo");
+
+                    txtRazaPerro.setText(nombreRaza);
+                    txtRazaPerro.setEditable(false);
+                    txtSexoPerro.setText(sexo);
+                    txtSexoPerro.setEditable(false);
+                } else {
+                    mostrarAlerta(Alert.AlertType.WARNING, "Perro no encontrado",
+                            "No se encontró un perro con ese nombre en la base de datos.");
+                }
+            }
+        } catch (SQLException e) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Error al recuperar datos",
+                    "Ocurrió un error al consultar la base de datos: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
-    public void setRaza(String razaPerro) {
-        txtRazaPerro.setText(razaPerro);
-        txtRazaPerro.setEditable(false);
-    }
-    public void setSexo(String sexoPerro) {
-        txtSexoPerro.setText(sexoPerro);
-        txtSexoPerro.setEditable(false);
-    }
+
+
 
     private void cerrarVentana() {
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
