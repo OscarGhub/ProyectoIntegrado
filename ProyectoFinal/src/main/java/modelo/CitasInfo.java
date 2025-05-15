@@ -27,6 +27,10 @@ public class CitasInfo {
         this.nombrePerro = nombrePerro;
     }
 
+    public CitasInfo() {
+
+    }
+
     public double getDonacion() {
         return donacion;
     }

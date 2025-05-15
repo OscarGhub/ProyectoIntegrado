@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.HistorialCitasController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.HistorialCitasController">
     <center>
-        <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="656.0" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER" prefHeight="418.0" prefWidth="535.0" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="150.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -29,19 +29,16 @@
                         <TableColumn fx:id="colNombrePerro" prefWidth="75.0" text="Perro" />
                         <TableColumn fx:id="colEstado" prefWidth="95.0" text="Estado" />
                         <TableColumn fx:id="colDonacion" prefWidth="95.0" text="Donacion" />
+                        <TableColumn fx:id="colModificar" prefWidth="95.0" text="Modificar" />
                     </columns>
                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets top="15.0" />
                     </VBox.margin>
                 </TableView>
             </children>
         </VBox>
     </center>
    <bottom>
-      <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#btnVolverAc" prefHeight="30.0" prefWidth="214.0" styleClass="botones_registro" text="Volver" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="20.0" top="20.0" />
-         </BorderPane.margin>
-      </Button>
+      <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#btnVolverAc" text="Volver" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

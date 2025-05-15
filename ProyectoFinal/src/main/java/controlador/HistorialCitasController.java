@@ -1,18 +1,21 @@
 package controlador;
 
+import Dao.CitasDAO;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import modelo.CitasInfo;
+import modelo.Ventanas;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import modelo.CitasInfo;
-import modelo.Ventanas;
+import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
-import java.sql.*;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -20,8 +23,7 @@ import java.util.logging.Logger;
 
 public class HistorialCitasController implements Initializable {
 
-    @FXML
-    private ImageView imgUsuario;
+    @FXML private ImageView imgUsuario;
     @FXML private TableView<CitasInfo> tablaCitas;
     @FXML private TableColumn<CitasInfo, String> colEstado;
     @FXML private TableColumn<CitasInfo, Double> colDonacion;
@@ -32,16 +34,19 @@ public class HistorialCitasController implements Initializable {
     @FXML private TableColumn<CitasInfo, String> colApellido2;
     @FXML private TableColumn<CitasInfo, String> colCorreoUsuario;
     @FXML private TableColumn<CitasInfo, String> colNombrePerro;
+    @FXML private TableColumn<CitasInfo, Void> colModificar;
 
-
+    @FXML private Button btnVolver;
 
     private final ObservableList<CitasInfo> listaCitas = FXCollections.observableArrayList();
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    private CitasDAO citasDAO = new CitasDAO(); // Instancia de CitasDAO
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         modelo.Animaciones.animarAgrandar(imgUsuario);
 
-        // Configuramos las celdas de las columnas de la tabla
+        // Configurar las celdas de las columnas de la tabla
         colNombreCliente.setCellValueFactory(new PropertyValueFactory<>("nombreCliente"));
         colApellido1.setCellValueFactory(new PropertyValueFactory<>("apellido1"));
         colApellido2.setCellValueFactory(new PropertyValueFactory<>("apellido2"));
@@ -52,61 +57,86 @@ public class HistorialCitasController implements Initializable {
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
         colDonacion.setCellValueFactory(new PropertyValueFactory<>("donacion"));
 
+        // Configurar columna de botón de modificar
+        colModificar.setCellFactory(col -> {
+            TableCell<CitasInfo, Void> cell = new TableCell<>() {
+                private final Button btn = new Button("Modificar");
 
-        cargarDatos();
+                {
+                    btn.setOnAction(event -> {
+                        CitasInfo citaSeleccionada = getTableView().getItems().get(getIndex());
+                        try {
+                            abrirModificarCitaDialogo(citaSeleccionada);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                }
+
+                @Override
+                public void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(btn);
+                    }
+                }
+            };
+            return cell;
+        });
+
+        cargarDatos(); // Cargar los datos de las citas
     }
 
     @FXML
     private void cargarDatos() {
         listaCitas.clear();
+        listaCitas.addAll(citasDAO.obtenerCitas()); // Usar CitasDAO para cargar las citas
+        tablaCitas.setItems(listaCitas);
+    }
 
-        String url = "jdbc:oracle:thin:@localhost:1521:xe";
-        String user = "C##PROYECTOINTEGRADO";
-        String password = "123456";
-
-        String query = "SELECT c.donacion, c.estado, c.fecha_cita, c.hora_cita, " +
-                "cli.nombre, cli.apellido1, cli.apellido2," +
-                "u.correo_electronico AS correo_usuario, p.nombre AS nombre_perro " +
-                "FROM cita c " +
-                "JOIN cliente cli ON c.cliente_id = cli.cliente_id " +
-                "LEFT JOIN usuario_cliente u ON cli.cliente_id = u.cliente_id " +
-                "LEFT JOIN solicitud_adopcion sa ON sa.cliente_id = cli.cliente_id " +
-                "LEFT JOIN perro p ON c.perro_id = p.perro_id";
-
-        try (Connection conn = DriverManager.getConnection(url, user, password);
-             PreparedStatement pstmt = conn.prepareStatement(query);
-             ResultSet rs = pstmt.executeQuery()) {
-
-            while (rs.next()) {
-                CitasInfo citas = new CitasInfo(
-                        rs.getDouble("donacion"),
-                        rs.getString("estado"),
-                        rs.getDate("fecha_cita").toLocalDate(),
-                        rs.getString("hora_cita"),
-                        rs.getString("nombre"),
-                        rs.getString("apellido1"),
-                        rs.getString("apellido2"),
-                        rs.getString("correo_usuario"),
-                        rs.getString("nombre_perro")
-                );
-                listaCitas.add(citas);
-            }
-            tablaCitas.setItems(listaCitas);
-
-        } catch (SQLException e) {
-            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, "Error al cargar los datos de la base de datos", e);
+    @FXML
+    private void guardarCambiosCita(CitasInfo cita) {
+        if (citasDAO.cancelarCita(cita)) { // Usar CitasDAO para cancelar la cita
+            cargarDatos(); // Recargar los datos después de la actualización
+        } else {
+            // Mostrar mensaje de error si no se pudo cancelar
+            Alert alert = new Alert(Alert.AlertType.ERROR, "No se pudo cancelar la cita.", ButtonType.OK);
+            alert.showAndWait();
         }
-
     }
 
     @FXML
     void btnVolverAc(ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
-            Ventanas.abrirVentana("/vista/verCitasCliente.fxml", "Ver Citas");
+            Ventanas.abrirVentana("/vista/verPerros.fxml", "Ver perros");
         } catch (Exception e) {
             Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, "Error al abrir la ventana de ver perros", e);
         }
+    }
+
+    public TableColumn<CitasInfo, Double> getColDonacion() {
+        return colDonacion;
+    }
+
+    public void setColDonacion(TableColumn<CitasInfo, Double> colDonacion) {
+        this.colDonacion = colDonacion;
+    }
+
+    private void abrirModificarCitaDialogo(CitasInfo citaSeleccionada) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/modificarCitaCliente.fxml"));
+        Parent root = loader.load();
+
+        ModificarCitaClienteController modificarCitaClienteController = loader.getController();
+        modificarCitaClienteController.setCitaSeleccionada(citaSeleccionada);
+
+        // Mostrar la nueva ventana
+        Stage stage = new Stage();
+        stage.setTitle("Modificar Cita");
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 }

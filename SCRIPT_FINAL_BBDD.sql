@@ -552,18 +552,21 @@ INSERT INTO patologia (nombre) VALUES ('Artritis');
 INSERT INTO patologia (nombre) VALUES ('Cardiopatía');
 INSERT INTO patologia (nombre) VALUES ('Cáncer');
 
-
 -- 5.1. Insertar raza
 INSERT INTO raza (nombre) VALUES ('Labrador');
 INSERT INTO raza (nombre) VALUES ('Bulldog');
 INSERT INTO raza (nombre) VALUES ('Chihuahua');
-INSERT INTO raza (nombre) VALUES ('Pastor Alemán');
+INSERT INTO raza (nombre) VALUES ('Pastor Aleman');
 INSERT INTO raza (nombre) VALUES ('Beagle');
 INSERT INTO raza (nombre) VALUES ('Poodle');
 INSERT INTO raza (nombre) VALUES ('Doberman');
 INSERT INTO raza (nombre) VALUES ('Rottweiler');
 INSERT INTO raza (nombre) VALUES ('Boxer');
 INSERT INTO raza (nombre) VALUES ('Pitbull');
+INSERT INTO raza (nombre) VALUES ('Shiba Inu');
+INSERT INTO raza (nombre) VALUES ('Golden Retrieber');
+INSERT INTO raza (nombre) VALUES ('Pug');
+INSERT INTO raza (nombre) VALUES ('Husky Siberiano');
 
 -- 6. Insertar perro
 INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)

@@ -1,5 +1,6 @@
 package controlador;
 
+import Dao.PerroDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,6 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import modelo.*;
+import Dao.SolicitarCitaDAO;
+import utils.ConnectionManager;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,9 +18,6 @@ import java.sql.Statement;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-
-import Dao.*;
-import utils.ConnectionManager;
 
 public class SolicitarCitaController implements Initializable {
 
@@ -38,21 +39,32 @@ public class SolicitarCitaController implements Initializable {
     @FXML
     private ComboBox<Perro> perroCita;
 
-    // Método que se ejecuta cuando el usuario hace clic en "Enviar"
     @FXML
     void btnEnviarAc(ActionEvent event) {
         String correo = cajaTextCorreoElectronico.getText();
-        String fechaCita = dataPickerFechaCita.getValue().toString();
+        String fechaCita = dataPickerFechaCita.getValue() != null ? dataPickerFechaCita.getValue().toString() : null;
         String donacion = cajaTextDonacion.getText();
         String horaSeleccionada = horaCita.getValue();
         Perro perroSeleccionado = perroCita.getValue();
 
-        if (perroSeleccionado == null) {
-            Alertas.mostrarAlertaError("Error", "Debes seleccionar un perro.", "Selecciona un perro de la lista.");
+        if (correo == null || correo.isBlank() || fechaCita == null || horaSeleccionada == null || perroSeleccionado == null) {
+            Alertas.mostrarAlertaError("Campos obligatorios", "Faltan datos para registrar la cita.", "Rellena todos los campos.");
             return;
         }
 
-        // Suponiendo que FormularioCita ahora acepta un int en lugar de String para el perro
+        if (!donacion.isBlank()) {
+            try {
+                double donacionValor = Double.parseDouble(donacion);
+                if (donacionValor < 3.0) {
+                    Alertas.mostrarAlertaError("Donación insuficiente", "Si deseas donar, la cantidad mínima es 3€.", null);
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                Alertas.mostrarAlertaError("Donación inválida", "Introduce una cantidad numérica válida o deja el campo vacío.", null);
+                return;
+            }
+        }
+
         FormularioCita formulario = new FormularioCita(
                 correo, fechaCita, donacion, horaSeleccionada, perroSeleccionado
         );
@@ -67,7 +79,6 @@ public class SolicitarCitaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Horas
         horaCita.setItems(FXCollections.observableArrayList(
                 Arrays.stream(Hora.values())
                         .map(Hora::getHoraTexto)
@@ -75,24 +86,10 @@ public class SolicitarCitaController implements Initializable {
         ));
         horaCita.setValue(Hora.HORA_08.getHoraTexto());
 
-        // Perros no adoptados
-        ObservableList<Perro> perros = FXCollections.observableArrayList();
-        String sql = "SELECT perro_id, nombre FROM perro WHERE adoptado = 'No'";
-
-        try (Connection conn = ConnectionManager.getInstance().getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            while (rs.next()) {
-                int id = rs.getInt("perro_id");
-                String nombre = rs.getString("nombre");
-                perros.add(new Perro(id, nombre));
-            }
-
-            perroCita.setItems(perros);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // Obtener perros no adoptados desde DAO
+        PerroDAO perroDAO = new PerroDAO();
+        ObservableList<Perro> perros = perroDAO.obtenerPerrosNoAdoptados();
+        perroCita.setItems(perros);
     }
 
 }
