@@ -10,7 +10,7 @@ public class RegistroClienteDAO {
     public static boolean registrarClienteYUsuario(Usuario usuario) {
         try (Connection conn = ConnectionManager.getInstance().getConnection()) {
 
-            // Verificar si ya existe ese usuario o correo
+            // Verificar si ya existe usuario o correo
             String checkQuery = "SELECT COUNT(*) FROM usuario_cliente WHERE correo_electronico = ? OR nombre_usuario = ?";
             try (PreparedStatement stmtCheck = conn.prepareStatement(checkQuery)) {
                 stmtCheck.setString(1, usuario.getCorreoElectronico());
@@ -22,12 +22,13 @@ public class RegistroClienteDAO {
                 }
             }
 
-            // Insertar cliente
+            // Insertar en tabla cliente
             String insertCliente = """
                 INSERT INTO cliente (nombre, apellido1, apellido2, fecha_nacimiento, telefono, correo_electronico, 
                                      codigo_postal, localidad, provincia, pais, tipo_via, nombre_via, fecha_alta)
                 VALUES (?, ?, ?, TO_DATE(?, 'YYYY-MM-DD'), ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)
             """;
+
             int clienteId;
             try (PreparedStatement stmtCliente = conn.prepareStatement(insertCliente, new String[]{"cliente_id"})) {
                 stmtCliente.setString(1, usuario.getNombre());
@@ -52,11 +53,12 @@ public class RegistroClienteDAO {
                 }
             }
 
-            // Insertar usuario_cliente
+            // Insertar en tabla usuario_cliente (sin SYSDATE extra)
             String insertUsuario = """
-                INSERT INTO usuario_cliente (nombre_usuario, contrasena, correo_electronico, cliente_id, fecha_alta)
-                VALUES (?, ?, ?, ?, SYSDATE)
+                INSERT INTO usuario_cliente (nombre_usuario, contrasena, correo_electronico, cliente_id)
+                VALUES (?, ?, ?, ?)
             """;
+
             try (PreparedStatement stmtUsuario = conn.prepareStatement(insertUsuario)) {
                 stmtUsuario.setString(1, usuario.getNombreUsuario());
                 stmtUsuario.setString(2, usuario.getContrasena());

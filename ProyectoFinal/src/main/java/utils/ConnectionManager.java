@@ -39,7 +39,7 @@ public class ConnectionManager {
         return instance;
     }
 
-    public Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         System.out.println("- Conectando a la base de datos -");
         return DriverManager.getConnection(URL,USERNAME,PASSWORD);
     }

@@ -7,11 +7,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.EncriptarContrasenia;
+import modelo.TipoVia;
 import modelo.Usuario;
 import modelo.Ventanas;
 
@@ -32,6 +32,9 @@ public class RegistroClienteController implements Initializable {
     private TextField cajaApellido;
 
     @FXML
+    private PasswordField cajaContrasenia;
+
+    @FXML
     private TextField cajaApellido2;
 
     @FXML
@@ -39,9 +42,6 @@ public class RegistroClienteController implements Initializable {
 
     @FXML
     private TextField cajaCorreoElectronico;
-
-    @FXML
-    private TextField cajaFechaNacimiento;
 
     @FXML
     private TextField cajaLocalidad;
@@ -62,7 +62,11 @@ public class RegistroClienteController implements Initializable {
     private TextField cajaTextUsuario;
 
     @FXML
-    private TextField cajaTipoVia;
+    private DatePicker campoFecha;
+
+
+    @FXML
+    private ComboBox<String> comboTipoVia;
 
     @FXML
     private ImageView imgUsuario;
@@ -70,23 +74,22 @@ public class RegistroClienteController implements Initializable {
     @FXML
     void btnConfitmarAc(ActionEvent event) {
         try {
-
             Usuario usuario = new Usuario();
             usuario.setNombre(cajaTextUsuario.getText());
             usuario.setApellido1(cajaApellido.getText());
             usuario.setApellido2(cajaApellido2.getText());
-            usuario.setFechaNacimiento(cajaFechaNacimiento.getText()); // formato YYYY-MM-DD
             usuario.setTelefono(cajaTelefono.getText());
             usuario.setCorreoElectronico(cajaCorreoElectronico.getText());
             usuario.setCodigoPostal(cajaCodigoPostal.getText());
             usuario.setLocalidad(cajaLocalidad.getText());
             usuario.setProvincia(cajaProvincia.getText());
             usuario.setPais(cajaPais.getText());
-            usuario.setTipoVia(cajaTipoVia.getText());
+            usuario.setTipoVia(obtenerTipoViaDesdeTexto(comboTipoVia.getValue()).toString()); // <-- TIPO VIA
             usuario.setNombreVia(cajaNombreVia.getText());
-
-            usuario.setNombreUsuario(cajaTextUsuario.getText()); // mismo campo que nombre
-            usuario.setContrasena(""); // Aquí deberías enlazar un PasswordField y obtener la contraseña real
+            usuario.setNombreUsuario(cajaTextUsuario.getText());
+            String contraseniaEncriptada = EncriptarContrasenia.encriptar(cajaContrasenia.getText());
+            usuario.setContrasena(contraseniaEncriptada);
+            usuario.setFechaNacimiento(campoFecha.getValue().toString());
 
             boolean registrado = Dao.RegistroClienteDAO.registrarClienteYUsuario(usuario);
 
@@ -99,6 +102,17 @@ public class RegistroClienteController implements Initializable {
             Logger.getLogger(RegistroClienteController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+
+    private TipoVia obtenerTipoViaDesdeTexto(String texto) {
+        for (TipoVia tipo : TipoVia.values()) {
+            String tipoFormateado = tipo.name().charAt(0) + tipo.name().substring(1).toLowerCase();
+            if (tipoFormateado.equals(texto)) {
+                return tipo;
+            }
+        }
+        return null;
+    }
+
 
     @FXML
     void btnVolverAc(ActionEvent event) {
@@ -113,5 +127,8 @@ public class RegistroClienteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modelo.Animaciones.animarImagenUsuario(imgUsuario);
+        for (TipoVia tipo : TipoVia.values()) {
+            comboTipoVia.getItems().add(tipo.name().charAt(0) + tipo.name().substring(1).toLowerCase());
+        }
     }
 }
