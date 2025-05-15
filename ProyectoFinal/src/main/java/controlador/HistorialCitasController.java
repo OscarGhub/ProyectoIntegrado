@@ -36,10 +36,7 @@ public class HistorialCitasController implements Initializable {
     @FXML private TableColumn<CitasInfo, String> colNombrePerro;
     @FXML private TableColumn<CitasInfo, Void> colModificar;
 
-    @FXML private Button btnSolicitarAdp;
-    @FXML private Button btnAjustes;
-    @FXML private Button btnVerPerros;
-    @FXML private Button btnSalir;
+    @FXML private Button btnVolver;
 
     private final ObservableList<CitasInfo> listaCitas = FXCollections.observableArrayList();
 
@@ -111,37 +108,7 @@ public class HistorialCitasController implements Initializable {
     }
 
     @FXML
-    void btnSalirAc(ActionEvent event) {
-        try {
-            Ventanas.cerrarVentana(event);
-            Ventanas.abrirVentana("/vista/inicio.fxml", "Inicio");
-        } catch (Exception e) {
-            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-
-    @FXML
-    void btnSolicitarAdpAc(ActionEvent event) {
-        try {
-            Ventanas.cerrarVentana(event);
-            Ventanas.abrirVentana("/vista/solicitarAdopcion.fxml", "Solicitar adopción");
-        } catch (Exception e) {
-            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, "Error al abrir la ventana de solicitud de adopción", e);
-        }
-    }
-
-    @FXML
-    void btnAjustesAc(ActionEvent event) {
-        try {
-            Ventanas.cerrarVentana(event);
-            Ventanas.abrirVentana("/vista/ajustes.fxml", "Ajustes");
-        } catch (Exception e) {
-            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, "Error al abrir la ventana de solicitud de cita", e);
-        }
-    }
-
-    @FXML
-    void btnVerPerrosAc(ActionEvent event) {
+    void btnVolverAc(ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
             Ventanas.abrirVentana("/vista/verPerros.fxml", "Ver perros");
