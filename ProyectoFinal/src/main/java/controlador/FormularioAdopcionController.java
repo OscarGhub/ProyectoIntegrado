@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
+import modelo.Usuario;
 
 import utils.ConnectionManager;
 
@@ -24,6 +25,24 @@ public class FormularioAdopcionController {
     @FXML private TextField txtSexoPerro;
     @FXML private Button btnGuardar;
     @FXML private Button btnCancelar;
+    private Usuario usuarioLogueado;
+
+
+    public void setUsuarioLogueado(Usuario usuario) {
+        this.usuarioLogueado = usuario;
+        if (usuario != null) {
+            txtNombre.setText(usuario.getNombre());
+            txtApellido1.setText(usuario.getApellido1());
+            txtApellido2.setText(usuario.getApellido2());
+            txtCorreo.setText(usuario.getCorreoElectronico());
+
+            // Hacer campos no editables
+            txtNombre.setEditable(false);
+            txtApellido1.setEditable(false);
+            txtApellido2.setEditable(false);
+            txtCorreo.setEditable(false);
+        }
+    }
 
 
     @FXML
@@ -132,6 +151,42 @@ public class FormularioAdopcionController {
             }
         } catch (SQLException e) {
             mostrarAlerta(Alert.AlertType.ERROR, "Error al recuperar datos",
+                    "Ocurrió un error al consultar la base de datos: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void setCorreoCliente(String correoCliente) {
+        txtCorreo.setText(correoCliente);
+        txtCorreo.setEditable(false);
+
+        try {
+            Connection conn = ConnectionManager.getInstance().getConnection();
+            String sql = "SELECT nombre, apellido1, apellido2 FROM cliente WHERE correo_electronico = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, correoCliente);
+                var rs = stmt.executeQuery();
+                if (rs.next()) {
+                    String nombre = rs.getString("nombre");
+                    String apellido1 = rs.getString("apellido1");
+                    String apellido2 = rs.getString("apellido2");
+
+                    System.out.println("Cliente encontrado: " + nombre + " " + apellido1 + " " + apellido2);
+
+                    txtNombre.setText(nombre);
+                    txtApellido1.setText(apellido1);
+                    txtApellido2.setText(apellido2);
+
+                    txtNombre.setEditable(false);
+                    txtApellido1.setEditable(false);
+                    txtApellido2.setEditable(false);
+                } else {
+                    mostrarAlerta(Alert.AlertType.WARNING, "Cliente no encontrado",
+                            "No se encontró un cliente con ese correo en la base de datos.");
+                }
+            }
+        } catch (SQLException e) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Error al recuperar datos del cliente",
                     "Ocurrió un error al consultar la base de datos: " + e.getMessage());
             e.printStackTrace();
         }
