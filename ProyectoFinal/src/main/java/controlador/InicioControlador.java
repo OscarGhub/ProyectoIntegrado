@@ -73,4 +73,20 @@ public class InicioControlador {
             }
         }
     }
+
+    public Button getBtnCliente() {
+        return btnCliente;
+    }
+
+    public void setBtnCliente(Button btnCliente) {
+        this.btnCliente = btnCliente;
+    }
+
+    public Button getBtnProtectora() {
+        return btnProtectora;
+    }
+
+    public void setBtnProtectora(Button btnProtectora) {
+        this.btnProtectora = btnProtectora;
+    }
 }

@@ -125,4 +125,44 @@ public class VerPerrosController implements Initializable {
             tf.setEditable(false);
         }
     }
+
+    public Button getBtnSalir() {
+        return btnSalir;
+    }
+
+    public void setBtnSalir(Button btnSalir) {
+        this.btnSalir = btnSalir;
+    }
+
+    public Button getBtnSolicitarADP() {
+        return btnSolicitarADP;
+    }
+
+    public void setBtnSolicitarADP(Button btnSolicitarADP) {
+        this.btnSolicitarADP = btnSolicitarADP;
+    }
+
+    public Button getBtnAjustes() {
+        return btnAjustes;
+    }
+
+    public void setBtnAjustes(Button btnAjustes) {
+        this.btnAjustes = btnAjustes;
+    }
+
+    public Button getBtnVerCitas() {
+        return btnVerCitas;
+    }
+
+    public void setBtnVerCitas(Button btnVerCitas) {
+        this.btnVerCitas = btnVerCitas;
+    }
+
+    public Button getBtnSolicitarCita() {
+        return btnSolicitarCita;
+    }
+
+    public void setBtnSolicitarCita(Button btnSolicitarCita) {
+        this.btnSolicitarCita = btnSolicitarCita;
+    }
 }

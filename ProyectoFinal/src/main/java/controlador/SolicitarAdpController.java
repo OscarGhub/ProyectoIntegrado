@@ -16,10 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import modelo.CitasInfo;
-import modelo.Perro;
-import modelo.Usuario;
-import modelo.Ventanas;
+import modelo.*;
 
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -90,7 +87,7 @@ public class SolicitarAdpController implements Initializable {
 
             // PASAR LOS DATOS DEL PERRO Y DEL USUARIO LOGUEADO
             controller.setNombrePerro(perroSeleccionado.getNombre());
-            controller.setUsuarioLogueado(usuarioLogueado);  // Aquí asignas el usuario logueado
+            controller.setUsuarioLogueado(usuarioLogueado);
             controller.setCorreoCliente(usuarioLogueado.getCorreoElectronico());
 
             Stage stage = new Stage();
@@ -137,8 +134,15 @@ public class SolicitarAdpController implements Initializable {
         colFechaAlta.setCellValueFactory(new PropertyValueFactory<>("fecha_alta"));
 
         cargarPerrosDisponibles();
-    }
 
+        String correoLogueado = UsuarioSesion.getCorreoElectronico();
+        if (correoLogueado != null) {
+            // Usar el correo para inicializar campos o lógica
+            System.out.println("Usuario logueado: " + correoLogueado);
+        } else {
+            System.out.println("No se encontró información del usuario logueado.");
+        }
+    }
 
     @FXML
     public void btnSalirAc(ActionEvent event) {  // Metodo público

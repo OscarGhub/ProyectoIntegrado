@@ -138,4 +138,28 @@ public class ModificarCitasController implements Initializable {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+
+    public Button getBtnModificarCita() {
+        return btnModificarCita;
+    }
+
+    public void setBtnModificarCita(Button btnModificarCita) {
+        this.btnModificarCita = btnModificarCita;
+    }
+
+    public Button getBrnModificarPerros() {
+        return brnModificarPerros;
+    }
+
+    public void setBrnModificarPerros(Button brnModificarPerros) {
+        this.brnModificarPerros = brnModificarPerros;
+    }
+
+    public Button getBtnSalir() {
+        return btnSalir;
+    }
+
+    public void setBtnSalir(Button btnSalir) {
+        this.btnSalir = btnSalir;
+    }
 }
