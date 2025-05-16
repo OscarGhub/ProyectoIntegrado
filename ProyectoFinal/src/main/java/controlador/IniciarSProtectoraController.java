@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import modelo.Alertas;
 import modelo.EncriptarContrasenia;
+import modelo.UsuarioSesion;
 import modelo.Ventanas;
 
 import java.net.URL;
@@ -60,6 +61,7 @@ public class IniciarSProtectoraController implements Initializable {
             }
 
             if(EncriptarContrasenia.verificar(contraseniaPlana, hashAlmacenado)) {
+                UsuarioSesion.setCorreoElectronico(usuario);
                 Ventanas.cerrarVentana(event);
                 Ventanas.abrirVentana("/vista/modificarPerros.fxml", "Ver perros");
             } else {

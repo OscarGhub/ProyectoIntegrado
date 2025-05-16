@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import modelo.EncriptarContrasenia;
 import modelo.TipoVia;
+import modelo.UsuarioSesion;
 import modelo.Ventanas;
 
 import java.net.URL;
@@ -83,6 +84,7 @@ public class RegistroProtectoraController implements Initializable {
             boolean registrado = Dao.RegistroProtectoraDAO.registrarProtectora(protectora);
 
             if (registrado) {
+                UsuarioSesion.setCorreoElectronico(protectora.getCorreoElectronico()); // Store the email
                 modelo.Alertas.mostrarAlertaAviso(null, "Éxito", "Protectora registrada correctamente.");
                 Ventanas.cerrarVentana(event);
                 Ventanas.abrirVentana("/vista/modificarPerros.fxml", "Inicio");
