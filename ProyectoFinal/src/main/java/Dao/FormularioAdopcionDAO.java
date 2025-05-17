@@ -10,13 +10,13 @@ import java.sql.SQLException;
 public class FormularioAdopcionDAO {
 
     public static int obtenerIdPerro(String nombrePerro) throws SQLException {
-        String sql = "SELECT id FROM perros WHERE nombre = ?";
+        String sql = "SELECT perro_id FROM perro WHERE nombre = ?";
         try (Connection con = ConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, nombrePerro);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getInt("id");
+                    return rs.getInt("perro_id");
                 }
             }
         }
@@ -24,13 +24,13 @@ public class FormularioAdopcionDAO {
     }
 
     public static int obtenerIdCliente(String correo) throws SQLException {
-        String sql = "SELECT id FROM clientes WHERE correo = ?";
+        String sql = "SELECT cliente_id FROM cliente WHERE CORREO_ELECTRONICO = ?";
         try (Connection con = ConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, correo);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getInt("id");
+                    return rs.getInt("cliente_id");
                 }
             }
         }
@@ -38,7 +38,7 @@ public class FormularioAdopcionDAO {
     }
 
     public static String[] obtenerInfoPerro(String nombrePerro) throws SQLException {
-        String sql = "SELECT raza, sexo FROM perros WHERE nombre = ?";
+        String sql = "SELECT raza, sexo FROM perro WHERE nombre = ?";
         try (Connection con = ConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, nombrePerro);
@@ -54,7 +54,7 @@ public class FormularioAdopcionDAO {
     }
 
     public static String[] obtenerInfoCliente(String correo) throws SQLException {
-        String sql = "SELECT nombre, apellido1, apellido2 FROM clientes WHERE correo = ?";
+        String sql = "SELECT nombre, apellido1, apellido2 FROM cliente WHERE CORREO_ELECTRONICO = ?";
         try (Connection con = ConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, correo);
@@ -71,7 +71,7 @@ public class FormularioAdopcionDAO {
     }
 
     public static boolean insertarSolicitudAdopcion(int perroId, int clienteId, double donacion) throws SQLException {
-        String sql = "INSERT INTO solicitudes_adopcion (id_perro, id_cliente, donacion) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO solicitud_adopcion (perro_id, cliente_id, donacion) VALUES (?, ?, ?)";
         try (Connection con = ConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, perroId);

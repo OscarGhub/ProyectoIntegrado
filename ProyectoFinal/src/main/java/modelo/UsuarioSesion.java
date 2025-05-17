@@ -1,43 +1,48 @@
 package modelo;
 
 public class UsuarioSesion {
-    private static String correoElectronico;
-    private static boolean sesionIniciada = false;
+
     private static Usuario usuarioActual;
+    private static Protectora protectoraActual;
 
-    public static String getCorreoElectronico() {
-        return correoElectronico;
-    }
+    private UsuarioSesion() {
 
-    public static void setCorreoElectronico(String correo) {
-        correoElectronico = correo;
-    }
-
-    public static boolean isSesionIniciada() {
-        return sesionIniciada;
     }
 
     public static void iniciarSesion(Usuario usuario) {
         usuarioActual = usuario;
-        correoElectronico = usuario.getCorreoElectronico();
-        sesionIniciada = true;
+        protectoraActual = null;
+    }
+
+    public static void iniciarSesion(Protectora protectora) {
+        protectoraActual = protectora;
+        usuarioActual = null;
     }
 
     public static void cerrarSesion() {
         usuarioActual = null;
-        correoElectronico = null;
-        sesionIniciada = false;
+        protectoraActual = null;
     }
 
-    public static Usuario getUsuarioActual() {
+    public static Usuario getUsuario() {
         return usuarioActual;
     }
 
-    public static void setSesionIniciada(boolean sesionIniciada) {
-        UsuarioSesion.sesionIniciada = sesionIniciada;
+    public static Protectora getProtectora() {
+        return protectoraActual;
     }
 
-    public static void setUsuarioActual(Usuario usuarioActual) {
-        UsuarioSesion.usuarioActual = usuarioActual;
+    public static String getCorreoElectronico() {
+        if (usuarioActual != null) {
+            return usuarioActual.getCorreoElectronico();
+        } else if (protectoraActual != null) {
+            return protectoraActual.getCorreoElectronico();
+        } else {
+            return null;
+        }
+    }
+
+    public static boolean estaLogueado() {
+        return usuarioActual != null || protectoraActual != null;
     }
 }

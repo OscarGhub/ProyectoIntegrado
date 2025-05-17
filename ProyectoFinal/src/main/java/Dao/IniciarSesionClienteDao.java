@@ -30,20 +30,20 @@ public class IniciarSesionClienteDao {
         }
     }
 
-    public static Usuario obtenerUsuarioPorCorreo(String correo) {
+    public static Usuario obtenerUsuarioPorNombreUsuario(String nombreUsuario) {
         Usuario usuario = null;
-        String sql = "SELECT ID_USUARIO_CLIENTE, NOMBRE_USUARIO, CONTRASENA, CORREO_ELECTRONICO FROM USUARIO_CLIENTE WHERE CORREO_ELECTRONICO = ?";
+        String sql = "SELECT ID_USUARIO_CLIENTE, NOMBRE_USUARIO, CONTRASENA, CORREO_ELECTRONICO FROM USUARIO_CLIENTE WHERE NOMBRE_USUARIO = ?";
 
         try (Connection con = ConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, correo);
+            ps.setString(1, nombreUsuario);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 usuario = new Usuario();
+                usuario.setIdUsuario(rs.getInt("ID_USUARIO_CLIENTE"));
                 usuario.setNombreUsuario(rs.getString("NOMBRE_USUARIO"));
-                usuario.setContrasena(rs.getString("CONTRASENA"));
                 usuario.setCorreoElectronico(rs.getString("CORREO_ELECTRONICO"));
             }
         } catch (SQLException e) {
@@ -52,4 +52,5 @@ public class IniciarSesionClienteDao {
 
         return usuario;
     }
+
 }

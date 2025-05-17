@@ -3,6 +3,7 @@ package Dao;
 import modelo.Protectora;
 import utils.ConnectionManager;
 import modelo.Alertas;
+
 import java.sql.*;
 
 public class RegistroProtectoraDAO {
@@ -10,34 +11,36 @@ public class RegistroProtectoraDAO {
     public static boolean registrarProtectora(Protectora protectora) {
         try (Connection conn = ConnectionManager.getInstance().getConnection()) {
 
-            // 1. Validar si ya existe el correo en protectora
+            // Validar correo electrónico existente
             String checkCorreo = "SELECT COUNT(*) FROM protectora WHERE correo_electronico = ?";
             try (PreparedStatement stmtCheckCorreo = conn.prepareStatement(checkCorreo)) {
                 stmtCheckCorreo.setString(1, protectora.getCorreoElectronico());
-                ResultSet rsCorreo = stmtCheckCorreo.executeQuery();
-                if (rsCorreo.next() && rsCorreo.getInt(1) > 0) {
+                ResultSet rs = stmtCheckCorreo.executeQuery();
+                if (rs.next() && rs.getInt(1) > 0) {
                     Alertas.mostrarAlertaError(null, "Error", "El correo ya está registrado.");
                     return false;
                 }
             }
 
-            // 2. Validar si ya existe el nombre de usuario en usuario_protectora
+            // Validar nombre de usuario existente
             String checkUsuario = "SELECT COUNT(*) FROM protectora WHERE nombre = ?";
             try (PreparedStatement stmtCheckUsuario = conn.prepareStatement(checkUsuario)) {
                 stmtCheckUsuario.setString(1, protectora.getNombreUsuario());
-                ResultSet rsUsuario = stmtCheckUsuario.executeQuery();
-                if (rsUsuario.next() && rsUsuario.getInt(1) > 0) {
+                ResultSet rs = stmtCheckUsuario.executeQuery();
+                if (rs.next() && rs.getInt(1) > 0) {
                     Alertas.mostrarAlertaError(null, "Error", "El nombre de usuario ya está registrado.");
                     return false;
                 }
             }
 
+            // Insertar en tabla protectora
             String insertProtectora = """
                 INSERT INTO protectora (telefono, correo_electronico, codigo_postal, localidad, provincia, pais, tipo_via, nombre_via, fecha_alta)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)
             """;
+
             int protectoraId;
-            try (PreparedStatement stmt = conn.prepareStatement(insertProtectora, new String[]{"protectora_id"})) {
+            try (PreparedStatement stmt = conn.prepareStatement(insertProtectora, Statement.RETURN_GENERATED_KEYS)) {
                 stmt.setString(1, protectora.getTelefono());
                 stmt.setString(2, protectora.getCorreoElectronico());
                 stmt.setString(3, protectora.getCodigoPostal());
@@ -56,6 +59,7 @@ public class RegistroProtectoraDAO {
                 }
             }
 
+            // Insertar en tabla usuario_protectora
             String insertUsuario = """
                 INSERT INTO usuario_protectora (nombre_usuario, contrasena, correo_electronico, id_protectora, fecha_alta)
                 VALUES (?, ?, ?, ?, SYSDATE)

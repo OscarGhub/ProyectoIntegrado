@@ -44,15 +44,15 @@ public class IniciarSClienteController implements Initializable {
     @FXML
     void btnConfitmarAc(ActionEvent event) {
         try {
-            String correo = cajaTextUsuario.getText();
+            String nombreUsuario = cajaTextUsuario.getText();
             String contraseniaPlana = cajaTextContrasenia.getText();
 
-            if (correo.isEmpty() || contraseniaPlana.isEmpty()) {
+            if (nombreUsuario.isEmpty() || contraseniaPlana.isEmpty()) {
                 Alertas.mostrarAlertaError(null, "Error", "Usuario y contraseña son obligatorios");
                 return;
             }
 
-            String hashAlmacenado = IniciarSesionClienteDao.obtenerHashContrasenia(correo);
+            String hashAlmacenado = IniciarSesionClienteDao.obtenerHashContrasenia(nombreUsuario);
 
             if (hashAlmacenado == null) {
                 Alertas.mostrarAlertaError(null, "Error", "Usuario no encontrado");
@@ -60,15 +60,16 @@ public class IniciarSClienteController implements Initializable {
             }
 
             if (EncriptarContrasenia.verificar(contraseniaPlana, hashAlmacenado)) {
-                UsuarioSesion.setCorreoElectronico(correo);
-
-                // Obtener el usuario completo desde la base de datos
-                Usuario usuarioCompleto = IniciarSesionClienteDao.obtenerUsuarioPorCorreo(correo);
-                UsuarioSesion.setUsuarioActual(usuarioCompleto);
+                System.out.println("Correo que se envía a la consulta: '" + nombreUsuario + "'");
+                Usuario usuarioCompleto = IniciarSesionClienteDao.obtenerUsuarioPorNombreUsuario(nombreUsuario);
+                System.out.println("Usuario obtenido desde la base de datos: " + usuarioCompleto);
+                UsuarioSesion.iniciarSesion(usuarioCompleto);
+                System.out.println("Usuario en sesión: " + UsuarioSesion.getUsuario());
 
                 Ventanas.cerrarVentana(event);
                 Ventanas.abrirVentana("/vista/verPerros.fxml", "Ver perros");
-            } else {
+            }
+            else {
                 Alertas.mostrarAlertaError(null, "Error", "Contraseña incorrecta");
             }
 

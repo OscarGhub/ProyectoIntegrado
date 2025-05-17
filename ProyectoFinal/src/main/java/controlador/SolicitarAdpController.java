@@ -60,6 +60,7 @@ public class SolicitarAdpController implements Initializable {
 
     public void setUsuarioLogueado(Usuario usuario) {
         this.usuarioLogueado = usuario;
+        System.out.println("Usuario recibido en SolicitarAdpController: " + usuario);
     }
 
     @FXML
@@ -73,9 +74,12 @@ public class SolicitarAdpController implements Initializable {
         }
 
         if (usuarioLogueado == null) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Error de sesión",
-                    "No hay información del usuario logueado. Por favor, vuelve a iniciar sesión.");
-            return;
+            usuarioLogueado = UsuarioSesion.getUsuario();
+            if (usuarioLogueado == null) {
+                mostrarAlerta(Alert.AlertType.ERROR, "Error de sesión",
+                        "No hay información del usuario logueado. Por favor, vuelve a iniciar sesión.");
+                return;
+            }
         }
 
         try {
@@ -135,12 +139,14 @@ public class SolicitarAdpController implements Initializable {
 
         cargarPerrosDisponibles();
 
-        String correoLogueado = UsuarioSesion.getCorreoElectronico();
-        if (correoLogueado != null) {
-            // Usar el correo para inicializar campos o lógica
-            System.out.println("Usuario logueado: " + correoLogueado);
-        } else {
-            System.out.println("No se encontró información del usuario logueado.");
+        if (usuarioLogueado == null) {
+            Usuario userSesion = UsuarioSesion.getUsuario();
+            if (userSesion != null) {
+                usuarioLogueado = userSesion;
+                System.out.println("Usuario logueado asignado en initialize: " + usuarioLogueado);
+            } else {
+                System.out.println("No se encontró información del usuario logueado.");
+            }
         }
     }
 

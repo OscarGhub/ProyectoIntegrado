@@ -4,10 +4,15 @@ import Dao.VerPerrosDAO;
 import Dao.VerPerrosDAO.PerroDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import modelo.UsuarioSesion;
 import modelo.Ventanas;
 
 import java.net.URL;
@@ -70,7 +75,19 @@ public class VerPerrosController implements Initializable {
     void btnSolicitarADPAc(ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
-            Ventanas.abrirVentana("/vista/solicitarAdopcion.fxml", "Solicitar adopción");
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/solicitarAdopcion.fxml"));
+            Parent root = loader.load();
+
+            SolicitarAdpController controller = loader.getController();
+
+            controller.setUsuarioLogueado(UsuarioSesion.getUsuario());
+
+            Stage stage = new Stage();
+            stage.setTitle("Solicitar adopción");
+            stage.setScene(new Scene(root));
+            stage.show();
+
         } catch (Exception e) {
             Logger.getLogger(SolicitarAdpController.class.getName()).log(Level.SEVERE, null, e);
         }

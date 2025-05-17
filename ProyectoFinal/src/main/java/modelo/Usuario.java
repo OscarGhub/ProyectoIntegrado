@@ -13,6 +13,7 @@ public class Usuario {
     private String pais;
     private String tipoVia;
     private String nombreVia;
+    private int idUsuario;
 
     private String nombreUsuario;
     private String contrasena;
@@ -59,4 +60,22 @@ public class Usuario {
 
     public String getContrasena() { return contrasena; }
     public void setContrasena(String contrasena) { this.contrasena = contrasena; }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idUsuario=" + idUsuario +
+                ", nombreUsuario='" + nombreUsuario + '\'' +
+                ", correoElectronico='" + correoElectronico + '\'' +
+                '}';
+    }
+
 }
