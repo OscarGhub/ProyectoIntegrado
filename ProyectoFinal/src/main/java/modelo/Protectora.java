@@ -2,8 +2,11 @@ package modelo;
 
 public class Protectora extends Usuario {
 
-    public Protectora(String nombreUsuario, String nombreVia, String tipoVia, String pais, String provincia,
+    private String nombre;
+
+    public Protectora(String nombre, String nombreUsuario, String nombreVia, String tipoVia, String pais, String provincia,
                       String localidad, String codigoPostal, String telefono, String correoElectronico, String contrasena) {
+        this.nombre = nombre;
         setNombreUsuario(nombreUsuario);
         setNombreVia(nombreVia);
         setTipoVia(tipoVia);
@@ -18,5 +21,13 @@ public class Protectora extends Usuario {
 
     public Protectora() {
         super();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }
