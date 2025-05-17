@@ -14,7 +14,8 @@ public class IniciarSesionProtectoraDao {
     public static String obtenerHashContraseniaP(String nombreUsuario) {
         String sql = "SELECT contrasena FROM usuario_protectora WHERE nombre_usuario = ?";
 
-        try (Connection conn = ConnectionManager.getConnection();
+        try (Connection conn = ConnectionManager.getInstance().getConnection();
+
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, nombreUsuario);
