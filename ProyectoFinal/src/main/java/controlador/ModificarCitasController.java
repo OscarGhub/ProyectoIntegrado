@@ -131,6 +131,16 @@ public class ModificarCitasController implements Initializable {
         }
     }
 
+    @FXML
+    void btnAdpAc(ActionEvent event) throws Exception {
+        try {
+            Ventanas.cerrarVentana(event);
+            Ventanas.abrirVentana("/vista/modificarAdopcion.fxml", "Modificar Adopción");
+        } catch (Exception e) {
+            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
