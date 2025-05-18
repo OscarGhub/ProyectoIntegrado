@@ -16,9 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import modelo.CitasInfo;
-import modelo.Perro;
-import modelo.Ventanas;
+import modelo.*;
 
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -27,6 +25,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Dao.PerroDAO;
+
 
 
 
@@ -57,6 +56,12 @@ public class SolicitarAdpController implements Initializable {
     @FXML private TableColumn<Perro, String> colFechaAlta;
 
     private final ObservableList<Perro> listaPerros = FXCollections.observableArrayList();
+    private Usuario usuarioLogueado;
+
+    public void setUsuarioLogueado(Usuario usuario) {
+        this.usuarioLogueado = usuario;
+        System.out.println("Usuario recibido en SolicitarAdpController: " + usuario);
+    }
 
     @FXML
     public void enviarFormulario(ActionEvent event) {
@@ -68,14 +73,26 @@ public class SolicitarAdpController implements Initializable {
             return;
         }
 
+        if (usuarioLogueado == null) {
+            usuarioLogueado = UsuarioSesion.getUsuario();
+            if (usuarioLogueado == null) {
+                mostrarAlerta(Alert.AlertType.ERROR, "Error de sesión",
+                        "No hay información del usuario logueado. Por favor, vuelve a iniciar sesión.");
+                return;
+            }
+        }
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/formularioAdopcion.fxml"));
             Parent root = loader.load();
 
             // Obtener el controlador del formulario
             FormularioAdopcionController controller = loader.getController();
-            // Pasar el nombre del perro seleccionado al formulario
+
+            // PASAR LOS DATOS DEL PERRO Y DEL USUARIO LOGUEADO
             controller.setNombrePerro(perroSeleccionado.getNombre());
+            controller.setUsuarioLogueado(usuarioLogueado);
+            controller.setCorreoCliente(usuarioLogueado.getCorreoElectronico());
 
             Stage stage = new Stage();
             stage.setTitle("Formulario de Adopción");
@@ -121,8 +138,17 @@ public class SolicitarAdpController implements Initializable {
         colFechaAlta.setCellValueFactory(new PropertyValueFactory<>("fecha_alta"));
 
         cargarPerrosDisponibles();
-    }
 
+        if (usuarioLogueado == null) {
+            Usuario userSesion = UsuarioSesion.getUsuario();
+            if (userSesion != null) {
+                usuarioLogueado = userSesion;
+                System.out.println("Usuario logueado asignado en initialize: " + usuarioLogueado);
+            } else {
+                System.out.println("No se encontró información del usuario logueado.");
+            }
+        }
+    }
 
     @FXML
     public void btnSalirAc(ActionEvent event) {  // Metodo público

@@ -1,6 +1,5 @@
 package controlador;
 
-import Dao.IniciarSesionClienteDao;
 import Dao.IniciarSesionProtectoraDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,15 +8,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import modelo.Alertas;
-import modelo.EncriptarContrasenia;
-import modelo.UsuarioSesion;
-import modelo.Ventanas;
+import modelo.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,7 +29,7 @@ public class IniciarSProtectoraController implements Initializable {
     private Button btnVolver;
 
     @FXML
-    private TextField cajaTextContrasenia;
+    private PasswordField cajaTextContrasenia;
 
     @FXML
     private TextField cajaTextUsuario;
@@ -41,59 +37,57 @@ public class IniciarSProtectoraController implements Initializable {
     @FXML
     private ImageView imgProtectora;
 
-
     @FXML
     void btnConfitmarAc(ActionEvent event) {
         try {
             String usuario = cajaTextUsuario.getText();
             String contraseniaPlana = cajaTextContrasenia.getText();
 
-            if(usuario.isEmpty() || contraseniaPlana.isEmpty()) {
-                Alertas.mostrarAlertaError(null,"Error", "Usuario y contraseña son obligatorios");
+            if (usuario.isEmpty() || contraseniaPlana.isEmpty()) {
+                Alertas.mostrarAlertaError(null, "Error", "Usuario y contraseña son obligatorios");
                 return;
             }
 
             String hashAlmacenado = IniciarSesionProtectoraDao.obtenerHashContraseniaP(usuario);
 
-            if(hashAlmacenado == null) {
-                Alertas.mostrarAlertaError(null, "Error","Usuario no encontrado");
+            if (hashAlmacenado == null) {
+                Alertas.mostrarAlertaError(null, "Error", "Usuario no encontrado");
                 return;
             }
 
-            if(EncriptarContrasenia.verificar(contraseniaPlana, hashAlmacenado)) {
-                UsuarioSesion.setCorreoElectronico(usuario);
+            if (EncriptarContrasenia.verificar(contraseniaPlana, hashAlmacenado)) {
+                // Obtener objeto Usuario completo
+                Usuario usuarioCompleto = IniciarSesionProtectoraDao.obtenerUsuarioPorNombre(usuario);
+                if (usuarioCompleto == null) {
+                    Alertas.mostrarAlertaError(null, "Error", "No se pudo obtener la información del usuario.");
+                    return;
+                }
+
+                UsuarioSesion.iniciarSesion(usuarioCompleto);
+
                 Ventanas.cerrarVentana(event);
                 Ventanas.abrirVentana("/vista/modificarPerros.fxml", "Ver perros");
             } else {
-                Alertas.mostrarAlertaError(null,"Error", "Contraseña incorrecta");
+                Alertas.mostrarAlertaError(null, "Error", "Contraseña incorrecta");
             }
+
         } catch (Exception e) {
-            Logger.getLogger(IniciarSClienteController.class.getName()).log(Level.SEVERE, null, e);
-            Alertas.mostrarAlertaError(null,"Error", "Ocurrió un error al iniciar sesión");
+            Logger.getLogger(IniciarSProtectoraController.class.getName()).log(Level.SEVERE, null, e);
+            Alertas.mostrarAlertaError(null, "Error", "Ocurrió un error al iniciar sesión");
         }
-
     }
-
-
-
 
     @FXML
     void btnVolverAc(ActionEvent event) {
         try {
-            // Cerrar la ventana actual
             ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/inicio.fxml"));
             Parent root = fxmlLoader.load();
-            InicioControlador controlador = fxmlLoader.getController();
 
-            // Crear la nueva escena
             Scene escena = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("Inicio");
             stage.setScene(escena);
-
-            // Mostrar la nueva ventana y esperar a que se cierre
             stage.show();
 
         } catch (Exception e) {
@@ -103,17 +97,14 @@ public class IniciarSProtectoraController implements Initializable {
 
     @FXML
     void cajaTextContraseniaAc(ActionEvent event) {
-
     }
 
     @FXML
     void cajaTextUsuarioAc(ActionEvent event) {
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modelo.Animaciones.animarImagenUsuario(imgProtectora);
     }
-
 }

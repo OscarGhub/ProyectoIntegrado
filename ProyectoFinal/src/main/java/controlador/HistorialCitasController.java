@@ -113,4 +113,12 @@ public class HistorialCitasController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+    public Button getBtnVolver() {
+        return btnVolver;
+    }
+
+    public void setBtnVolver(Button btnVolver) {
+        this.btnVolver = btnVolver;
+    }
 }

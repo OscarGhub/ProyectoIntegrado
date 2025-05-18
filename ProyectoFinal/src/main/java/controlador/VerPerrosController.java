@@ -4,18 +4,15 @@ import Dao.VerPerrosDAO;
 import Dao.VerPerrosDAO.PerroDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
+import modelo.UsuarioSesion;
 import modelo.Ventanas;
 
 import java.net.URL;
@@ -23,7 +20,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.input.MouseEvent;
 
 public class VerPerrosController implements Initializable {
 
@@ -41,8 +37,6 @@ public class VerPerrosController implements Initializable {
     @FXML private TextField txtNombrePerro5, txtFechaNacimiento5, txtNombreRaza5;
     @FXML private TextField txtNombrePerro6, txtFechaNacimiento6, txtNombreRaza6;
     @FXML private TextField txtNombrePerro7, txtFechaNacimiento7, txtNombreRaza7;
-
-    private int clienteIdActual = 1;
 
     private void cargarDatosPerros() {
         List<TextField[]> campos = List.of(
@@ -81,7 +75,19 @@ public class VerPerrosController implements Initializable {
     void btnSolicitarADPAc(ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
-            Ventanas.abrirVentana("/vista/solicitarAdopcion.fxml", "Solicitar adopción");
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/solicitarAdopcion.fxml"));
+            Parent root = loader.load();
+
+            SolicitarAdpController controller = loader.getController();
+
+            controller.setUsuarioLogueado(UsuarioSesion.getUsuario());
+
+            Stage stage = new Stage();
+            stage.setTitle("Solicitar adopción");
+            stage.setScene(new Scene(root));
+            stage.show();
+
         } catch (Exception e) {
             Logger.getLogger(SolicitarAdpController.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -116,13 +122,10 @@ public class VerPerrosController implements Initializable {
         }
     }
 
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modelo.Animaciones.animarAgrandar(imgUsuario);
         cargarDatosPerros();
-        verificarNotificaciones();
 
         // Hacer los campos no editables
         List<TextField> todosLosCampos = List.of(
@@ -140,55 +143,43 @@ public class VerPerrosController implements Initializable {
         }
     }
 
-    private void verificarNotificaciones() {
-        VerPerrosDAO dao = new VerPerrosDAO();
-        boolean tieneNotificaciones = dao.tieneNotificaciones(clienteIdActual);
-
-        try {
-            if (tieneNotificaciones) {
-                // Cambiar a imagen con notificación
-                Image imagenNotificacion = new Image(getClass().getResourceAsStream("/img/usuarioNotificacion.png"));
-                imgUsuario.setImage(imagenNotificacion);
-            } else {
-                // Mantener imagen normal
-                Image imagenNormal = new Image(getClass().getResourceAsStream("/img/login-removebg-preview.png"));
-                imgUsuario.setImage(imagenNormal);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public Button getBtnSalir() {
+        return btnSalir;
     }
 
-    @FXML
-    void mirarNotificaciones(MouseEvent event) {
-        VerPerrosDAO dao = new VerPerrosDAO();
-        boolean tieneNotificaciones = dao.tieneNotificaciones(clienteIdActual);
+    public void setBtnSalir(Button btnSalir) {
+        this.btnSalir = btnSalir;
+    }
 
-        Stage popup = new Stage();
-        popup.initModality(Modality.APPLICATION_MODAL);
-        popup.setTitle("Notificación");
+    public Button getBtnSolicitarADP() {
+        return btnSolicitarADP;
+    }
 
-        Label mensaje = new Label(tieneNotificaciones ?
-                "¡Tienes notificaciones nuevas!" : "No tienes notificaciones nuevas");
+    public void setBtnSolicitarADP(Button btnSolicitarADP) {
+        this.btnSolicitarADP = btnSolicitarADP;
+    }
 
-        VBox layout = new VBox(10, mensaje);
-        layout.setAlignment(Pos.CENTER);
-        layout.setPadding(new Insets(20));
+    public Button getBtnAjustes() {
+        return btnAjustes;
+    }
 
-        // Si hay notificaciones, añadir botón para marcarlas como leídas
-        if (tieneNotificaciones) {
-            Button btnMarcarLeidas = new Button("Marcar como leídas");
-            btnMarcarLeidas.setOnAction(e -> {
-                // Aquí podrías implementar la lógica para marcar notificaciones como leídas
-                // Por ahora solo cambiamos la imagen
-                Image imagenNormal = new Image(getClass().getResourceAsStream("/img/login-removebg-preview.png"));
-                imgUsuario.setImage(imagenNormal);
-                popup.close();
-            });
-            layout.getChildren().add(btnMarcarLeidas);
-        }
+    public void setBtnAjustes(Button btnAjustes) {
+        this.btnAjustes = btnAjustes;
+    }
 
-        popup.setScene(new Scene(layout, 300, 150));
-        popup.showAndWait();
+    public Button getBtnVerCitas() {
+        return btnVerCitas;
+    }
+
+    public void setBtnVerCitas(Button btnVerCitas) {
+        this.btnVerCitas = btnVerCitas;
+    }
+
+    public Button getBtnSolicitarCita() {
+        return btnSolicitarCita;
+    }
+
+    public void setBtnSolicitarCita(Button btnSolicitarCita) {
+        this.btnSolicitarCita = btnSolicitarCita;
     }
 }

@@ -1,22 +1,12 @@
 package controlador;
 
+import Dao.RegistroProtectoraDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-import modelo.EncriptarContrasenia;
-import modelo.TipoVia;
-import modelo.UsuarioSesion;
-import modelo.Ventanas;
+import modelo.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -64,34 +54,52 @@ public class RegistroProtectoraController implements Initializable {
     @FXML
     private ImageView imgUsuario;
 
-
     @FXML
     void btnConfitmarAc(ActionEvent event) {
         try {
-            modelo.Protectora protectora = new modelo.Protectora();
+            // Validar campos obligatorios
+            if (cajaTextUsuario.getText().isEmpty() ||
+                    cajaContrasenia.getText().isEmpty() ||
+                    cajaCorreoElectronico.getText().isEmpty() ||
+                    cajaTelefono.getText().isEmpty() ||
+                    cajaCodigoPostal.getText().isEmpty() ||
+                    cajaLocalidad.getText().isEmpty() ||
+                    cajaProvincia.getText().isEmpty() ||
+                    cajaPais.getText().isEmpty() ||
+                    cajaTipoVia.getValue() == null ||
+                    cajaNombreVia.getText().isEmpty()) {
+
+                Alertas.mostrarAlertaError(null, "Error", "Todos los campos son obligatorios.");
+                return;
+            }
+
+            Protectora protectora = new Protectora();
             protectora.setNombreUsuario(cajaTextUsuario.getText());
-            String contraseniaEncriptada = EncriptarContrasenia.encriptar(cajaContrasenia.getText());
-            protectora.setContrasena(contraseniaEncriptada);
+            // Encriptar contraseña antes de guardar
+            protectora.setContrasena(EncriptarContrasenia.encriptar(cajaContrasenia.getText()));
             protectora.setCorreoElectronico(cajaCorreoElectronico.getText());
             protectora.setTelefono(cajaTelefono.getText());
             protectora.setCodigoPostal(cajaCodigoPostal.getText());
             protectora.setLocalidad(cajaLocalidad.getText());
             protectora.setProvincia(cajaProvincia.getText());
             protectora.setPais(cajaPais.getText());
+            // Guardar tipoVia tal cual está seleccionado (por ejemplo: "Calle", "Avenida", etc.)
             protectora.setTipoVia(cajaTipoVia.getValue());
             protectora.setNombreVia(cajaNombreVia.getText());
 
-            boolean registrado = Dao.RegistroProtectoraDAO.registrarProtectora(protectora);
+            boolean registrado = RegistroProtectoraDAO.registrarProtectora(protectora);
 
             if (registrado) {
-                UsuarioSesion.setCorreoElectronico(protectora.getCorreoElectronico()); // Store the email
-                modelo.Alertas.mostrarAlertaAviso(null, "Éxito", "Protectora registrada correctamente.");
+                UsuarioSesion.iniciarSesion(protectora);
+                Alertas.mostrarAlertaAviso(null, "Éxito", "Protectora registrada correctamente.");
                 Ventanas.cerrarVentana(event);
                 Ventanas.abrirVentana("/vista/modificarPerros.fxml", "Inicio");
             }
+            // Si no se registró, el DAO ya muestra el error
 
         } catch (Exception e) {
             Logger.getLogger(RegistroProtectoraController.class.getName()).log(Level.SEVERE, null, e);
+            Alertas.mostrarAlertaError(null, "Error", "Ocurrió un error al registrar la protectora.");
         }
     }
 
@@ -101,16 +109,18 @@ public class RegistroProtectoraController implements Initializable {
             Ventanas.cerrarVentana(event);
             Ventanas.abrirVentana("/vista/inicio.fxml", "Inicio");
         } catch (Exception e) {
-            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(RegistroProtectoraController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        modelo.Animaciones.animarImagenUsuario(imgUsuario);
+        Animaciones.animarImagenUsuario(imgUsuario);
+
+        // Llenar combo box con valores de TipoVia, capitalizando primera letra
         for (TipoVia tipo : TipoVia.values()) {
-            cajaTipoVia.getItems().add(tipo.name().charAt(0) + tipo.name().substring(1).toLowerCase());
+            String tipoCapitalizado = tipo.name().charAt(0) + tipo.name().substring(1).toLowerCase();
+            cajaTipoVia.getItems().add(tipoCapitalizado);
         }
     }
-
 }

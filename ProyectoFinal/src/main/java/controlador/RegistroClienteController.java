@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import modelo.*;
+import modelo.UsuarioSesion;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -91,7 +92,7 @@ public class RegistroClienteController implements Initializable {
             boolean registrado = Dao.RegistroClienteDAO.registrarClienteYUsuario(usuario);
 
             if (registrado) {
-                UsuarioSesion.setCorreoElectronico(usuario.getCorreoElectronico()); // Store the email
+                UsuarioSesion.iniciarSesion(usuario);
                 modelo.Alertas.mostrarAlertaAviso(null, "Éxito", "Registro completado correctamente.");
                 Ventanas.cerrarVentana(event);
                 Ventanas.abrirVentana("/vista/verPerros.fxml", "Ver perros");
