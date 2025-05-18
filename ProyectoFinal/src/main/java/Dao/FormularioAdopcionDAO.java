@@ -1,6 +1,7 @@
 package Dao;
 
 import utils.ConnectionManager;
+import modelo.Alertas;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -70,15 +71,56 @@ public class FormularioAdopcionDAO {
         return null;
     }
 
-    public static boolean insertarSolicitudAdopcion(int perroId, int clienteId, double donacion) throws SQLException {
-        String sql = "INSERT INTO solicitud_adopcion (perro_id, cliente_id, donacion) VALUES (?, ?, ?)";
+    public static boolean insertarSolicitudAdopcion(int perroId, int clienteId, double donacion) {
+        String sqlInsert = "INSERT INTO solicitud_adopcion (perro_id, cliente_id, donacion) VALUES (?, ?, ?)";
+
         try (Connection con = ConnectionManager.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+             PreparedStatement ps = con.prepareStatement(sqlInsert)) {
+
             ps.setInt(1, perroId);
             ps.setInt(2, clienteId);
             ps.setDouble(3, donacion);
+
             int filas = ps.executeUpdate();
-            return filas > 0;
+
+            if (filas > 0) {
+                // Insertar notificación para la protectora relacionada al perro
+                int protectoraId = obtenerProtectoraIdPorPerro(con, perroId);
+                if (protectoraId != -1) {
+                    String mensaje = "El cliente con ID " + clienteId + " ha enviado una solicitud de adopción para el perro  " + perroId + ".";
+                    insertarNotificacionProtectora(con, protectoraId, mensaje);
+                }
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Alertas.mostrarAlertaError("Error al registrar adopción", "Ocurrió un problema guardando la solicitud.", e.getMessage());
+        }
+
+        return false;
+    }
+
+    private static int obtenerProtectoraIdPorPerro(Connection con, int perroId) throws SQLException {
+        String sql = "SELECT protectora_id FROM perro WHERE perro_id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, perroId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("protectora_id");
+                }
+            }
+        }
+        return -1;
+    }
+
+    private static void insertarNotificacionProtectora(Connection con, int protectoraId, String mensaje) throws SQLException {
+        String sql = "INSERT INTO notificaciones_protectora (nueva_cita, informacion, protectora_id, fecha_alta) VALUES (?, ?, ?, SYSDATE)";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, "No"); // porque es adopción, no cita
+            stmt.setString(2, mensaje);
+            stmt.setInt(3, protectoraId);
+            stmt.executeUpdate();
         }
     }
 }

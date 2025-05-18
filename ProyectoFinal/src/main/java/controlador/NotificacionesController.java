@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import modelo.Ventanas;
 
 public class NotificacionesController {
 
@@ -11,12 +12,12 @@ public class NotificacionesController {
     private TableColumn<?, ?> notificaciones;
 
     @FXML
-    private TableView<String> tablaNotificaciones;
+    private TableView<?> tablaNotificaciones;
 
     @FXML
     void btnVolver(ActionEvent event) {
+        Ventanas.cerrarVentana(event);
 
     }
 
 }
-

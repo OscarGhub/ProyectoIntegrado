@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import modelo.UsuarioSesion;
 import modelo.Ventanas;
-
+import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -120,6 +120,12 @@ public class VerPerrosController implements Initializable {
         } catch (Exception e) {
             Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+
+
+    @FXML
+    void mirarNotificaciones(MouseEvent event) {
+
     }
 
     @Override

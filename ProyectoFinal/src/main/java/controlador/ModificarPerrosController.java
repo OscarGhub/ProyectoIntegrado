@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 import modelo.Ventanas;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,6 +47,17 @@ public class ModificarPerrosController implements Initializable {
         } catch (Exception e) {
             Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+
+    @FXML
+    void verNotificaciones(MouseEvent event) {
+        try {
+
+            Ventanas.abrirVentana("/vista/notificacionesProtectora.fxml", "Notificaciones Protectora");
+        } catch (Exception e) {
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
+        }
+
     }
 
     @Override

@@ -62,6 +62,14 @@ public class SolicitarCitaDAO {
                 ps.setInt(6, formulario.getPerro().getPerro_id());
 
                 ps.executeUpdate();
+
+                // Crear notificación para la protectora
+                int protectoraId = obtenerProtectoraIdPorPerro(connection, formulario.getPerro().getPerro_id());
+                if (protectoraId != -1) {
+                    String mensaje = " El cliente " + correo + " ha solicitado una nueva cita con el perro ID "  + formulario.getPerro().getPerro_id() + ".";
+                    insertarNotificacionProtectora(connection, protectoraId, mensaje);
+                }
+
                 return true;
             }
 
@@ -71,6 +79,29 @@ public class SolicitarCitaDAO {
             return false;
         }
     }
+
+    private int obtenerProtectoraIdPorPerro(Connection connection, int perroId) throws SQLException {
+        String sql = "SELECT protectora_id FROM PERRO WHERE perro_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, perroId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("protectora_id");
+            }
+            return -1;
+        }
+    }
+
+    private void insertarNotificacionProtectora(Connection connection, int protectoraId, String mensaje) throws SQLException {
+        String sql = "INSERT INTO notificaciones_protectora (nueva_cita, informacion, protectora_id, fecha_alta) VALUES (?, ?, ?, SYSDATE)";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, "Sí");
+            stmt.setString(2, mensaje);
+            stmt.setInt(3, protectoraId);
+            stmt.executeUpdate();
+        }
+    }
+
 
     private int obtenerClienteIdPorCorreo(Connection connection, String correo) throws SQLException {
         String sql = "SELECT cliente_id FROM CLIENTE WHERE correo_electronico = ?";

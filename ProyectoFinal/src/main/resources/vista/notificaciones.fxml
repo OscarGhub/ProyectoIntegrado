@@ -6,7 +6,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.NotificacionesController">
    <center>
       <TableView fx:id="tablaNotificaciones" prefHeight="242.0" prefWidth="300.0" styleClass="label_estilo_formulario" BorderPane.alignment="CENTER">
