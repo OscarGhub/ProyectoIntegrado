@@ -36,6 +36,26 @@ public class VerPerrosDAO {
         }
     }
 
+
+    // En VerPerrosDAO.java
+    public boolean tieneNotificaciones(int clienteId) {
+        String sql = "SELECT COUNT(*) FROM notificaciones WHERE cliente_id = ?";
+
+        try (Connection conn = ConnectionManager.getInstance().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, clienteId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public List<PerroDTO> obtenerPerros() {
         List<PerroDTO> listaPerros = new ArrayList<>();
 
