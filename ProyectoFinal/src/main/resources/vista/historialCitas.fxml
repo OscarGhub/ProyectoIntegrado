@@ -39,6 +39,6 @@
         </VBox>
     </center>
    <bottom>
-      <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#btnVolverAc" text="Volver" BorderPane.alignment="CENTER" />
+      <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#btnVolverAc" styleClass="botones_registro" text="Volver" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

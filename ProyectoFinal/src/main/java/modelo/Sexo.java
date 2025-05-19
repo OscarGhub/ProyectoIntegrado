@@ -1,5 +1,5 @@
 package modelo;
 
 public enum Sexo {
-    Masculino, Feminino
+    Masculino, Feminino,M,F
 }

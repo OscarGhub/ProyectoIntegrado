@@ -36,39 +36,49 @@ public class ModificarCitaClienteController {
         horaCita.setText(cita.getHoraCita());
     }
 
+    private boolean esHoraPermitida(String horaIngresada) {
+        for (modelo.Hora hora : modelo.Hora.values()) {
+            if (hora.getHoraTexto().equals(horaIngresada)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @FXML
     private void guardarCambios() {
-        // Verificar si los campos están vacíos
-        if (fechaCita.getValue() == null || horaCita.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Campos Vacíos");
-            alert.setContentText("Por favor, complete todos los campos.");
-            alert.showAndWait();
-        } else {
-            // Asignar nuevos valores a la cita
-            citaSeleccionada.setFechaCita(fechaCita.getValue());
-            citaSeleccionada.setHoraCita(horaCita.getText());
 
-            // Cambiar el estado a "Pendiente" si no está ya en ese estado
-            if (!"Pendiente".equals(citaSeleccionada.getEstado())) {
-                citaSeleccionada.setEstado("Pendiente");
-            }
+        Alertas alerta = new Alertas();
 
-            // Llamar al método para guardar los cambios en la base de datos
-            guardarCambiosCita(citaSeleccionada);
+        String horaIngresada = horaCita.getText().trim();
+
+        if (fechaCita.getValue() == null || horaIngresada.isEmpty()) {
+            alerta.mostrarAlertaError("Error", "Campos vacíos", "Por favor, complete todos los campos.");
+            return;
         }
+
+        if (!esHoraPermitida(horaIngresada)) {
+            alerta.mostrarAlertaError("Error", "Hora no válida", "La hora ingresada no es válida. Por favor, seleccione una hora de la lista.");
+            return;
+        }
+
+        citaSeleccionada.setFechaCita(fechaCita.getValue());
+        citaSeleccionada.setHoraCita(horaIngresada);
+
+        if (!"Pendiente".equals(citaSeleccionada.getEstado())) {
+            citaSeleccionada.setEstado("Pendiente");
+        }
+
+        guardarCambiosCita(citaSeleccionada);
     }
 
     private void guardarCambiosCita(CitasInfo cita) {
         try {
-            // Crear una instancia del DAO
+
             ClienteCitaDAO dao = new ClienteCitaDAO();
 
-            // Intentar actualizar la cita usando el DAO
             boolean actualizado = dao.actualizarCita(cita, fechaCitaOriginal, horaCitaOriginal);
 
-            // Mostrar un mensaje de éxito o error
             if (actualizado) {
                 Alertas.mostrarConfirmacion("Confirmación", "Cita modificada, los cambios se han guardado correctamente, reinicie la página para ver los cambios.");
             } else {
@@ -79,21 +89,16 @@ public class ModificarCitaClienteController {
             Alertas.mostrarAlertaError("Error", "Error de base de datos", "Hubo un problema al guardar los cambios. Por favor, intente nuevamente.");
         }
 
-        // Recargar los datos después de guardar
         cargarDatos();
     }
 
-    // Ahora el controlador llama al método del DAO para cargar las citas
     private void cargarDatos() {
         try {
-            // Crear una instancia del DAO
+
             ClienteCitaDAO dao = new ClienteCitaDAO();
 
-            // Obtener la lista de citas
             List<CitasInfo> citas = dao.cargarCitas();
 
-            // Aquí puedes hacer algo con las citas obtenidas, como actualizar una tabla o lista en la UI
-            // Por ejemplo:
             for (CitasInfo cita : citas) {
                 System.out.println(cita.getNombreCliente() + " - " + cita.getFechaCita());
             }

@@ -4,12 +4,17 @@ import Dao.VerPerrosDAO;
 import Dao.VerPerrosDAO.PerroDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import modelo.UsuarioSesion;
 import modelo.Ventanas;
-
+import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -33,6 +38,10 @@ public class VerPerrosController implements Initializable {
     @FXML private TextField txtNombrePerro6, txtFechaNacimiento6, txtNombreRaza6;
     @FXML private TextField txtNombrePerro7, txtFechaNacimiento7, txtNombreRaza7;
 
+    private String verificarTexto(String texto) {
+        return (texto == null || texto.isBlank()) ? "No disponible" : texto;
+    }
+
     private void cargarDatosPerros() {
         List<TextField[]> campos = List.of(
                 new TextField[]{txtNombrePerro1, txtFechaNacimiento1, txtNombreRaza1},
@@ -47,12 +56,20 @@ public class VerPerrosController implements Initializable {
         VerPerrosDAO dao = new VerPerrosDAO();
         List<PerroDTO> perros = dao.obtenerPerros();
 
-        for (int i = 0; i < perros.size() && i < campos.size(); i++) {
-            PerroDTO perro = perros.get(i);
+        for (int i = 0; i < campos.size(); i++) {
             TextField[] tf = campos.get(i);
-            tf[0].setText(perro.getNombre());
-            tf[1].setText(perro.getFechaNacimiento().toString());
-            tf[2].setText(perro.getRaza());
+
+            if (i < perros.size()) {
+                PerroDTO perro = perros.get(i);
+                tf[0].setText(verificarTexto(perro.getNombre()));
+                tf[1].setText(perro.getFechaNacimiento() != null ? perro.getFechaNacimiento().toString() : "No disponible");
+                tf[2].setText(verificarTexto(perro.getRaza()));
+            } else {
+                // Si no hay perro para esa posición, poner "No disponible"
+                tf[0].setText("No disponible");
+                tf[1].setText("No disponible");
+                tf[2].setText("No disponible");
+            }
         }
     }
 
@@ -70,7 +87,19 @@ public class VerPerrosController implements Initializable {
     void btnSolicitarADPAc(ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
-            Ventanas.abrirVentana("/vista/solicitarAdopcion.fxml", "Solicitar adopción");
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/solicitarAdopcion.fxml"));
+            Parent root = loader.load();
+
+            SolicitarAdpController controller = loader.getController();
+
+            controller.setUsuarioLogueado(UsuarioSesion.getUsuario());
+
+            Stage stage = new Stage();
+            stage.setTitle("Solicitar adopción");
+            stage.setScene(new Scene(root));
+            stage.show();
+
         } catch (Exception e) {
             Logger.getLogger(SolicitarAdpController.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -105,6 +134,12 @@ public class VerPerrosController implements Initializable {
         }
     }
 
+
+    @FXML
+    void mirarNotificaciones(MouseEvent event) {
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modelo.Animaciones.animarAgrandar(imgUsuario);
@@ -124,5 +159,45 @@ public class VerPerrosController implements Initializable {
         for (TextField tf : todosLosCampos) {
             tf.setEditable(false);
         }
+    }
+
+    public Button getBtnSalir() {
+        return btnSalir;
+    }
+
+    public void setBtnSalir(Button btnSalir) {
+        this.btnSalir = btnSalir;
+    }
+
+    public Button getBtnSolicitarADP() {
+        return btnSolicitarADP;
+    }
+
+    public void setBtnSolicitarADP(Button btnSolicitarADP) {
+        this.btnSolicitarADP = btnSolicitarADP;
+    }
+
+    public Button getBtnAjustes() {
+        return btnAjustes;
+    }
+
+    public void setBtnAjustes(Button btnAjustes) {
+        this.btnAjustes = btnAjustes;
+    }
+
+    public Button getBtnVerCitas() {
+        return btnVerCitas;
+    }
+
+    public void setBtnVerCitas(Button btnVerCitas) {
+        this.btnVerCitas = btnVerCitas;
+    }
+
+    public Button getBtnSolicitarCita() {
+        return btnSolicitarCita;
+    }
+
+    public void setBtnSolicitarCita(Button btnSolicitarCita) {
+        this.btnSolicitarCita = btnSolicitarCita;
     }
 }

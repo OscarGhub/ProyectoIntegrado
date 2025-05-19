@@ -25,6 +25,13 @@ public class Perro {
         this.sexo = sexo;
     }
 
+    public Perro(int perro_id, String nombre, Sexo sexo, LocalDate fechaNacimiento) {
+        this.perro_id = perro_id;
+        this.nombre = nombre;
+        this.sexo = sexo;
+        this.fecha_alta = fechaNacimiento;
+    }
+
     public Perro(int perro_id, String nombre, String raza, Sexo sexo, boolean adoptado, LocalDate fecha_alta, LocalDate fecha_modificacion){
      this.perro_id = perro_id;
      this.nombre = nombre;

@@ -86,7 +86,11 @@ public class SolicitarCitaController implements Initializable {
         ));
         horaCita.setValue(Hora.HORA_08.getHoraTexto());
 
-        // Obtener perros no adoptados desde DAO
+        String correoLogueado = UsuarioSesion.getCorreoElectronico();
+        if (correoLogueado != null) {
+            cajaTextCorreoElectronico.setText(correoLogueado);
+        }
+
         PerroDAO perroDAO = new PerroDAO();
         ObservableList<Perro> perros = perroDAO.obtenerPerrosNoAdoptados();
         perroCita.setItems(perros);

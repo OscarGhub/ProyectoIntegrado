@@ -131,11 +131,45 @@ public class ModificarCitasController implements Initializable {
         }
     }
 
+    @FXML
+    void btnAdpAc(ActionEvent event) throws Exception {
+        try {
+            Ventanas.cerrarVentana(event);
+            Ventanas.abrirVentana("/vista/modificarAdopcion.fxml", "Modificar Adopción");
+        } catch (Exception e) {
+            Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
+    }
+
+    public Button getBtnModificarCita() {
+        return btnModificarCita;
+    }
+
+    public void setBtnModificarCita(Button btnModificarCita) {
+        this.btnModificarCita = btnModificarCita;
+    }
+
+    public Button getBrnModificarPerros() {
+        return brnModificarPerros;
+    }
+
+    public void setBrnModificarPerros(Button brnModificarPerros) {
+        this.brnModificarPerros = brnModificarPerros;
+    }
+
+    public Button getBtnSalir() {
+        return btnSalir;
+    }
+
+    public void setBtnSalir(Button btnSalir) {
+        this.btnSalir = btnSalir;
     }
 }

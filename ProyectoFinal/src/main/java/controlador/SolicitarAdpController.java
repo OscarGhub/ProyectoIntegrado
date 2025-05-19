@@ -16,10 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import modelo.CitasInfo;
-import modelo.Perro;
-import modelo.Usuario;
-import modelo.Ventanas;
+import modelo.*;
 
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -63,6 +60,7 @@ public class SolicitarAdpController implements Initializable {
 
     public void setUsuarioLogueado(Usuario usuario) {
         this.usuarioLogueado = usuario;
+        System.out.println("Usuario recibido en SolicitarAdpController: " + usuario);
     }
 
     @FXML
@@ -76,9 +74,12 @@ public class SolicitarAdpController implements Initializable {
         }
 
         if (usuarioLogueado == null) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Error de sesión",
-                    "No hay información del usuario logueado. Por favor, vuelve a iniciar sesión.");
-            return;
+            usuarioLogueado = UsuarioSesion.getUsuario();
+            if (usuarioLogueado == null) {
+                mostrarAlerta(Alert.AlertType.ERROR, "Error de sesión",
+                        "No hay información del usuario logueado. Por favor, vuelve a iniciar sesión.");
+                return;
+            }
         }
 
         try {
@@ -90,7 +91,7 @@ public class SolicitarAdpController implements Initializable {
 
             // PASAR LOS DATOS DEL PERRO Y DEL USUARIO LOGUEADO
             controller.setNombrePerro(perroSeleccionado.getNombre());
-            controller.setUsuarioLogueado(usuarioLogueado);  // Aquí asignas el usuario logueado
+            controller.setUsuarioLogueado(usuarioLogueado);
             controller.setCorreoCliente(usuarioLogueado.getCorreoElectronico());
 
             Stage stage = new Stage();
@@ -137,8 +138,17 @@ public class SolicitarAdpController implements Initializable {
         colFechaAlta.setCellValueFactory(new PropertyValueFactory<>("fecha_alta"));
 
         cargarPerrosDisponibles();
-    }
 
+        if (usuarioLogueado == null) {
+            Usuario userSesion = UsuarioSesion.getUsuario();
+            if (userSesion != null) {
+                usuarioLogueado = userSesion;
+                System.out.println("Usuario logueado asignado en initialize: " + usuarioLogueado);
+            } else {
+                System.out.println("No se encontró información del usuario logueado.");
+            }
+        }
+    }
 
     @FXML
     public void btnSalirAc(ActionEvent event) {  // Metodo público
