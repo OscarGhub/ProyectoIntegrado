@@ -12,11 +12,12 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import modelo.*;
 import modelo.UsuarioSesion;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class RegistroClienteController implements Initializable {
 
@@ -72,6 +73,31 @@ public class RegistroClienteController implements Initializable {
     @FXML
     void btnConfitmarAc(ActionEvent event) {
         try {
+            if (!validarCorreo(cajaCorreoElectronico.getText())) {
+                modelo.Alertas.mostrarAlertaAviso(null, "Error", "El correo electrónico no es válido.");
+                return;
+            }
+
+            if (!validarTelefono(cajaTelefono.getText())) {
+                modelo.Alertas.mostrarAlertaAviso(null, "Error", "El teléfono no es válido.");
+                return;
+            }
+
+            if (!validarCodigoPostal(cajaCodigoPostal.getText())) {
+                modelo.Alertas.mostrarAlertaAviso(null, "Error", "El código postal no es válido.");
+                return;
+            }
+
+            if (cajaContrasenia.getText().length() < 6) {
+                modelo.Alertas.mostrarAlertaAviso(null, "Error", "La contraseña debe tener al menos 6 caracteres.");
+                return;
+            }
+
+            if (!validarEdadMinima(campoFecha.getValue())) {
+                modelo.Alertas.mostrarAlertaAviso(null, "Error", "Debes tener al menos 16 años.");
+                return;
+            }
+
             Usuario usuario = new Usuario();
             usuario.setNombre(cajaTextUsuario.getText());
             usuario.setApellido1(cajaApellido.getText());
@@ -89,6 +115,7 @@ public class RegistroClienteController implements Initializable {
             usuario.setContrasena(contraseniaEncriptada);
             usuario.setFechaNacimiento(campoFecha.getValue().toString());
 
+            // Registrar el usuario
             boolean registrado = Dao.RegistroClienteDAO.registrarClienteYUsuario(usuario);
 
             if (registrado) {
@@ -102,6 +129,29 @@ public class RegistroClienteController implements Initializable {
         }
     }
 
+    private boolean validarEdadMinima(LocalDate fechaNacimiento) {
+        if (fechaNacimiento == null) return false;
+
+        LocalDate hoy = LocalDate.now();
+        int edad = Period.between(fechaNacimiento, hoy).getYears();
+        return edad >= 16;
+    }
+
+    private boolean validarCorreo(String correo) {
+        String regexCorreo = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return correo.matches(regexCorreo);
+    }
+
+    private boolean validarTelefono(String telefono) {
+        String regexTelefono = "^[0-9]{9}$";  // Asumiendo un teléfono de 9 dígitos (como en España)
+        return telefono.matches(regexTelefono);
+    }
+
+    private boolean validarCodigoPostal(String codigoPostal) {
+        String regexCodigoPostal = "^[0-9]{5}$";  // Código postal de 5 dígitos
+        return codigoPostal.matches(regexCodigoPostal);
+    }
+
     private TipoVia obtenerTipoViaDesdeTexto(String texto) {
         for (TipoVia tipo : TipoVia.values()) {
             String tipoFormateado = tipo.name().charAt(0) + tipo.name().substring(1).toLowerCase();
@@ -111,7 +161,6 @@ public class RegistroClienteController implements Initializable {
         }
         return null;
     }
-
 
     @FXML
     void btnVolverAc(ActionEvent event) {
