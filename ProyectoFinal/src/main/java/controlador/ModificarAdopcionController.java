@@ -1,50 +1,88 @@
 package controlador;
 
-import javafx.event.ActionEvent;
+import Dao.ModificarAdpDao;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.*;
+import modelo.SolicitudAdopcion;
 import modelo.Ventanas;
+import utils.ConnectionManager;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ModificarAdopcionController {
 
-    @FXML
-    private Button brnModificarPerros;
+    @FXML private TableView<SolicitudAdopcion> tablaModCitas;
+    @FXML private TableColumn<SolicitudAdopcion, String> colCliente;
+    @FXML private TableColumn<SolicitudAdopcion, String> colPerro;
+    @FXML private TableColumn<SolicitudAdopcion, String> colFecha;
+    @FXML private TableColumn<SolicitudAdopcion, Double> colDonacion;
+    @FXML private TableColumn<SolicitudAdopcion, String> colEstado;
 
-    @FXML
-    private Button btnCitas;
+    @FXML public void initialize() {
+        colCliente.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNombreCliente()));
+        colPerro.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNombrePerro()));
+        colFecha.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getFechaAlta()));
+        colDonacion.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getDonacion()));
+        colEstado.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getEstado()));
 
-    @FXML
-    private Button btnSalir;
+        cargarDatos();
+    }
 
-    @FXML
-    private TableColumn<?, ?> colCliente;
+    private void cargarDatos() {
+        ObservableList<SolicitudAdopcion> lista = FXCollections.observableArrayList();
 
-    @FXML
-    private TableColumn<?, ?> colDonacion;
+        String sql = """
+            SELECT c.nombre AS cliente, p.nombre AS perro, sa.fecha_alta, sa.donacion, sa.estado
+            FROM solicitud_adopcion sa
+            JOIN cliente c ON c.cliente_id = sa.cliente_id
+            JOIN perro p ON p.perro_id = sa.perro_id
+        """;
 
-    @FXML
-    private TableColumn<?, ?> colEstado;
+        try (Connection conn = ConnectionManager.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
-    @FXML
-    private TableColumn<?, ?> colFecha;
+            while (rs.next()) {
+                lista.add(new SolicitudAdopcion(
+                        rs.getString("cliente"),
+                        rs.getString("perro"),
+                        rs.getDate("fecha_alta").toString(),
+                        rs.getDouble("donacion"),
+                        rs.getString("estado")
+                ));
+            }
 
-    @FXML
-    private TableColumn<?, ?> colPerro;
+            tablaModCitas.setItems(lista);
 
-    @FXML
-    private ImageView imgProtectora;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-    @FXML
-    private TableView<?> tablaModCitas;
+    @FXML void btnAceptarAdp(javafx.event.ActionEvent event) {
+        SolicitudAdopcion selected = tablaModCitas.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            ModificarAdpDao.actualizarEstadoSolicitud(selected.getNombrePerro(), selected.getNombreCliente(), "aceptada");
+            cargarDatos();
+        }
+    }
 
-    @FXML
-    void brnModificarPerrosAc(ActionEvent event) {
+    @FXML void btnCancelarCita(javafx.event.ActionEvent event) {
+        SolicitudAdopcion selected = tablaModCitas.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            ModificarAdpDao.actualizarEstadoSolicitud(selected.getNombrePerro(), selected.getNombreCliente(), "cancelada");
+            cargarDatos();
+        }
+    }
+
+    // Métodos vacíos de navegación
+    @FXML void brnModificarPerrosAc(javafx.event.ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
             Ventanas.abrirVentana("/vista/modificarPerros.fxml", "Modificar Perros");
@@ -52,14 +90,7 @@ public class ModificarAdopcionController {
             Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
-    @FXML
-    void btnCancelarCita(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnCitasAc(ActionEvent event) {
+    @FXML void btnCitasAc(javafx.event.ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
             Ventanas.abrirVentana("/vista/modificarCitas.fxml", "Modificar Citas");
@@ -67,14 +98,7 @@ public class ModificarAdopcionController {
             Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
-    @FXML
-    void btnModificarAdp(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnSalirAc(ActionEvent event) {
+    @FXML void btnSalirAc(javafx.event.ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
             Ventanas.abrirVentana("/vista/inicio.fxml", "Inicio");
@@ -82,5 +106,4 @@ public class ModificarAdopcionController {
             Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
 }
