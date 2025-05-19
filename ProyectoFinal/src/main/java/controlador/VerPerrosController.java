@@ -137,7 +137,11 @@ public class VerPerrosController implements Initializable {
 
     @FXML
     void mirarNotificaciones(MouseEvent event) {
-
+        try {
+            Ventanas.abrirVentana("/vista/notificaciones.fxml", "Notificaciones Cliente");
+        } catch (Exception e) {
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     @Override
