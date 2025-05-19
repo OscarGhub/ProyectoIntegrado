@@ -240,7 +240,25 @@ BEGIN
 END;
 /
 
+-- Función para contar los perros que han sido adoptados.
+CREATE OR REPLACE FUNCTION contar_perros_adoptados (protectora_id IN NUMBER)
+RETURN NUMBER
+IS
+    contados NUMBER;
+BEGIN
+    SELECT COUNT(*)
+    INTO contados
+    FROM perro
+    WHERE protectora_id = protectora_id
+    AND adoptado = 'Si';
+    
+    RETURN contados;
+END;
+/
+
 -- PROCEDIMIENTOS
+
+-- Procedimiento para enviar una notificación.
 CREATE OR REPLACE PROCEDURE enviar_notificacion (
     nueva_cita_noti IN VARCHAR2 DEFAULT 'No',
     cancelar_cita_noti IN VARCHAR2 DEFAULT 'No',
@@ -268,6 +286,22 @@ BEGIN
     );
 END;
 /
+
+-- Procedimiento para eliminar un perro al completo.
+CREATE OR REPLACE PROCEDURE eliminar_perro (perro_id IN NUMBER)
+IS
+BEGIN
+    -- Eliminar citas relacionadas
+    DELETE FROM cita WHERE perro_id = perro_id;
+    
+    -- Eliminar patologías asociadas al perro
+    DELETE FROM perro_patologia WHERE perro_id = perro_id;
+    
+    -- Eliminar el perro
+    DELETE FROM perro WHERE perro_id = perro_id;
+END;
+/
+
 
 -- DISPARADORES FECHA ALTA Y FECHA MODIFICACIÓN
 
