@@ -9,6 +9,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -40,7 +41,7 @@ public class AjustesController implements Initializable {
 
     @FXML
     void btnModContraseniaAc(ActionEvent event) {
-        Optional<Pair<String, String>> resultado = crearAlertaUsuario("Contraseña");
+        Optional<Pair<String, String>> resultado = crearAlertaUsuario("Contraseña", null); // No le pasamos valor a la contraseña
 
         resultado.ifPresent(pair -> {
             String actual = pair.getKey();
@@ -59,7 +60,9 @@ public class AjustesController implements Initializable {
 
     @FXML
     void btnModGmailAc(ActionEvent event) {
-        Optional<Pair<String, String>> resultado = crearAlertaUsuario("Correo electrónico");
+        String actualEmail = modelo.UsuarioSesion.getUsuario().getCorreoElectronico();  // Obtén el correo actual
+
+        Optional<Pair<String, String>> resultado = crearAlertaUsuario("Correo electrónico", actualEmail);
 
         resultado.ifPresent(pair -> {
             String actual = pair.getKey();
@@ -78,7 +81,9 @@ public class AjustesController implements Initializable {
 
     @FXML
     void btnModUsarioAc(ActionEvent event) {
-        Optional<Pair<String, String>> resultado = crearAlertaUsuario("Nombre de usuario");
+        String actualUsername = modelo.UsuarioSesion.getUsuario().getNombreUsuario();  // Obtén el nombre de usuario actual
+
+        Optional<Pair<String, String>> resultado = crearAlertaUsuario("Nombre de usuario", actualUsername);
 
         resultado.ifPresent(pair -> {
             String actual = pair.getKey();
@@ -136,7 +141,7 @@ public class AjustesController implements Initializable {
     }
 
     // Método reutilizable para pedir datos de ajustes (usuario, correo, contraseña)
-    public static Optional<Pair<String, String>> crearAlertaUsuario(String label) {
+    public static Optional<Pair<String, String>> crearAlertaUsuario(String label, String valorActual) {
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Ajustes");
         dialog.setHeaderText(null);
@@ -146,6 +151,10 @@ public class AjustesController implements Initializable {
 
         Label lblActual = new Label("Actual " + label);
         TextField txtActual = new TextField();
+
+        if (valorActual != null) {
+            txtActual.setText(valorActual);
+        }
 
         Label lblNuevo = new Label("Nuevo " + label);
         TextField txtNuevo = new TextField();

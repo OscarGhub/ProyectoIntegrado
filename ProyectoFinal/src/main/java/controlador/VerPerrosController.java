@@ -38,6 +38,10 @@ public class VerPerrosController implements Initializable {
     @FXML private TextField txtNombrePerro6, txtFechaNacimiento6, txtNombreRaza6;
     @FXML private TextField txtNombrePerro7, txtFechaNacimiento7, txtNombreRaza7;
 
+    private String verificarTexto(String texto) {
+        return (texto == null || texto.isBlank()) ? "No disponible" : texto;
+    }
+
     private void cargarDatosPerros() {
         List<TextField[]> campos = List.of(
                 new TextField[]{txtNombrePerro1, txtFechaNacimiento1, txtNombreRaza1},
@@ -52,12 +56,20 @@ public class VerPerrosController implements Initializable {
         VerPerrosDAO dao = new VerPerrosDAO();
         List<PerroDTO> perros = dao.obtenerPerros();
 
-        for (int i = 0; i < perros.size() && i < campos.size(); i++) {
-            PerroDTO perro = perros.get(i);
+        for (int i = 0; i < campos.size(); i++) {
             TextField[] tf = campos.get(i);
-            tf[0].setText(perro.getNombre());
-            tf[1].setText(perro.getFechaNacimiento().toString());
-            tf[2].setText(perro.getRaza());
+
+            if (i < perros.size()) {
+                PerroDTO perro = perros.get(i);
+                tf[0].setText(verificarTexto(perro.getNombre()));
+                tf[1].setText(perro.getFechaNacimiento() != null ? perro.getFechaNacimiento().toString() : "No disponible");
+                tf[2].setText(verificarTexto(perro.getRaza()));
+            } else {
+                // Si no hay perro para esa posición, poner "No disponible"
+                tf[0].setText("No disponible");
+                tf[1].setText("No disponible");
+                tf[2].setText("No disponible");
+            }
         }
     }
 

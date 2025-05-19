@@ -82,12 +82,14 @@ public class HistorialCitasController implements Initializable {
     @FXML
     private void cargarDatos() {
         listaCitas.clear();
+        String correoUsuario = modelo.UsuarioSesion.getCorreoElectronico();
+
         try {
-            listaCitas.addAll(citasDAO.obtenerCitas());
+            listaCitas.addAll(citasDAO.obtenerCitasPorCorreo(correoUsuario));
         } catch (Exception e) {
             Logger.getLogger(HistorialCitasController.class.getName()).log(Level.SEVERE, "Error al cargar citas", e);
-            // Aquí podrías mostrar una alerta al usuario
         }
+
         tablaCitas.setItems(listaCitas);
     }
 
