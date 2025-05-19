@@ -524,26 +524,7 @@ SELECT id_patologia FROM patologia;
 
 -- INSERTS de datos
 
--- 1. Insertar protectora
-INSERT INTO protectora (cif, nombre, telefono, correo_electronico, localidad, provincia, pais, tipo_via, nombre_via, codigo_postal)
-VALUES ('G12345678', 'Protectora Esperanza', '123456789', 'esperanza@protectora.org', 'Madrid', 'Madrid', 'España', 'Calle', 'Libertad', '28001');
-
--- 2. Insertar redes sociales
-INSERT INTO redes_sociales (id_protectora, nombre_red, usuario_red)
-VALUES (1, 'Instagram', '@protectora_esperanza');
-
--- 3. Insertar cliente
-INSERT INTO cliente (nombre, apellido1, apellido2, fecha_nacimiento, telefono, correo_electronico, codigo_postal, localidad, provincia, pais, tipo_via, nombre_via)
-VALUES ('Lucía', 'Pérez', 'García', TO_DATE('1990-06-15', 'YYYY-MM-DD'), '654987321', 'lucia.perez@gmail.com', '28002', 'Madrid', 'Madrid', 'España', 'Avenida', 'Castellana');
-
--- 4. Insertar usuarios
-INSERT INTO usuario_cliente (nombre_usuario, contrasena, correo_electronico, cliente_id)
-VALUES ('luciaPG', '1234secure', 'lucia.perez@gmail.com', 1);
-
-INSERT INTO usuario_protectora (nombre_usuario, contrasena, correo_electronico, id_protectora)
-VALUES ('adminEsperanza', 'admin123', 'admin@protectora.org', 1);
-
--- 5. Insertar patología
+-- 1. Insertar patología
 INSERT INTO patologia (nombre) VALUES ('Alergia');
 INSERT INTO patologia (nombre) VALUES ('Displasia de cadera');
 INSERT INTO patologia (nombre) VALUES ('Problemas dentales');
@@ -551,7 +532,7 @@ INSERT INTO patologia (nombre) VALUES ('Artritis');
 INSERT INTO patologia (nombre) VALUES ('Cardiopatía');
 INSERT INTO patologia (nombre) VALUES ('Cáncer');
 
--- 5.1. Insertar raza
+-- 2. Insertar raza
 INSERT INTO raza (nombre) VALUES ('Labrador');
 INSERT INTO raza (nombre) VALUES ('Bulldog');
 INSERT INTO raza (nombre) VALUES ('Chihuahua');
@@ -567,29 +548,29 @@ INSERT INTO raza (nombre) VALUES ('Golden Retriever');
 INSERT INTO raza (nombre) VALUES ('Pug');
 INSERT INTO raza (nombre) VALUES ('Husky Siberiano');
 
--- 6. Insertar perro
+-- 3. Insertar perro
 INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)
-VALUES ('NombreChihuahua', 'chihuahua.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 3, 'M', 'No', 1, NULL);
+VALUES ('NombreChihuahua', 'chihuahua.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 3, 'M', 'No', NULL, NULL);
 
 INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)
-VALUES ('NombreBulldog', 'bulldog.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 2, 'F', 'No', 1, NULL);
+VALUES ('NombreBulldog', 'bulldog.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 2, 'F', 'No', NULL, NULL);
 
 INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)
-VALUES ('NombreShibaInu', 'shiba.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 11, 'M', 'No', 1, NULL);
+VALUES ('NombreShibaInu', 'shiba.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 11, 'M', 'No', NULL, NULL);
 
 INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)
-VALUES ('NombreGoldenRetriever', 'golden-retriever.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 12, 'F', 'No', 1, NULL);
+VALUES ('NombreGoldenRetriever', 'golden-retriever.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 12, 'F', 'No', NULL, NULL);
 
 INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)
-VALUES ('NombreHuskySiberiano', 'husky.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 14, 'M', 'No', 1, NULL);
+VALUES ('NombreHuskySiberiano', 'husky.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 14, 'M', 'No', NULL, NULL);
 
 INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)
-VALUES ('NombreRottweiler', 'chop.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 8, 'F', 'No', 1, NULL);
+VALUES ('NombreRottweiler', 'chop.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 8, 'F', 'No', NULL, NULL);
 
 INSERT INTO perro (nombre, foto, fecha_nacimiento, raza, sexo, adoptado, protectora_id, cliente_id)
-VALUES ('NombrePug', 'Pugg.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 13, 'M', 'No', 1, NULL);
+VALUES ('NombrePug', 'Pugg.png', TO_DATE('2020-03-10', 'YYYY-MM-DD'), 13, 'M', 'No', NULL, NULL);
 
--- 7. Insertar perro_patología
+-- 4. Insertar perro_patología
 -- Para perro 1
 INSERT INTO perro_patologia (perro_id, id_patologia, descripcion_pat)
 VALUES (1, 1, 'Leve, requiere control veterinario anual');
