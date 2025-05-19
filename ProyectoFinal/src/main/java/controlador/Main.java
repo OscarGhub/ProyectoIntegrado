@@ -19,7 +19,7 @@ public class Main extends Application {
 
         stage.setTitle("Dogpuccino");
         stage.setScene(scene);
-        stage.show();
+        stage.show(); 
     }
 
     public static void main(String[] args) throws SQLException {
