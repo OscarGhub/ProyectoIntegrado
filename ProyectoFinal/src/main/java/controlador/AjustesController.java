@@ -9,7 +9,6 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -41,7 +40,7 @@ public class AjustesController implements Initializable {
 
     @FXML
     void btnModContraseniaAc(ActionEvent event) {
-        Optional<Pair<String, String>> resultado = crearAlertaUsuario("Contraseña", null); // No le pasamos valor a la contraseña
+        Optional<Pair<String, String>> resultado = crearAlertaUsuario("Contraseña", null);
 
         resultado.ifPresent(pair -> {
             String actual = pair.getKey();
@@ -52,11 +51,19 @@ public class AjustesController implements Initializable {
                 return;
             }
 
+            // Verificar si la nueva contraseña tiene menos de 6 caracteres
+            if (nueva.length() < 6) {
+                Alertas.mostrarAlertaError(null, "Error", "La nueva contraseña debe tener al menos 6 caracteres.");
+                return;
+            }
+
+            // Llamar al método de cambio de contraseña solo si la nueva contraseña es válida
             if (AjustesDao.cambioContraseniaAjustes(actual, nueva)) {
                 Alertas.mostrarAlertaConfirmacion(null, "Éxito", "Contraseña actualizada.");
             }
         });
     }
+
 
     @FXML
     void btnModGmailAc(ActionEvent event) {
