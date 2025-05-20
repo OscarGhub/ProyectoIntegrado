@@ -2,9 +2,22 @@
 
 Trabajo de: Samuel, Pedro y Oscar.
 
+-----------------------------------------------------------------------------------------------------------------------------------
+
 Estructura proyecto ( JavaFX )
 
 USUARIOS cliente y protectora
+
+1 Pag inicio
+2 Iniciar sesion
+3 Perros disponibles->completar formulario de solicitud ->hacer reserva cita (preguntar que va primero)
+4 Vista citas (Anular/modificar citas con perros)
+? Notificaciones a modo de pop-ups, banners, etc para notificaciones para informar a los usuarios sobre cambios en citas y adopciones
+
+
+perfil protectora
+
+sitio donde se tiene acceso a un panel de administración donde pueden agregar modificar o eliminar sus perros, así como gestionar perfiles de perros, citas y solicitudes de adopción.
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -14,17 +27,68 @@ ERRORES O PROBLEMAS ENCONTRADOS DURANTE EL DESARROLLO DE LA APLICACIÓN EN JAVA 
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
-1 Pag inicio
-2 Iniciar sesion
-3 Perros disponibles->completar formulario de solicitud ->hacer reserva cita (preguntar que va primero)
-4 Vista citas (Anular/modificar citas con perros)
-? Notificaciones a modo de pop-ups, banners, etc para notificaciones para informar a los usuarios sobre cambios en citas y adopciones
+MANUAL DE USO
 
--------------------------------------------------------------------------------------------------------------------------------------
+1. Introducción
+Dogpuccino es una aplicación de escritorio desarrollada en JavaFX que combina el amor por los perros y la
+experiencia de una cafetería temática. Ofrece un entorno amigable para:
 
-perfil protectora
+- Reservar citas para visitar la cafetería.
+- Registrar clientes interesados en adoptar.
+- Registrar protectoras de animales.
+- Gestionar solicitudes de adopción.
+- Promover el cuidado y bienestar animal.
 
-sitio donde se tiene acceso a un panel de administración donde pueden agregar modificar o eliminar sus perros, así como gestionar perfiles de perros, citas y solicitudes de adopción.
+2. Requisitos del sistema
 
+- Sistema operativo: Windows, macOS o Linux.
+- Java JDK 11 o superior.
+- Scene Builder (opcional para editar archivos FXML).
+- IDE compatible como IntelliJ IDEA, NetBeans o Eclipse.
+  
+3. Instalación y ejecución
+   
+1. Clonar o descargar el repositorio del proyecto.
+2. Abrir el proyecto en un IDE.
+3. Asegurarse de tener JavaFX configurado correctamente en el entorno.
+4. Ejecutar la clase Main.java para iniciar la aplicación.
 
--------------------------------------------------------------------------------------------------------------------------------------
+4. Pantalla principal
+
+La pantalla principal sirve como punto de entrada a las diferentes funcionalidades: registro y login de clientes y
+registro y login de protectoras, una vez dentro de ellas nos encontramos distintas funcionalidades como formularios de adopción y ajustes,
+se puede navegar a las distintas ventanas mediante botones o menús disponibles.
+
+5. Registro de clientes y protectoras
+   
+- En el registro de clientes se solicita información como nombre, correo electrónico, y preferencias.
+- En el registro de protectoras se incluyen datos de contacto y detalles sobre la organización.
+Ambos formularios están validados para asegurar la entrada correcta de datos antes de ser enviados.
+
+6. Gestión de citas
+
+La primera función a la que tiene que acceder el cliente si quiere adoptar un perro.
+La función de citas permite a los usuarios reservar visitas a la
+cafetería para interactuar con perros disponibles para adopción. Incluye:
+- Selección de fecha y hora (1h x cita).
+- Confirmación y posible modificación o cancelación de la cita.
+
+Sin cita previa no se puede adoptar.
+
+7. Formulario de adopción
+   
+Este formulario permite a los usuarios completar una solicitud para adoptar un perro. Se deben ingresar:
+- Datos personales del adoptante (autocompletados al iniciar sesión con una cuenta).
+- Información sobre el lugar donde vivirá el animal (dirección que se conoce por el registro de su cuenta).
+La solicitud será enviada a la protectora del perro para su evaluación.
+  
+8. Ajustes y configuración
+   
+La sección de ajustes permite modificar opciones de usuario como:
+- Preferencias visuales.
+- Posibilidad de cerrar sesión o regresar al menú principal.
+- Modificar nombre, correo y contraseña de la cuenta.
+
+9. Contacto y soporte
+    
+Para contacto visitar el repositorio en GitHub.
