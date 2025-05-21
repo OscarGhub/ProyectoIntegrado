@@ -197,4 +197,14 @@ public class SolicitarAdpController implements Initializable {
     public void setBtnSolicitarAdopcion(Button btnSolicitarAdopcion) {
         this.btnSolicitarAdopcion = btnSolicitarAdopcion;
     }
+
+
+    @FXML
+    public void imgUsuarioNotificaciones(javafx.scene.input.MouseEvent mouseEvent) {
+        try {
+            Ventanas.abrirVentana("/vista/notificaciones.fxml", "Notificaciones Cliente");
+        } catch (Exception e) {
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 }

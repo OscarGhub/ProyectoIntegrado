@@ -11,6 +11,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import modelo.Alertas;
@@ -32,7 +33,7 @@ public class AjustesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        modelo.Animaciones.animarImagenUsuario(imgUsuario);
+        modelo.Animaciones.animarAgrandar(imgUsuario);
         modelo.Animaciones.animarRotacion(imgTuerca1);
         modelo.Animaciones.animarRotacion(imgTuerca2);
         modelo.Animaciones.animarRotacion(imgTuerca3);
@@ -51,13 +52,13 @@ public class AjustesController implements Initializable {
                 return;
             }
 
-            // Verificar si la nueva contraseña tiene menos de 6 caracteres
+
             if (nueva.length() < 6) {
                 Alertas.mostrarAlertaError(null, "Error", "La nueva contraseña debe tener al menos 6 caracteres.");
                 return;
             }
 
-            // Llamar al método de cambio de contraseña solo si la nueva contraseña es válida
+
             if (AjustesDao.cambioContraseniaAjustes(actual, nueva)) {
                 Alertas.mostrarAlertaConfirmacion(null, "Éxito", "Contraseña actualizada.");
             }
@@ -180,5 +181,14 @@ public class AjustesController implements Initializable {
         });
 
         return dialog.showAndWait();
+    }
+
+    @FXML
+    void imgUsuarioNotificaciones(MouseEvent event) {
+        try {
+            Ventanas.abrirVentana("/vista/notificaciones.fxml", "Notificaciones Cliente");
+        } catch (Exception e) {
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 }

@@ -13,7 +13,7 @@
     <left>
         <VBox alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="195.0" style="-fx-background-color: #dbab84;" BorderPane.alignment="CENTER">
             <children>
-                  <ImageView fx:id="imgUsuario" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="label_estilo">
+                  <ImageView fx:id="imgUsuario" fitHeight="35.0" fitWidth="35.0" onMouseClicked="#imgUsuarioNotificaciones" pickOnBounds="true" preserveRatio="true" styleClass="label_estilo">
                       <image>
                           <Image url="@../img/login-removebg-preview.png" />
                       </image>
