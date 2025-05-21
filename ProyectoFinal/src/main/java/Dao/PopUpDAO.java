@@ -1,6 +1,7 @@
 package Dao;
 
 import modelo.CitasInfo;
+import modelo.UsuarioSesion;
 import utils.ConnectionManager;
 
 import java.sql.Connection;
@@ -22,6 +23,9 @@ public class PopUpDAO {
             stmt.setDate(4, java.sql.Date.valueOf(citaAntigua.getFechaCita()));
             stmt.setString(5, citaAntigua.getHoraCita());
 
+            String correoProtectora = UsuarioSesion.getCorreoElectronico();
+            String mensaje = "Tu cita ha sido modificada por " + correoProtectora + "";
+            NotificacionesClienteDao.insertarNotificacion( mensaje, "Si");
             stmt.executeUpdate();
         }
     }
