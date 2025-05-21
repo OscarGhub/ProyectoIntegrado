@@ -18,18 +18,19 @@
                         <Image url="@../img/1.png" />
                     </image>
                 </ImageView>
-                <TableView fx:id="tablaCitas" onSort="#cargarDatos" prefHeight="366.0" prefWidth="505.0" VBox.vgrow="ALWAYS">
+
+                <TableView fx:id="tablaModCitas" maxHeight="1.7976931348623157E308" prefHeight="309.0" prefWidth="505.0" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colNombreCliente" prefWidth="132.0000057220459" text="Nombre" />
-                        <TableColumn fx:id="colCorreoUsuario" prefWidth="151.199951171875" text="Correo Usuario" />
-                        <TableColumn fx:id="colFechaCita" prefWidth="120.00006103515625" text="Perro" />
-                        <TableColumn fx:id="colEstado" prefWidth="122.39999389648438" text="Estado" />
-                        <TableColumn fx:id="colDonacion" maxWidth="1.7976931348623157E308" prefWidth="137.60003662109375" text="Donacion" />
+                        <TableColumn fx:id="colCliente" prefWidth="92.0" text="Cliente" />
+                        <TableColumn fx:id="colPerro" prefWidth="92.0" text="Perro" />
+                        <TableColumn fx:id="colFecha" prefWidth="92.0" text="Fecha" />
+                        <TableColumn fx:id="colEstado" prefWidth="92.0" text="Estado" />
                     </columns>
                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets bottom="10.0" left="20.0" right="20.0" />
                     </VBox.margin>
                 </TableView>
+
             </children>
         </VBox>
     </center>

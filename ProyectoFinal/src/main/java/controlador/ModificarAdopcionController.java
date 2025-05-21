@@ -21,14 +21,12 @@ public class ModificarAdopcionController {
     @FXML private TableColumn<SolicitudAdopcion, String> colCliente;
     @FXML private TableColumn<SolicitudAdopcion, String> colPerro;
     @FXML private TableColumn<SolicitudAdopcion, String> colFecha;
-    @FXML private TableColumn<SolicitudAdopcion, Double> colDonacion;
     @FXML private TableColumn<SolicitudAdopcion, String> colEstado;
 
     @FXML public void initialize() {
         colCliente.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNombreCliente()));
         colPerro.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNombrePerro()));
         colFecha.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getFechaAlta()));
-        colDonacion.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getDonacion()));
         colEstado.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getEstado()));
 
         cargarDatos();
@@ -38,7 +36,7 @@ public class ModificarAdopcionController {
         ObservableList<SolicitudAdopcion> lista = FXCollections.observableArrayList();
 
         String sql = """
-            SELECT c.nombre AS cliente, p.nombre AS perro, sa.fecha_alta, sa.donacion, sa.estado
+            SELECT c.nombre AS cliente, p.nombre AS perro, sa.fecha_alta, sa.estado
             FROM solicitud_adopcion sa
             JOIN cliente c ON c.cliente_id = sa.cliente_id
             JOIN perro p ON p.perro_id = sa.perro_id
@@ -53,7 +51,6 @@ public class ModificarAdopcionController {
                         rs.getString("cliente"),
                         rs.getString("perro"),
                         rs.getDate("fecha_alta").toString(),
-                        rs.getDouble("donacion"),
                         rs.getString("estado")
                 ));
             }

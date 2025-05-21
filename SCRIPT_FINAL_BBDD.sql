@@ -191,7 +191,6 @@ CREATE TABLE perro_patologia (
 CREATE TABLE solicitud_adopcion (
     perro_id NUMBER,
     cliente_id NUMBER,
-    donacion NUMBER(10,2),
     estado VARCHAR2(50) DEFAULT 'Pendiente',
     fecha_alta DATE,
     fecha_modificacion DATE,
@@ -295,33 +294,6 @@ END;
 /
 
 -- PROCEDIMIENTOS
-
--- Procedimiento para enviar notificaciones.
-CREATE OR REPLACE PROCEDURE enviar_notificacion (
-    nueva_cita_noti IN VARCHAR2 DEFAULT 'No',
-    informacion_noti IN VARCHAR2 DEFAULT NULL,
-    protectora_id_noti IN NUMBER DEFAULT NULL,
-    cliente_id_noti IN NUMBER DEFAULT NULL
-)
-IS
-BEGIN
-    INSERT INTO notificaciones_cliente (
-        nueva_cita,
-        informacion,
-        protectora_id,
-        cliente_id,
-        fecha_alta,
-        fecha_modificacion
-    ) VALUES (
-        nueva_cita_noti,
-        informacion_noti,
-        protectora_id_noti,
-        cliente_id_noti,
-        SYSDATE,
-        SYSDATE
-    );
-END;
-/
 
 -- Procedimiento para eliminar un perro al completo.
 CREATE OR REPLACE PROCEDURE eliminar_perro (perroid IN NUMBER)

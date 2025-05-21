@@ -92,7 +92,7 @@
             </ImageView>
             <TabPane maxHeight="1.7976931348623157E308" prefHeight="522.0" prefWidth="505.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                <tabs>
-                  <Tab text="Bulldog">
+                  <Tab text="Chihuahua">
                      <content>
                         <AnchorPane>
                            <children>
@@ -131,7 +131,7 @@
                                     </GridPane>
                                     <ImageView fitHeight="245.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/bulldog.png" />
+                                          <Image url="@../img/chihuahua.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -140,7 +140,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Chihuahua">
+                  <Tab text="Bulldog">
                      <content>
                         <AnchorPane>
                            <children>
@@ -179,7 +179,7 @@
                                     </GridPane>
                                     <ImageView fitHeight="160.0" fitWidth="222.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/chihuahua.png" />
+                                          <Image url="@../img/bulldog.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -188,7 +188,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Rottweiler">
+                  <Tab text="Shiba Inu">
                      <content>
                         <AnchorPane>
                            <children>
@@ -227,7 +227,7 @@
                                     </GridPane>
                                     <ImageView fitHeight="245.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/chop.png" />
+                                          <Image url="@../img/shiba.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -236,7 +236,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Shiba Inu">
+                  <Tab text="Golden Retriever">
                      <content>
                         <AnchorPane>
                            <children>
@@ -275,7 +275,7 @@
                                     </GridPane>
                                     <ImageView fitHeight="245.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/shiba.png" />
+                                          <Image url="@../img/golden-retriever.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -284,7 +284,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Golden Retriever">
+                  <Tab text="Husky Siberiano">
                      <content>
                         <AnchorPane>
                            <children>
@@ -323,7 +323,7 @@
                                     </GridPane>
                                     <ImageView fitHeight="245.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/golden-retriever.png" />
+                                          <Image url="@../img/husky.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -332,7 +332,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Pug">
+                  <Tab text="Rottweiler">
                      <content>
                         <AnchorPane>
                            <children>
@@ -371,7 +371,7 @@
                                     </GridPane>
                                     <ImageView fitHeight="245.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/Pugg.png" />
+                                          <Image url="@../img/chop.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -380,7 +380,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Husky Siberiano">
+                  <Tab text="Pug">
                      <content>
                         <AnchorPane>
                            <children>
@@ -417,9 +417,9 @@
                                           <TextField fx:id="txtPatologia7" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
-                                    <ImageView fitHeight="177.0" fitWidth="284.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="173.0" fitWidth="219.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/husky.png" />
+                                          <Image url="@../img/Pugg.png" />
                                        </image>
                                     </ImageView>
                                  </children>

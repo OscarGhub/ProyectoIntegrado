@@ -72,14 +72,13 @@ public class FormularioAdopcionDAO {
     }
 
     public static boolean insertarSolicitudAdopcion(int perroId, int clienteId, double donacion) {
-        String sqlInsert = "INSERT INTO solicitud_adopcion (perro_id, cliente_id, donacion) VALUES (?, ?, ?)";
+        String sqlInsert = "INSERT INTO solicitud_adopcion (perro_id, cliente_id) VALUES (?, ?)";
 
         try (Connection con = ConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(sqlInsert)) {
 
             ps.setInt(1, perroId);
             ps.setInt(2, clienteId);
-            ps.setDouble(3, donacion);
 
             int filas = ps.executeUpdate();
 

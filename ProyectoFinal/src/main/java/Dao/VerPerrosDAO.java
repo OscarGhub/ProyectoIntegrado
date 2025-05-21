@@ -65,6 +65,7 @@ public class VerPerrosDAO {
                 "GROUP BY " +
                 "    p.perro_id, p.nombre, p.fecha_nacimiento, r.nombre";
 
+
         try (Connection conn = ConnectionManager.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {

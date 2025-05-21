@@ -1,6 +1,7 @@
 package controlador;
 
 import Dao.HistorialAdopcionDAO;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,9 +10,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import modelo.CitasInfo;
+import modelo.SolicitudAdopcion;
 import modelo.Ventanas;
+import utils.ConnectionManager;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -19,40 +25,52 @@ import java.util.logging.Logger;
 
 public class HistorialAdopcionesController {
 
-    @FXML private ImageView imgUsuario;
-    @FXML private TableView<CitasInfo> tablaCitas;
-    @FXML private TableColumn<CitasInfo, String> colEstado;
-    @FXML private TableColumn<CitasInfo, Double> colDonacion;
-    @FXML private TableColumn<CitasInfo, LocalDate> colFechaCita;
-    @FXML private TableColumn<CitasInfo, String> colHoraCita;
-    @FXML private TableColumn<CitasInfo, String> colNombreCliente;
-    @FXML private TableColumn<CitasInfo, String> colApellido1;
-    @FXML private TableColumn<CitasInfo, String> colApellido2;
-    @FXML private TableColumn<CitasInfo, String> colCorreoUsuario;
-    @FXML private TableColumn<CitasInfo, String> colNombrePerro;
+    @FXML private TableView<SolicitudAdopcion> tablaModCitas;
+    @FXML private TableColumn<SolicitudAdopcion, String> colCliente;
+    @FXML private TableColumn<SolicitudAdopcion, String> colPerro;
+    @FXML private TableColumn<SolicitudAdopcion, String> colFecha;
+    @FXML private TableColumn<SolicitudAdopcion, String> colEstado;
 
     private final HistorialAdopcionDAO historialDAO = new HistorialAdopcionDAO();
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        modelo.Animaciones.animarAgrandar(imgUsuario);
-
-        colNombreCliente.setCellValueFactory(new PropertyValueFactory<>("nombreCliente"));
-        colApellido1.setCellValueFactory(new PropertyValueFactory<>("apellido1"));
-        colApellido2.setCellValueFactory(new PropertyValueFactory<>("apellido2"));
-        colNombrePerro.setCellValueFactory(new PropertyValueFactory<>("nombrePerro"));
-        colFechaCita.setCellValueFactory(new PropertyValueFactory<>("fechaCita"));
-        colHoraCita.setCellValueFactory(new PropertyValueFactory<>("horaCita"));
-        colCorreoUsuario.setCellValueFactory(new PropertyValueFactory<>("correoUsuario"));
-        colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-        colDonacion.setCellValueFactory(new PropertyValueFactory<>("donacion"));
+    public void initialize() {
+        colCliente.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNombreCliente()));
+        colPerro.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNombrePerro()));
+        colFecha.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getFechaAlta()));
+        colEstado.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getEstado()));
 
         cargarDatos();
     }
 
     @FXML
     private void cargarDatos() {
-        ObservableList<CitasInfo> citas = historialDAO.obtenerHistorialAdopciones();
-        tablaCitas.setItems(citas);
+        ObservableList<SolicitudAdopcion> lista = FXCollections.observableArrayList();
+
+        String sql = """
+            SELECT c.nombre AS cliente, p.nombre AS perro, sa.fecha_alta, sa.estado
+            FROM solicitud_adopcion sa
+            JOIN cliente c ON c.cliente_id = sa.cliente_id
+            JOIN perro p ON p.perro_id = sa.perro_id
+        """;
+
+        try (Connection conn = ConnectionManager.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                lista.add(new SolicitudAdopcion(
+                        rs.getString("cliente"),
+                        rs.getString("perro"),
+                        rs.getDate("fecha_alta").toString(),
+                        rs.getString("estado")
+                ));
+            }
+
+            tablaModCitas.setItems(lista);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
