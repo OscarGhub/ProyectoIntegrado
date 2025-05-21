@@ -1,9 +1,8 @@
 package Dao;
 
-import modelo.Perro;
+
 import modelo.UsuarioSesion;
 import utils.ConnectionManager;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;

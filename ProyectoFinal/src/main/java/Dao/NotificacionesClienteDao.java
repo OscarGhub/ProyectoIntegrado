@@ -36,7 +36,7 @@ public class NotificacionesClienteDao {
 
 
     public static void insertarNotificacion(String mensaje, String nuevaCita) {
-        String sql = "INSERT INTO notificaciones_cliente (nueva_notificacion,informacion, fecha_alta) VALUES (?, ?, CURRENT_TIMESTAMP)";
+        String sql = "INSERT INTO notificaciones_cliente (nueva_cita,informacion, fecha_alta) VALUES (?, ?, CURRENT_TIMESTAMP)";
 
         try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
