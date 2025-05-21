@@ -6,6 +6,16 @@ import javafx.beans.property.StringProperty;
 public class Notificaciones {
     private final StringProperty informacion;
 
+    private int idCliente;
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
     public Notificaciones(String informacion) {
         this.informacion = new SimpleStringProperty(informacion);
     }
