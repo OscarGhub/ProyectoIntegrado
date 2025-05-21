@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import modelo.CitasInfo;
 import modelo.Ventanas;
 
@@ -82,6 +83,16 @@ public class VerCitasClienteController {
             Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, "Error al abrir la ventana de ver perros", e);
         }
     }
+
+    @FXML
+    void imgUsuarioNotificaciones(MouseEvent event) {
+        try {
+            Ventanas.abrirVentana("/vista/notificaciones.fxml", "Notificaciones Cliente");
+        } catch (Exception e) {
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
 
 
 }
