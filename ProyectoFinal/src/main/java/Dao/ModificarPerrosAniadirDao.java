@@ -1,6 +1,7 @@
 package Dao;
 
 import modelo.Perro;
+import modelo.UsuarioSesion;
 import utils.ConnectionManager;
 
 import java.sql.*;
@@ -31,8 +32,17 @@ public class ModificarPerrosAniadirDao {
 
     public static void insertarPerro(String nombre, LocalDate fechaNacimiento, String nombreRaza, String sexo) {
         String sql = """
-        INSERT INTO perro (nombre, fecha_nacimiento, raza, sexo, adoptado, fecha_alta, fecha_modificacion)
-        VALUES (?, ?, (SELECT id_raza FROM raza WHERE nombre = ?), ?, 'No', SYSDATE, SYSDATE)
+        INSERT INTO perro (
+            nombre, 
+            fecha_nacimiento, 
+            raza, 
+            sexo, 
+            adoptado, 
+            protectora_id, 
+            fecha_alta, 
+            fecha_modificacion
+        )
+        VALUES (?, ?, (SELECT id_raza FROM raza WHERE nombre = ?), ?, 'No', 1, SYSDATE, SYSDATE)
     """;
 
         try (Connection conn = ConnectionManager.getConnection();
@@ -43,10 +53,15 @@ public class ModificarPerrosAniadirDao {
             stmt.setString(3, nombreRaza);
             stmt.setString(4, sexo);
 
+            String correoProtectora = UsuarioSesion.getCorreoElectronico();
+            String mensaje = "La protectora con correo " + correoProtectora + " ha añadido un perro nuevo.";
+            NotificacionesClienteDao.insertarNotificacion(mensaje, "Si");
+
             stmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 }
