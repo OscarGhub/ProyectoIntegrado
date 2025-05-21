@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VerPerrosController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VerPerrosController">
    <left>
       <VBox alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="195.0" style="-fx-background-color: #dbab84;" BorderPane.alignment="CENTER">
          <children>
@@ -114,16 +114,19 @@
                                           <RowConstraints vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="3" />
+                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="4" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre :" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Fecha nacimiento:" GridPane.rowIndex="1" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre raza :" GridPane.rowIndex="2" />
                                           <TextField fx:id="txtNombrePerro1" GridPane.columnIndex="1" />
                                           <TextField fx:id="txtFechaNacimiento1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="txtNombreRaza1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label maxWidth="Infinity" styleClass="label_estilo" text="Patología :" GridPane.rowIndex="3" />
+                                          <TextField fx:id="txtPatologia1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
                                     <ImageView fitHeight="245.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
@@ -159,16 +162,19 @@
                                           <RowConstraints vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="3" />
+                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="4" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre :" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Fecha nacimiento:" GridPane.rowIndex="1" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre raza :" GridPane.rowIndex="2" />
                                           <TextField fx:id="txtNombrePerro2" GridPane.columnIndex="1" />
                                           <TextField fx:id="txtFechaNacimiento2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="txtNombreRaza2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label maxWidth="Infinity" styleClass="label_estilo" text="Patología :" GridPane.rowIndex="3" />
+                                          <TextField fx:id="txtPatologia2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
                                     <ImageView fitHeight="160.0" fitWidth="222.0" pickOnBounds="true" preserveRatio="true">
@@ -204,16 +210,19 @@
                                           <RowConstraints vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="3" />
+                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="4" />
                                           <Label maxWidth="Infinity" prefHeight="23.0" prefWidth="161.0" styleClass="label_estilo" text="Nombre :" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Fecha nacimiento:" GridPane.rowIndex="1" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre raza :" GridPane.rowIndex="2" />
                                           <TextField fx:id="txtNombrePerro3" GridPane.columnIndex="1" />
                                           <TextField fx:id="txtFechaNacimiento3" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="txtNombreRaza3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label maxWidth="Infinity" styleClass="label_estilo" text="Patología :" GridPane.rowIndex="3" />
+                                          <TextField fx:id="txtPatologia3" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
                                     <ImageView fitHeight="245.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
@@ -249,16 +258,19 @@
                                           <RowConstraints vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="3" />
+                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="4" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre :" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Fecha nacimiento:" GridPane.rowIndex="1" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre raza :" GridPane.rowIndex="2" />
                                           <TextField fx:id="txtNombrePerro4" GridPane.columnIndex="1" />
                                           <TextField fx:id="txtFechaNacimiento4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="txtNombreRaza4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label maxWidth="Infinity" styleClass="label_estilo" text="Patología :" GridPane.rowIndex="3" />
+                                          <TextField fx:id="txtPatologia4" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
                                     <ImageView fitHeight="245.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
@@ -294,16 +306,19 @@
                                           <RowConstraints vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="3" />
+                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="4" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre :" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Fecha nacimiento:" GridPane.rowIndex="1" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre raza :" GridPane.rowIndex="2" />
                                           <TextField fx:id="txtNombrePerro5" GridPane.columnIndex="1" />
                                           <TextField fx:id="txtFechaNacimiento5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="txtNombreRaza5" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label maxWidth="Infinity" styleClass="label_estilo" text="Patología :" GridPane.rowIndex="3" />
+                                          <TextField fx:id="txtPatologia5" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
                                     <ImageView fitHeight="245.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
@@ -339,16 +354,19 @@
                                           <RowConstraints vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="3" />
+                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="4" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre :" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Fecha nacimiento:" GridPane.rowIndex="1" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre raza :" GridPane.rowIndex="2" />
                                           <TextField fx:id="txtNombrePerro6" GridPane.columnIndex="1" />
                                           <TextField fx:id="txtFechaNacimiento6" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="txtNombreRaza6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label maxWidth="Infinity" styleClass="label_estilo" text="Patología :" GridPane.rowIndex="3" />
+                                          <TextField fx:id="txtPatologia6" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
                                     <ImageView fitHeight="245.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
@@ -384,16 +402,19 @@
                                           <RowConstraints vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="3" />
+                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="4" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre :" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Fecha nacimiento:" GridPane.rowIndex="1" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre raza :" GridPane.rowIndex="2" />
                                           <TextField fx:id="txtNombrePerro7" GridPane.columnIndex="1" />
                                           <TextField fx:id="txtFechaNacimiento7" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="txtNombreRaza7" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label maxWidth="Infinity" styleClass="label_estilo" text="Patología :" GridPane.rowIndex="3" />
+                                          <TextField fx:id="txtPatologia7" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
                                     <ImageView fitHeight="177.0" fitWidth="284.0" pickOnBounds="true" preserveRatio="true">

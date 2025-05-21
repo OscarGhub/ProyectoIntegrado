@@ -30,13 +30,14 @@ public class VerPerrosController implements Initializable {
     @FXML private ImageView imgUsuario;
     @FXML private Button btnSolicitarCita;
 
-    @FXML private TextField txtNombrePerro1, txtFechaNacimiento1, txtNombreRaza1;
-    @FXML private TextField txtNombrePerro2, txtFechaNacimiento2, txtNombreRaza2;
-    @FXML private TextField txtNombrePerro3, txtFechaNacimiento3, txtNombreRaza3;
-    @FXML private TextField txtNombrePerro4, txtFechaNacimiento4, txtNombreRaza4;
-    @FXML private TextField txtNombrePerro5, txtFechaNacimiento5, txtNombreRaza5;
-    @FXML private TextField txtNombrePerro6, txtFechaNacimiento6, txtNombreRaza6;
-    @FXML private TextField txtNombrePerro7, txtFechaNacimiento7, txtNombreRaza7;
+    @FXML private TextField txtNombrePerro1, txtFechaNacimiento1, txtNombreRaza1, txtPatologia1;
+    @FXML private TextField txtNombrePerro2, txtFechaNacimiento2, txtNombreRaza2, txtPatologia2;
+    @FXML private TextField txtNombrePerro3, txtFechaNacimiento3, txtNombreRaza3, txtPatologia3;
+    @FXML private TextField txtNombrePerro4, txtFechaNacimiento4, txtNombreRaza4, txtPatologia4;
+    @FXML private TextField txtNombrePerro5, txtFechaNacimiento5, txtNombreRaza5, txtPatologia5;
+    @FXML private TextField txtNombrePerro6, txtFechaNacimiento6, txtNombreRaza6, txtPatologia6;
+    @FXML private TextField txtNombrePerro7, txtFechaNacimiento7, txtNombreRaza7, txtPatologia7;
+
 
     private String verificarTexto(String texto) {
         return (texto == null || texto.isBlank()) ? "No disponible" : texto;
@@ -44,13 +45,13 @@ public class VerPerrosController implements Initializable {
 
     private void cargarDatosPerros() {
         List<TextField[]> campos = List.of(
-                new TextField[]{txtNombrePerro1, txtFechaNacimiento1, txtNombreRaza1},
-                new TextField[]{txtNombrePerro2, txtFechaNacimiento2, txtNombreRaza2},
-                new TextField[]{txtNombrePerro3, txtFechaNacimiento3, txtNombreRaza3},
-                new TextField[]{txtNombrePerro4, txtFechaNacimiento4, txtNombreRaza4},
-                new TextField[]{txtNombrePerro5, txtFechaNacimiento5, txtNombreRaza5},
-                new TextField[]{txtNombrePerro6, txtFechaNacimiento6, txtNombreRaza6},
-                new TextField[]{txtNombrePerro7, txtFechaNacimiento7, txtNombreRaza7}
+                new TextField[]{txtNombrePerro1, txtFechaNacimiento1, txtNombreRaza1, txtPatologia1},
+                new TextField[]{txtNombrePerro2, txtFechaNacimiento2, txtNombreRaza2, txtPatologia2},
+                new TextField[]{txtNombrePerro3, txtFechaNacimiento3, txtNombreRaza3, txtPatologia3},
+                new TextField[]{txtNombrePerro4, txtFechaNacimiento4, txtNombreRaza4, txtPatologia4},
+                new TextField[]{txtNombrePerro5, txtFechaNacimiento5, txtNombreRaza5, txtPatologia5},
+                new TextField[]{txtNombrePerro6, txtFechaNacimiento6, txtNombreRaza6, txtPatologia6},
+                new TextField[]{txtNombrePerro7, txtFechaNacimiento7, txtNombreRaza7, txtPatologia7}
         );
 
         VerPerrosDAO dao = new VerPerrosDAO();
@@ -64,11 +65,15 @@ public class VerPerrosController implements Initializable {
                 tf[0].setText(verificarTexto(perro.getNombre()));
                 tf[1].setText(perro.getFechaNacimiento() != null ? perro.getFechaNacimiento().toString() : "No disponible");
                 tf[2].setText(verificarTexto(perro.getRaza()));
+
+                String patologias = perro.getPatologias() != null ? perro.getPatologias() : "No disponible";
+                tf[3].setText(patologias);
             } else {
                 // Si no hay perro para esa posición, poner "No disponible"
                 tf[0].setText("No disponible");
                 tf[1].setText("No disponible");
                 tf[2].setText("No disponible");
+                tf[3].setText("No disponible");
             }
         }
     }
