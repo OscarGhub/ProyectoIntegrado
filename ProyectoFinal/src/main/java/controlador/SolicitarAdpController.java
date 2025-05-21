@@ -17,7 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import modelo.*;
-
+import Dao.CitasDAO;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -82,14 +82,20 @@ public class SolicitarAdpController implements Initializable {
             }
         }
 
+        boolean tieneCita = CitasDAO.existeCitaConPerro(usuarioLogueado.getCorreoElectronico(), perroSeleccionado.getPerro_id());
+
+        if (!tieneCita) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Sin cita previa",
+                    "No puedes solicitar una adopción sin haber solicitado previamente una cita con este perro.");
+            return;
+        }
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/formularioAdopcion.fxml"));
             Parent root = loader.load();
 
-            // Obtener el controlador del formulario
             FormularioAdopcionController controller = loader.getController();
 
-            // PASAR LOS DATOS DEL PERRO Y DEL USUARIO LOGUEADO
             controller.setNombrePerro(perroSeleccionado.getNombre());
             controller.setUsuarioLogueado(usuarioLogueado);
             controller.setCorreoCliente(usuarioLogueado.getCorreoElectronico());
@@ -131,7 +137,6 @@ public class SolicitarAdpController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modelo.Animaciones.animarAgrandar(imgUsuario);
 
-        // Configurar columnas
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colRaza.setCellValueFactory(new PropertyValueFactory<>("raza"));
         colSexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
@@ -151,7 +156,7 @@ public class SolicitarAdpController implements Initializable {
     }
 
     @FXML
-    public void btnSalirAc(ActionEvent event) {  // Metodo público
+    public void btnSalirAc(ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
             Ventanas.abrirVentana("/vista/inicio.fxml", "Registro Cliente");
@@ -161,7 +166,7 @@ public class SolicitarAdpController implements Initializable {
     }
 
     @FXML
-    public void btnAjustesAc(ActionEvent event) {  // Metodo público
+    public void btnAjustesAc(ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
             Ventanas.abrirVentana("/vista/ajustes.fxml", "Ajustes");
@@ -171,7 +176,7 @@ public class SolicitarAdpController implements Initializable {
     }
 
     @FXML
-    public void btnVerCitasAc(ActionEvent event) {  // Metodo público
+    public void btnVerCitasAc(ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
             Ventanas.abrirVentana("/vista/verCitasCliente.fxml", "Ver citas");
@@ -181,7 +186,7 @@ public class SolicitarAdpController implements Initializable {
     }
 
     @FXML
-    public void btnVerPerrosAc(ActionEvent event) {  // Metodo público
+    public void btnVerPerrosAc(ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
             Ventanas.abrirVentana("/vista/verPerros.fxml", "Ver perros");

@@ -114,4 +114,28 @@ public class CitasDAO {
         return listaCitas;
     }
 
+    public static boolean existeCitaConPerro(String correoUsuario, int idPerro) {
+        String query = "SELECT COUNT(*) FROM cita c " +
+                "JOIN cliente cli ON c.cliente_id = cli.cliente_id " +
+                "LEFT JOIN usuario_cliente u ON cli.cliente_id = u.cliente_id " +
+                "WHERE u.correo_electronico = ? AND c.perro_id = ?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, correoUsuario);
+            pstmt.setInt(2, idPerro);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(CitasDAO.class.getName()).log(Level.SEVERE, "Error al verificar la cita", e);
+        }
+
+        return false;
+    }
+
 }
