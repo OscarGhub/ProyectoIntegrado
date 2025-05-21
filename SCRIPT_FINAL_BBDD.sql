@@ -192,7 +192,7 @@ CREATE TABLE solicitud_adopcion (
     perro_id NUMBER,
     cliente_id NUMBER,
     donacion NUMBER(10,2),
-    estado VARCHAR2(50),
+    estado VARCHAR2(50) DEFAULT 'Pendiente',
     fecha_alta DATE,
     fecha_modificacion DATE,
     
