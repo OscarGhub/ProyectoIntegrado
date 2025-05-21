@@ -587,7 +587,7 @@ INSERT INTO redes_sociales (id_protectora, nombre_red, usuario_red)
 VALUES (1, 'Facebook', 'HuellasFelicesMadrid');
 
 INSERT INTO usuario_protectora (nombre_usuario, contrasena, correo_electronico, id_protectora)
-VALUES ('adminHuellas', 'adminpass456', 'admin@huellasfelices.org', 1);
+VALUES ('protectora', '$2a$12$e30.udk8P6eauxUHAQF6Cek3adiLmMys/NNcPxXHue8WvDOLVgjgS', 'admin@huellasfelices.org', 1);
 
 -- 1. Insertar patología
 INSERT INTO patologia (nombre) VALUES ('Alergia');
