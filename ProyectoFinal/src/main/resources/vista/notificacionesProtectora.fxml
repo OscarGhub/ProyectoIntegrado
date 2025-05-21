@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="672.0" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.NotificacionesProtectoraController">
     <center>
@@ -14,11 +15,20 @@
             </columns>
         </TableView>
     </center>
-    <bottom>
-        <Button mnemonicParsing="false" onAction="#btnVolver" prefHeight="30.0" prefWidth="154.0" styleClass="botones_registro" text="Volver" BorderPane.alignment="CENTER">
-            <BorderPane.margin>
-                <Insets bottom="20.0" top="20.0" />
-            </BorderPane.margin>
-        </Button>
-    </bottom>
+   <bottom>
+      <HBox prefHeight="67.0" prefWidth="672.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnLimpiarNotificaciones" prefHeight="46.0" prefWidth="76.0" styleClass="botones_registro" text="Limpiar Notificación" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnVolver" styleClass="botones_registro" text="Volver" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>

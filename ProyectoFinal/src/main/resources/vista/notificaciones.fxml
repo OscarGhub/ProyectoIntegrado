@@ -16,7 +16,7 @@
       </TableView>
    </center>
    <bottom>
-      <HBox maxWidth="1.7976931348623157E308" prefHeight="63.0" prefWidth="672.0" BorderPane.alignment="CENTER">
+      <HBox maxWidth="1.7976931348623157E308" prefHeight="68.0" prefWidth="672.0" BorderPane.alignment="CENTER">
          <children>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnLimpiarNotificaciones" prefHeight="42.0" prefWidth="77.0" styleClass="botones_registro" text="Limpiar Notificación" HBox.hgrow="ALWAYS">
                <HBox.margin>

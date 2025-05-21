@@ -5,6 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import modelo.SolicitudAdopcion;
 import modelo.Ventanas;
 import utils.ConnectionManager;
@@ -23,8 +25,11 @@ public class ModificarAdopcionController {
     @FXML private TableColumn<SolicitudAdopcion, String> colFecha;
     @FXML private TableColumn<SolicitudAdopcion, Double> colDonacion;
     @FXML private TableColumn<SolicitudAdopcion, String> colEstado;
+    @FXML
+    private ImageView imgProtectora;
 
     @FXML public void initialize() {
+        modelo.Animaciones.animarAgrandar(imgProtectora);
         colCliente.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNombreCliente()));
         colPerro.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNombrePerro()));
         colFecha.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getFechaAlta()));
@@ -104,6 +109,14 @@ public class ModificarAdopcionController {
             Ventanas.abrirVentana("/vista/inicio.fxml", "Inicio");
         } catch (Exception e) {
             Logger.getLogger(VerCitasClienteController.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    @FXML
+    void imgProtectoraNotificaciones(MouseEvent event) {
+        try {
+            Ventanas.abrirVentana("/vista/notificacionesProtectora.fxml", "Notificaciones Protectora");
+        } catch (Exception e) {
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }
