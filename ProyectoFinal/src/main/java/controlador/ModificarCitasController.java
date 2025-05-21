@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import modelo.CitasInfo;
 import modelo.Ventanas;
@@ -171,5 +172,13 @@ public class ModificarCitasController implements Initializable {
 
     public void setBtnSalir(Button btnSalir) {
         this.btnSalir = btnSalir;
+    }
+    @FXML
+    void imgProtectoraNotificaciones(MouseEvent event) {
+        try {
+            Ventanas.abrirVentana("/vista/notificacionesProtectora.fxml", "Notificaciones Protectora");
+        } catch (Exception e) {
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 }

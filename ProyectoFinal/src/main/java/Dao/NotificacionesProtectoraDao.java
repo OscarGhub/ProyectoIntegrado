@@ -32,4 +32,18 @@ public class NotificacionesProtectoraDao {
 
         return lista;
     }
+
+    public static void borrarNotificacion(String contenido) {
+        String sql = "DELETE FROM notificaciones_protectora WHERE informacion = ?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, contenido);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
