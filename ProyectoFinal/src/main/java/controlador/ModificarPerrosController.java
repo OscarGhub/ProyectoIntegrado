@@ -112,8 +112,11 @@ public class ModificarPerrosController implements Initializable {
 
     @FXML
     void btnAgregarPerro(ActionEvent event) {
-        // Aquí podrías abrir un formulario para agregar un perro nuevo
-        // Ventanas.abrirVentana("/vista/agregarPerro.fxml", "Agregar Perro");
+        try {
+            Ventanas.abrirVentana("/vista/modificarPerrosAniadir.fxml", "Añadir Perros");
+        } catch (Exception e) {
+            Logger.getLogger(InicioControlador.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     @FXML

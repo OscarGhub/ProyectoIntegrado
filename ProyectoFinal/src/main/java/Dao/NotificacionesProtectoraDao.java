@@ -1,5 +1,8 @@
 package Dao;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import modelo.NotificacionProtectora;
 import utils.ConnectionManager;
 
 import java.sql.Connection;
@@ -9,28 +12,24 @@ import java.sql.SQLException;
 
 public class NotificacionesProtectoraDao {
 
-    public static void insertarNotifiacionProtectora(int idProtectora){
+    public static ObservableList<NotificacionProtectora> obtenerNotificaciones() {
+        ObservableList<NotificacionProtectora> lista = FXCollections.observableArrayList();
 
-        String sql = "INSERT INTO notificaciones_protectora VALUES(?,?)";
+        String sql = "SELECT informacion FROM notificaciones_protectora";
 
-    }
+        try (Connection connection = ConnectionManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
 
-    public static boolean verificarNotificacionesProtectora(int idProtectora) throws SQLException {
-
-        boolean resultado = false;
-
-        String notificacionesProtectora = "SELECT * FROM notificaciones_protectora WHERE idNotificacion = ?";
-
-        try (Connection con = ConnectionManager.getConnection();
-             PreparedStatement ps = con.prepareStatement(notificacionesProtectora)) {
-
-            ps.setInt(1, idProtectora);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    resultado = true;
-                }
+            while (resultSet.next()) {
+                String info = resultSet.getString("informacion");
+                lista.add(new NotificacionProtectora(info));
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return resultado;
+
+        return lista;
     }
 }
