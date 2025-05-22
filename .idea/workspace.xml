@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95795781-e1a6-4b80-b5d7-efc99fef3db7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ProyectoFinal/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoFinal/.idea/misc.xml" afterDir="false" />
-    </list>
+    <list default="true" id="95795781-e1a6-4b80-b5d7-efc99fef3db7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,9 +10,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "OscarGhub"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/OscarGhub/ProyectoIntegrado.git",
+    "accountId": "32b42ad0-6cc9-4d7b-a14a-70bb801944e4"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2wONrLdHe0GWNUcuiyQ84h5RBoQ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -24,9 +34,10 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "samuel",
+    "git-widget-placeholder": "oscar",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Cash/Documents/Segundo_año/ProyectoIntegrado/ProyectoFinal",
+    "last_opened_file_path": "C:/Users/Oscar/Desktop/Proyecto Integrado/ProyectoFinal",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -48,6 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1745908858230</updated>
       <workItem from="1745908859667" duration="25000" />
+      <workItem from="1747930957796" duration="9000" />
     </task>
     <servers />
   </component>
