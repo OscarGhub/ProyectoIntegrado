@@ -1,29 +1,6 @@
 # ProyectoIntegrado
 
-Trabajo de: Samuel, Pedro y Oscar.
-
------------------------------------------------------------------------------------------------------------------------------------
-
-Estructura proyecto ( JavaFX )
-
-USUARIOS cliente y protectora
-
-1 Pag inicio
-2 Iniciar sesion
-3 Perros disponibles->completar formulario de solicitud ->hacer reserva cita (preguntar que va primero)
-4 Vista citas (Anular/modificar citas con perros)
-? Notificaciones a modo de pop-ups, banners, etc para notificaciones para informar a los usuarios sobre cambios en citas y adopciones
-
-
-perfil protectora
-
-sitio donde se tiene acceso a un panel de administración donde pueden agregar modificar o eliminar sus perros, así como gestionar perfiles de perros, citas y solicitudes de adopción.
-
------------------------------------------------------------------------------------------------------------------------------------
-
-ERRORES O PROBLEMAS ENCONTRADOS DURANTE EL DESARROLLO DE LA APLICACIÓN EN JAVA FX:
-- Modificar el tamaño de los contenedores, imagenes, textos y el encabezado de las tablas a la hora de hacerlo responsive.
-- Algunos botones que abren o cierran ventanas no han podido ser modificados e implementar los metodos "abrirVentana" y "cerrarVentana" ya que tienen una estructura diferente.
+Trabajo de: Samuel Leyton Rojas, Pedro Moreno Gullón y Oscar García Delgado.
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -72,6 +49,8 @@ La función de citas permite a los usuarios reservar visitas a la
 cafetería para interactuar con perros disponibles para adopción. Incluye:
 - Selección de fecha y hora (1h x cita).
 - Confirmación y posible modificación o cancelación de la cita.
+  
+- Condiciones: 1 perro solo puede tener 3 citas x día, 1 cita en la misma hora y la cita tiene que tomarse con un día de antelación.
 
 Sin cita previa no se puede adoptar.
 
@@ -81,14 +60,45 @@ Este formulario permite a los usuarios completar una solicitud para adoptar un p
 - Datos personales del adoptante (autocompletados al iniciar sesión con una cuenta).
 - Información sobre el lugar donde vivirá el animal (dirección que se conoce por el registro de su cuenta).
 La solicitud será enviada a la protectora del perro para su evaluación.
+
+- Condiciones: Una adopción sólo puede ser solicitada por un cliente el cual haya tenido una cita previamente con ese mismo perro.
   
 8. Ajustes y configuración
    
 La sección de ajustes permite modificar opciones de usuario como:
 - Preferencias visuales.
-- Posibilidad de cerrar sesión o regresar al menú principal.
 - Modificar nombre, correo y contraseña de la cuenta.
 
 9. Contacto y soporte
     
 Para contacto visitar el repositorio en GitHub.
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Estructura proyecto ( JavaFX )
+
+USUARIOS cliente y protectora
+
+1 Pag inicio
+2 Iniciar sesion
+3 Perros disponibles->completar formulario de solicitud ->hacer reserva cita (preguntar que va primero)
+4 Vista citas (Anular/modificar citas con perros)
+5 Notificaciones a modo de pop-ups, banners, etc para notificaciones para informar a los usuarios sobre cambios en citas y adopciones
+
+
+perfil protectora
+
+sitio donde se tiene acceso a un panel de administración donde pueden agregar modificar o eliminar sus perros, así como gestionar perfiles de perros, citas y solicitudes de adopción.
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+ERRORES O PROBLEMAS ENCONTRADOS DURANTE EL DESARROLLO DE LA APLICACIÓN EN JAVA FX:
+
+- Ajustar el tamaño de los contenedores, imágenes, textos y encabezados de las tablas al hacer la interfaz responsive.
+- Algunos botones que abren o cierran ventanas no han podido ser modificados, y no se ha logrado implementar los métodos abrirVentana y cerrarVentana debido a que su estructura es diferente.
+- Modificar el script SQL para adaptarlo a las necesidades específicas de la aplicación.
+- Si en IntelliJ se inicia un proyecto desde una carpeta que contiene otra carpeta con el proyecto real, este último no tendrá el JDK inicializado correctamente.
+- Si se realizan merges desde la terminal (cmd), puede haber errores invisibles: aunque no se reporten conflictos, al abrir el proyecto puede aparecer parcialmente fusionado o con errores no detectados.
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
