@@ -16,7 +16,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import org.kordamp.bootstrapfx.BootstrapFX?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VerPerrosController">
+   <stylesheets>
+      <BootstrapFX fx:factory="bootstrapFXStylesheet"/>
+   </stylesheets>
    <left>
       <VBox alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="195.0" style="-fx-background-color: #dbab84;" BorderPane.alignment="CENTER">
          <children>
@@ -117,7 +121,7 @@
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="3" />
+                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="bg-primary" text="Solicitar Cita" GridPane.rowIndex="3" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre :" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Fecha nacimiento:" GridPane.rowIndex="1" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre raza :" GridPane.rowIndex="2" />
@@ -162,7 +166,7 @@
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="3" />
+                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="bg-primary" text="Solicitar Cita" GridPane.rowIndex="3" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre :" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Fecha nacimiento:" GridPane.rowIndex="1" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre raza :" GridPane.rowIndex="2" />
@@ -207,7 +211,7 @@
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="3" />
+                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="bg-primary" text="Solicitar Cita" GridPane.rowIndex="3" />
                                           <Label maxWidth="Infinity" prefHeight="23.0" prefWidth="161.0" styleClass="label_estilo" text="Nombre :" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Fecha nacimiento:" GridPane.rowIndex="1" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre raza :" GridPane.rowIndex="2" />
@@ -252,7 +256,7 @@
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="3" />
+                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="bg-primary" text="Solicitar Cita" GridPane.rowIndex="3" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre :" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Fecha nacimiento:" GridPane.rowIndex="1" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre raza :" GridPane.rowIndex="2" />
@@ -297,7 +301,7 @@
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="3" />
+                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="bg-primary" text="Solicitar Cita" GridPane.rowIndex="3" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre :" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Fecha nacimiento:" GridPane.rowIndex="1" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre raza :" GridPane.rowIndex="2" />
@@ -342,7 +346,7 @@
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="3" />
+                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="bg-primary" text="Solicitar Cita" GridPane.rowIndex="3" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre :" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Fecha nacimiento:" GridPane.rowIndex="1" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre raza :" GridPane.rowIndex="2" />
@@ -387,7 +391,7 @@
                                           <RowConstraints vgrow="ALWAYS" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="botones_registro" text="Solicitar Cita" GridPane.rowIndex="3" />
+                                          <Button fx:id="btnSolicitarCita" maxWidth="Infinity" onAction="#btnSolicitarCitasAc" styleClass="bg-primary" text="Solicitar Cita" GridPane.rowIndex="3" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre :" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Fecha nacimiento:" GridPane.rowIndex="1" />
                                           <Label maxWidth="Infinity" styleClass="label_estilo" text="Nombre raza :" GridPane.rowIndex="2" />

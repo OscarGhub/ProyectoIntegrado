@@ -14,7 +14,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import org.kordamp.bootstrapfx.BootstrapFX?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.SolicitarCitaController">
+    <stylesheets>
+        <BootstrapFX fx:factory="bootstrapFXStylesheet"/>
+    </stylesheets>
     <center>
         <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="712.0" BorderPane.alignment="CENTER">
             <children>
@@ -55,7 +59,7 @@
                   <ComboBox fx:id="perroCita" prefHeight="25.0" prefWidth="159.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-            <Button fx:id="btnEnviar" mnemonicParsing="false" onAction="#btnEnviarAc" prefHeight="31.0" prefWidth="242.0" styleClass="botones_registro" text="Enviar">
+            <Button fx:id="btnEnviar" mnemonicParsing="false" onAction="#btnEnviarAc" prefHeight="31.0" prefWidth="242.0" styleClass="bg-primary" text="Enviar">
                <VBox.margin>
                   <Insets bottom="20.0" top="15.0" />
                </VBox.margin>

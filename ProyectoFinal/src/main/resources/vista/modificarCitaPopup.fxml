@@ -8,8 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import org.kordamp.bootstrapfx.BootstrapFX?>
 <VBox alignment="CENTER" prefHeight="400" prefWidth="400" spacing="12" style="-fx-background-color: #dbab84;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ModificarCitaPopUpController">
-
+    <stylesheets>
+        <BootstrapFX fx:factory="bootstrapFXStylesheet"/>
+    </stylesheets>
     <children>
         <Label style="-fx-text-fill: #3d2e1f;" text="Modificar Cita">
             <font>
@@ -26,7 +29,7 @@
         <Label style="-fx-text-fill: #3d2e1f;" text="Estado:" />
         <TextField fx:id="txtEstado" promptText="Ej: Confirmada" />
 
-        <Button maxWidth="150" onAction="#btnGuardarCambios" style="-fx-background-color: #6b4226; -fx-text-fill: white; -fx-font-weight: bold;" text="Guardar Cambios" />
+        <Button maxWidth="150" onAction="#btnGuardarCambios" styleClass="bg-primary" text="Guardar Cambios" />
     </children>
 
     <padding>
