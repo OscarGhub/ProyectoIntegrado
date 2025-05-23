@@ -26,7 +26,6 @@ public class ModificarCitaClienteController {
 
     private CitasInfo citaSeleccionada;
 
-    // Este método se llama para asignar la cita seleccionada y llenar los campos con la información existente.
     public void setCitaSeleccionada(CitasInfo cita) {
         this.citaSeleccionada = cita;
         this.fechaCitaOriginal = cita.getFechaCita();

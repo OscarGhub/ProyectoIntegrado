@@ -83,7 +83,6 @@ public class ModificarAdopcionController {
         }
     }
 
-    // Métodos vacíos de navegación
     @FXML void brnModificarPerrosAc(javafx.event.ActionEvent event) {
         try {
             Ventanas.cerrarVentana(event);
