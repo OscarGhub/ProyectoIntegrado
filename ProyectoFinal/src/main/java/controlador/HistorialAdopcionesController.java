@@ -11,11 +11,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import modelo.CitasInfo;
 import modelo.SolicitudAdopcion;
+import modelo.UsuarioSesion;
 import modelo.Ventanas;
 import utils.ConnectionManager;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
@@ -46,24 +48,31 @@ public class HistorialAdopcionesController {
     private void cargarDatos() {
         ObservableList<SolicitudAdopcion> lista = FXCollections.observableArrayList();
 
+        // Obtener id del cliente logueado
+        int idCliente = UsuarioSesion.getUsuario().getIdUsuario();
+
         String sql = """
-            SELECT c.nombre AS cliente, p.nombre AS perro, sa.fecha_alta, sa.estado
-            FROM solicitud_adopcion sa
-            JOIN cliente c ON c.cliente_id = sa.cliente_id
-            JOIN perro p ON p.perro_id = sa.perro_id
-        """;
+        SELECT c.nombre AS cliente, p.nombre AS perro, sa.fecha_alta, sa.estado
+        FROM solicitud_adopcion sa
+        JOIN cliente c ON c.cliente_id = sa.cliente_id
+        JOIN perro p ON p.perro_id = sa.perro_id
+        WHERE sa.cliente_id = ?
+    """;
 
         try (Connection conn = ConnectionManager.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            while (rs.next()) {
-                lista.add(new SolicitudAdopcion(
-                        rs.getString("cliente"),
-                        rs.getString("perro"),
-                        rs.getDate("fecha_alta").toString(),
-                        rs.getString("estado")
-                ));
+            stmt.setInt(1, idCliente);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(new SolicitudAdopcion(
+                            rs.getString("cliente"),
+                            rs.getString("perro"),
+                            rs.getDate("fecha_alta").toString(),
+                            rs.getString("estado")
+                    ));
+                }
             }
 
             tablaModCitas.setItems(lista);
