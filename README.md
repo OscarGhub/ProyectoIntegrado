@@ -4,6 +4,8 @@ Trabajo de: Samuel Leyton Rojas, Pedro Moreno Gullón y Oscar García Delgado.
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
+IMPORTANTE: EL USUARIO DE LA BASE DE DATOS ES C##PROYECTOINTEGRADO Y LA CONTRASEÑA 123456.
+
 MANUAL DE USO
 
 1. Introducción
