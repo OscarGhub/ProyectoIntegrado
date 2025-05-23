@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/vista/inicio.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/vista/modificarPerros.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700, 400);
 
         scene.getStylesheets().add(getClass().getResource("/estilos.css").toExternalForm());

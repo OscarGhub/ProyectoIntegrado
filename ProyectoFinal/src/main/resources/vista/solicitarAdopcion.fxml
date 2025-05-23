@@ -10,7 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import org.kordamp.bootstrapfx.BootstrapFX?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="Contenedor_Principal" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.SolicitarAdpController">
+    <stylesheets>
+        <BootstrapFX fx:factory="bootstrapFXStylesheet"/>
+    </stylesheets>
     <left>
         <VBox alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="195.0" style="-fx-background-color: #dbab84;" BorderPane.alignment="CENTER">
             <children>
@@ -97,7 +101,7 @@
                     </VBox.margin>
                 </TableView>
 
-                <Button fx:id="btnSolicitarAdopcion" mnemonicParsing="false" onAction="#enviarFormulario" style="-fx-background-color: #dbab84;" text="Solicitar Adopción">
+                <Button fx:id="btnSolicitarAdopcion" mnemonicParsing="false" onAction="#enviarFormulario" styleClass="bg-primary" text="Solicitar Adopción">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
